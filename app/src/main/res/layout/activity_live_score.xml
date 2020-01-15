@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".LiveScoreActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="50dp"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/colorBlue"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="356dp"
+                    android:layout_height="185dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="35dp"
+                    android:padding="10dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="40dp">
+
+                    <RelativeLayout
+                        android:id="@+id/live"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtmatches"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="3rd Match"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="12dp" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="40dp"
+                            android:layout_height="15dp"
+                            app:cardBackgroundColor="@color/colorRed"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginTop="5dp"
+
+                            app:cardCornerRadius="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Live"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:textSize="10dp"
+                                android:textStyle="bold" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/livematch2"
+                        android:layout_width="340dp"
+                        android:layout_height="110dp"
+                        android:layout_below="@+id/live"
+                        android:layout_weight="4"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/team_layout"
+                            android:layout_width="70dp"
+                            android:paddingTop="15dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_weight="1"
+                            android:layout_marginRight="70dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/team2ShortName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14dp"
+                                android:gravity="right"
+                                android:padding="5dp"
+                                android:textStyle="bold"
+                                android:text="LQ"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:gravity="right"
+                                    android:paddingLeft="2dp"
+                                    android:textColor="@color/colorBlue"
+                                    android:text="145-2"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="7dp"
+                                    android:padding="3dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="17.3"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/team_layout1"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/teamImage1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:paddingLeft="10dp"
+                                android:src="@drawable/multansultan" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/l2"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/t5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:paddingLeft="10dp"
+                                android:src="@drawable/lahoreqalander" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/team_layout2"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="70dp"
+                            android:layout_weight="1"
+                            android:paddingTop="15dp"
+                            android:orientation="vertical">
+
+                           <TextView
+                               android:id="@+id/teamShortName"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:textSize="14dp"
+                               android:padding="5dp"
+                               android:textStyle="bold"
+                               android:text="MS"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:gravity="left"
+                                    android:paddingLeft="2dp"
+                                    android:textColor="@color/colorBlue"
+                                    android:text="190-7"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="7dp"
+                                    android:textStyle="bold"
+                                    android:padding="3dp"
+                                    android:textColor="@color/colorBlack"
+                                    android:text="20.0"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/matchresult"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="135dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/livematch2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtmatches1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingTop="2dp"
+                            android:paddingLeft="30dp"
+                            android:gravity="center"
+                            android:text="Lahore Qalander Needs 45 run on 15 balls to win"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="13dp" />
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/videosLayout"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_weight="4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/topLayout">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vote Your Favourite Team"
+                    android:paddingLeft="15dp"
+                    android:textColorHint="@color/colorBlack"
+                    android:textSize="25dp"
+                    android:textColor="@color/colorBlack"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/vote_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:layout_below="@+id/videosLayout">
+
+                <LinearLayout
+                    android:id="@+id/team_rating_layout2"
+                    android:layout_width="77dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="70dp"
+                    android:paddingTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/team_rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="25dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorDarkBlue"
+                        android:text="MS"/>
+
+
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pridicition"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="30dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_below="@+id/team_rating_layout2"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="10"
+                    app:cardBackgroundColor="@color/colorGreen"
+                    app:cardCornerRadius="40dp">
+
+                    <TextView
+                        android:id="@+id/out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="22dp"
+
+                        android:paddingTop="20dp"
+                        android:text="70%"
+                        android:textColor="#ffffff"
+                        android:textSize="25dp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/team_rating_layout3"
+                    android:layout_width="77dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="70dp"
+                    android:paddingTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/team_rating2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="25dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorDarkBlue"
+                        android:text="LQ"/>
+
+
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ratingCard"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="30dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/team_rating_layout2"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="10"
+                    app:cardBackgroundColor="@color/colorRed"
+                    app:cardCornerRadius="40dp">
+
+                    <TextView
+                        android:id="@+id/team1percentage2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="22dp"
+
+                        android:paddingTop="20dp"
+                        android:text="30%"
+                        android:textColor="#ffffff"
+                        android:textSize="25dp" />
+
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/predicition_layout"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vote_layout">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Ball by Ball Predicition "
+                    android:padding="2dp"
+                    android:textSize="25dp"
+                    android:textColorHint="@color/colorBlack"
+                    android:textColor="@color/colorBlack"/>
+            </RelativeLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/predicitionCard"
+                android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_weight="10"
+                app:cardCornerRadius="30dp"
+                android:layout_below="@+id/predicition_layout"
+                android:padding="5dp">
+                <RelativeLayout
+                    android:id="@+id/points"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="4"
+                    android:padding="5dp"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/outCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:layout_marginTop="10dp"
+                        android:padding="5dp"
+                        android:layout_marginLeft="10dp"
+                        app:cardBackgroundColor="@color/colorRed"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:text="Out"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/oneCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="90dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="28dp"
+
+                            android:paddingTop="10dp"
+                            android:text="1"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/twoCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="170dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txttwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="28dp"
+
+                            android:paddingTop="10dp"
+                            android:text="2"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/threeCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="250dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtthree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="28dp"
+
+                            android:paddingTop="10dp"
+                            android:text="3"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/wideCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="330dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtwide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+
+                            android:paddingTop="10dp"
+                            android:text="wide"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/points2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="4"
+                    android:padding="5dp"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fourCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:layout_marginTop="10dp"
+                        android:padding="5dp"
+                        android:layout_marginLeft="10dp"
+                        app:cardBackgroundColor="@color/colorGreen"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtfour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="28dp"
+                            android:paddingTop="10dp"
+                            android:text="4"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/sixCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="90dp"
+                        app:cardBackgroundColor="@color/colorGreen"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txsix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="28dp"
+
+                            android:paddingTop="10dp"
+                            android:text="6"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/dotCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="170dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtdot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+
+                            android:paddingTop="10dp"
+                            android:text="dot"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/noballCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="250dp"
+                        app:cardBackgroundColor="@color/colorBlue"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+
+                            android:paddingTop="10dp"
+                            android:text="noball"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/runoutCard"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="330dp"
+                        app:cardBackgroundColor="@color/colorRed"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/txtrunout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="8dp"
+
+                            android:paddingTop="10dp"
+                            android:text="runout"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+
+
+
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/newsCard2"
+                android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_weight="10"
+                app:cardCornerRadius="30dp"
+                android:layout_below="@+id/predicitionCard"
+                android:padding="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:padding="10dp"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/newsVideoCard2"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_width="120dp"
+                        android:layout_weight="10"
+
+                        android:padding="10dp"
+                        app:cardCornerRadius="30dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/pslne"
+                            />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_marginLeft="120dp"
+                    android:gravity="center"
+                    android:elevation="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PSL 2020 Squads, Online Tickets Time for Pakistan Super...."
+                        android:textStyle="bold"
+                        android:textColor="@color/colorDarkBlue"
+                        android:id="@+id/notification_title1"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Now, all the players are geared up for PSL 2020. Now hopes are further mounting that as the security environment in Pakistan has rapidly been .. ..."
+                        android:id="@+id/notification_description1"
+                        android:textColor="#000000"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/notification_datetime1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="110dp"
+
+                        android:text="09/01/2020"
+                        android:textSize="10dp" />
+                </LinearLayout>
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="270dp"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:paddingTop="17dp"
+                    android:backgroundTint="#ffffff"
+                    android:textColor="@color/colorDarkBlue"
+                    android:text="More"
+                    android:layout_gravity="bottom"/>
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="330dp"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <!--                <androidx.recyclerview.widget.RecyclerView-->
+            <!--                    android:id="@+id/nList"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="661dp"-->
+            <!--                    android:layout_above="@+id/navigationView"-->
+            <!--                    android:layout_alignParentEnd="true"-->
+            <!--                    android:layout_marginEnd="0dp"-->
+            <!--                    android:layout_marginBottom="14dp" />-->
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="0dp"
+        app:labelVisibilityMode="labeled"
+        android:layout_marginEnd="0dp"
+        android:background="#ffffff"
+        app:itemTextColor="@color/colorDarkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation"/>
+
+
+</RelativeLayout>
