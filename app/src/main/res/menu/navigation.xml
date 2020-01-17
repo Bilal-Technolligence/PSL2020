@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id='@+id/nav_home'
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_matches"
+        android:title="Matches"
+        android:icon="@drawable/tennisball"/>
+    <!--<item-->
+        <!--android:id="@+id/nav_report"-->
+        <!--android:title="View report"-->
+        <!--android:icon="@drawable/ic_filter_none_black_24dp" />-->
+    <item
+        android:id="@+id/nav_fixture"
+        android:icon="@drawable/fixture"
+        android:title="Fixture"/>
+    <item
+        android:id="@+id/nav_liveStream"
+        android:icon="@drawable/stream"
+        android:title="LiveStream" />
+    <item
+        android:id="@+id/nav_more"
+        android:icon="@drawable/more"
+        android:title="More" />
+
+</menu>
