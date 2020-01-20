@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.facebook.FacebookSdk;
+
 import hotchemi.android.rate.AppRate;
 
 public class MainActivity extends BaseActivity {
