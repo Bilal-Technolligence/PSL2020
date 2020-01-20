@@ -3,15 +3,15 @@
 
     <item
         android:id="@+id/inviteFriends"
-        android:icon="@drawable/invitefriend"
+        android:icon="@drawable/friends"
         android:title="Invite Friends"></item>
     <item
         android:id="@+id/guideline"
-        android:icon="@drawable/guideline"
+        android:icon="@drawable/guide"
         android:title="Guideline"></item>
     <item
         android:id="@+id/scoreboard"
-        android:icon="@drawable/scoreboard"
+        android:icon="@drawable/score"
         android:title="Scoreboard"></item>
     <item
         android:id="@+id/rateUs"

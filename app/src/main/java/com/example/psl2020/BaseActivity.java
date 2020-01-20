@@ -40,12 +40,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected NavigationView drawerNavigationView;
     ImageView imageView;
     protected ActionBarDrawerToggle drawerToggle;
-    private LoginButton loginButton;
-    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getContentViewId());
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
@@ -73,66 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 Snackbar.make(drawerLayout, "You must have account", Snackbar.LENGTH_LONG).show();
             }
         });
-
-        //fb login button code
-        loginButton= findViewById(R.id.login_button);
-        callbackManager = CallbackManager.Factory.create();
-        loginButton.setReadPermissions(Arrays.asList("email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        callbackManager.onActivityResult(requestCode,resultCode,data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-    AccessTokenTracker accessTokenTracker= new AccessTokenTracker() {
-        @Override
-        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-            if(currentAccessToken!=null){
-                    LoadUserData(currentAccessToken);
-            }
-        }
-    };
-    private void LoadUserData(AccessToken newAccessToken){
-        GraphRequest request= GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response) {
-                try {
-                    String first_name=object.getString("first_name");
-                    String last_name=object.getString("last_name");
-                    String email=object.getString("email");
-                    String id=object.getString("id");
-                    String image_url="https://graph.facebook.com/"+id+"/picture?type=normal";
-                    Snackbar.make(drawerLayout, first_name+" "+last_name, Snackbar.LENGTH_LONG).show();
-//                    RequestOptions requestOptions=new RequestOptions();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        Bundle parameters= new Bundle();
-        parameters.putString("fields","first_name,last_name,email,id,");
-        request.setParameters(parameters);
-        request.executeAsync();
     }
 
     @Override
@@ -177,7 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         } else if (itemId == R.id.guideline) {
             Snackbar.make(drawerLayout, "GuideLine", Snackbar.LENGTH_LONG).show();
         } else if (itemId == R.id.rateUs) {
-            Snackbar.make(drawerLayout, "Rate Us", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(drawerLayout, "rateus", Snackbar.LENGTH_LONG).show();
         } else if (itemId == R.id.logout) {
             Snackbar.make(drawerLayout, "Logout", Snackbar.LENGTH_LONG).show();
         }
