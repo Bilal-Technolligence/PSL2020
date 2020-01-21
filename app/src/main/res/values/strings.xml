@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PSL2020</string>
+    <string name="rate_dialog_tittle">PSL2020</string>
+    <string name="rate_dialog_message">Rate our app and get Reward</string>
+    <string name="rate_dialog_ok">Rate Now</string>
+    <string name="rate_dialog_cancel">Remind Later</string>
+
 </resources>

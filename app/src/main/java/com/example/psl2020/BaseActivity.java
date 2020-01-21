@@ -53,8 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             startActivity(new Intent(this, LiveStreamingActivity.class));
             finish();
         }
-        else if (itemId == R.id.nav_more) {
-            startActivity(new Intent(this, MainActivity.class));
+        else if (itemId == R.id.nav_team) {
+            startActivity(new Intent(this, TeamsActivity.class));
             finish();
         }
 

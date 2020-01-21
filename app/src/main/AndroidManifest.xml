@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiveStreamingActivity"></activity>
+        <activity android:name=".PlayersActivity"></activity>
+        <activity android:name=".TeamsActivity" />
+        <activity android:name=".LiveMatchActivity" />
+        <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -22,8 +22,8 @@
         android:icon="@drawable/stream"
         android:title="LiveStream" />
     <item
-        android:id="@+id/nav_more"
-        android:icon="@drawable/more"
-        android:title="More" />
+        android:id="@+id/nav_team"
+        android:icon="@drawable/teams"
+        android:title="Teams" />
 
 </menu>
