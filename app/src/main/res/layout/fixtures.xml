@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="15dp"
     android:background="@color/colorWhite"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
 
@@ -25,7 +25,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtmatches"
+                android:id="@+id/txtMatches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -36,7 +36,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtUpcoming"
+                    android:id="@+id/txtWinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Upcoming"
@@ -57,7 +57,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/l2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -66,12 +66,37 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/team1"
+                    android:id="@+id/team1a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/lahoreaqalanders" />
+                <ImageView
+                    android:id="@+id/team2a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/queta" />
+                <ImageView
+                    android:id="@+id/team3a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/islamabad" />
+                <ImageView
+                    android:id="@+id/team4a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/peshawarzalmi" />
+                <ImageView
+                    android:id="@+id/team5a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/multan" />
+                <ImageView
+                    android:id="@+id/team6a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/karachi" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -92,7 +117,7 @@
 
 
             </LinearLayout>
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/l1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -101,11 +126,36 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/team2"
+                    android:id="@+id/team1b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/lahoreaqalanders" />
+                <ImageView
+                    android:id="@+id/team2b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/queta" />
+                <ImageView
+                    android:id="@+id/team3b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/islamabad" />
+                <ImageView
+                    android:id="@+id/team4b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/peshawarzalmi" />
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/team5b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/multan" />
+                <ImageView
+                    android:id="@+id/team6b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/karachi" />
+            </RelativeLayout>
 
 
 
