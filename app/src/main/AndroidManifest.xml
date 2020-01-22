@@ -14,6 +14,10 @@
         <activity android:name=".FacebookLogin">
 
         </activity>
+        <activity android:name=".FixtureActivity" />
+        <activity android:name=".PlayersActivity" />
+        <activity android:name=".TeamsActivity" />
+        <activity android:name=".LiveMatchActivity" />
         <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" />
         <activity android:name=".MainActivity">

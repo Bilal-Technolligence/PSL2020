@@ -4,5 +4,10 @@
     <string name="open">Open</string>
     <string name="facebook_app_id">769950596837523</string>
     <string name="fb_login_protocol_scheme">fb769950596837523</string>
+    <string name="rate_dialog_tittle">PSL2020</string>
+    <string name="rate_dialog_message">Rate our app and get Reward</string>
+    <string name="rate_dialog_ok">Rate Now</string>
+    <string name="rate_dialog_cancel">Remind Later</string>
+
 
 </resources>

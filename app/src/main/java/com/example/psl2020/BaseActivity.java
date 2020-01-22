@@ -50,7 +50,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected NavigationView drawerNavigationView;
     ImageView imageView;
     TextView textView;
-    protected ProgressBar progressBar;
     private CallbackManager callbackManager;
     protected ActionBarDrawerToggle drawerToggle;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
@@ -60,7 +59,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getContentViewId());
 
-        progressBar=(ProgressBar) findViewById(R.id.progress_bar);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
@@ -190,7 +188,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         if (itemId == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-        } else if (itemId == R.id.nav_matches) {
+        }else if (itemId == R.id.nav_team) {
+            Intent intent = new Intent(this, TeamsActivity.class);
+            //  intent.putExtra( "id","Friends" );
+            startActivity(intent);
+            finish();
+        }
+        else if (itemId == R.id.nav_matches) {
             Intent intent = new Intent(this, LiveScoreActivity.class);
             //  intent.putExtra( "id","Friends" );
             startActivity(intent);
@@ -202,9 +206,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             finish();
         } else if (itemId == R.id.nav_liveStream) {
             startActivity(new Intent(this, LiveStreamingActivity.class));
-            finish();
-        } else if (itemId == R.id.nav_more) {
-            startActivity(new Intent(this, MainActivity.class));
             finish();
         } else if (itemId == R.id.inviteFriends) {
             Snackbar.make(drawerLayout, "Invite Friends", Snackbar.LENGTH_LONG).show();
