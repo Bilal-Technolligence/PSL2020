@@ -12,16 +12,17 @@
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/profilepic"
+        android:src="@drawable/profile_pic"
         app:civ_border_color="#FFF"
         app:civ_border_width="2dp" />
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="PSL 2020"
+        android:text="Guest"
         android:id="@+id/name"
         android:textSize="20dp"
         android:textColor="#fff"
