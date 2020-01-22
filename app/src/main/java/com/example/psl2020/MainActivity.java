@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
 
-        reference.child("Schedule").addValueEventListener(new ValueEventListener() {
+        reference.child("Schedule").limitToFirst( 3 ).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 scheduleAttrs.clear();

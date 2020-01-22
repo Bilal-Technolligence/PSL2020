@@ -10,6 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHolder> {
@@ -31,106 +38,33 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.winning.setText(scheduleAttrs.get(position).getWinner());
         String teamOne = scheduleAttrs.get( position ).getTeamOne();
         String teamTwo = scheduleAttrs.get( position ).getTeamTwo();
-        if(teamOne.equals( "Lahore Qalandars" )){
-            holder.img2a.setVisibility( View.GONE );
-            holder.img3a.setVisibility( View.GONE );
-            holder.img4a.setVisibility( View.GONE );
-            holder.img5a.setVisibility( View.GONE );
-            holder.img6a.setVisibility( View.GONE );
+        DatabaseReference dref = FirebaseDatabase.getInstance().getReference();
+        dref.child( "Teams" ).child( teamOne ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1a );
+            }
 
-        }
-        if(teamOne.equals( "Quetta Gladiators" )){
-            holder.img1a.setVisibility( View.GONE );
-            holder.img3a.setVisibility( View.GONE );
-            holder.img4a.setVisibility( View.GONE );
-            holder.img5a.setVisibility( View.GONE );
-            holder.img6a.setVisibility( View.GONE );
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
-        if(teamOne.equals( "Islamabad United" )){
-            holder.img1a.setVisibility( View.GONE );
-            holder.img2a.setVisibility( View.GONE );
-            holder.img4a.setVisibility( View.GONE );
-            holder.img5a.setVisibility( View.GONE );
-            holder.img6a.setVisibility( View.GONE );
+            }
+        } );
+        dref.child( "Teams" ).child( teamTwo ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1b );
+            }
 
-        }
-        if(teamOne.equals( "Peshawar Zalmi" )){
-            holder.img1a.setVisibility( View.GONE );
-            holder.img2a.setVisibility( View.GONE );
-            holder.img3a.setVisibility( View.GONE );
-            holder.img5a.setVisibility( View.GONE );
-            holder.img6a.setVisibility( View.GONE );
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
-        if(teamOne.equals( "Multan Sultan" )){
-            holder.img1a.setVisibility( View.GONE );
-            holder.img2a.setVisibility( View.GONE );
-            holder.img3a.setVisibility( View.GONE );
-            holder.img4a.setVisibility( View.GONE );
-            holder.img6a.setVisibility( View.GONE );
-
-        }
-        if(teamOne.equals( "Karachi Kings" )){
-            holder.img1a.setVisibility( View.GONE );
-            holder.img2a.setVisibility( View.GONE );
-            holder.img3a.setVisibility( View.GONE );
-            holder.img4a.setVisibility( View.GONE );
-            holder.img5a.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Lahore Qalandars" )){
-            holder.img2b.setVisibility( View.GONE );
-            holder.img3b.setVisibility( View.GONE );
-            holder.img4b.setVisibility( View.GONE );
-            holder.img5b.setVisibility( View.GONE );
-            holder.img6b.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Quetta Gladiators" )){
-            holder.img1b.setVisibility( View.GONE );
-            holder.img3b.setVisibility( View.GONE );
-            holder.img4b.setVisibility( View.GONE );
-            holder.img5b.setVisibility( View.GONE );
-            holder.img6b.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Islamabad United" )){
-            holder.img1b.setVisibility( View.GONE );
-            holder.img2b.setVisibility( View.GONE );
-            holder.img4b.setVisibility( View.GONE );
-            holder.img5b.setVisibility( View.GONE );
-            holder.img6b.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Peshawar Zalmi" )){
-            holder.img1b.setVisibility( View.GONE );
-            holder.img2b.setVisibility( View.GONE );
-            holder.img3b.setVisibility( View.GONE );
-            holder.img5b.setVisibility( View.GONE );
-            holder.img6b.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Multan Sultan" )){
-            holder.img1b.setVisibility( View.GONE );
-            holder.img2b.setVisibility( View.GONE );
-            holder.img3b.setVisibility( View.GONE );
-            holder.img4b.setVisibility( View.GONE );
-            holder.img6b.setVisibility( View.GONE );
-
-        }
-        if(teamTwo.equals( "Karachi Kings" )){
-            holder.img1b.setVisibility( View.GONE );
-            holder.img2b.setVisibility( View.GONE );
-            holder.img3b.setVisibility( View.GONE );
-            holder.img4b.setVisibility( View.GONE );
-            holder.img5b.setVisibility( View.GONE );
-
-        }
+            }
+        } );
         String date = scheduleAttrs.get( position ).getDate();
         String day = date.substring( 0,2 );
         String m = date.substring( 3,5 );
@@ -175,24 +109,14 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         return scheduleAttrs.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img1a,img2a,img3a,img4a,img5a,img6a,img1b,img2b,img3b,img4b,img5b,img6b;
+        ImageView img1a,img1b;
         TextView liveMatches,winning;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             liveMatches =(TextView) itemView.findViewById(R.id.txtMatches);
             winning=(TextView) itemView.findViewById(R.id.txtWinner);
             img1a = (ImageView) itemView.findViewById(R.id.team1a);
-            img2a = (ImageView) itemView.findViewById(R.id.team2a);
-            img3a = (ImageView) itemView.findViewById(R.id.team3a);
-            img4a = (ImageView) itemView.findViewById(R.id.team4a);
-            img5a = (ImageView) itemView.findViewById(R.id.team5a);
-            img6a = (ImageView) itemView.findViewById(R.id.team6a);
             img1b = (ImageView) itemView.findViewById(R.id.team1b);
-            img2b = (ImageView) itemView.findViewById(R.id.team2b);
-            img3b = (ImageView) itemView.findViewById(R.id.team3b);
-            img4b = (ImageView) itemView.findViewById(R.id.team4b);
-            img5b = (ImageView) itemView.findViewById(R.id.team5b);
-            img6b = (ImageView) itemView.findViewById(R.id.team6b);
         }
     }
 }

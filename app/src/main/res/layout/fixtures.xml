@@ -69,32 +69,8 @@
                     android:id="@+id/team1a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/lahoreaqalanders" />
-                <ImageView
-                    android:id="@+id/team2a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/queta" />
-                <ImageView
-                    android:id="@+id/team3a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/islamabad" />
-                <ImageView
-                    android:id="@+id/team4a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/peshawarzalmi" />
-                <ImageView
-                    android:id="@+id/team5a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/multan" />
-                <ImageView
-                    android:id="@+id/team6a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/karachi" />
+                    android:src="@drawable/loading"/>
+
 
             </RelativeLayout>
 
@@ -129,32 +105,8 @@
                     android:id="@+id/team1b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/lahoreaqalanders" />
-                <ImageView
-                    android:id="@+id/team2b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/queta" />
-                <ImageView
-                    android:id="@+id/team3b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/islamabad" />
-                <ImageView
-                    android:id="@+id/team4b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/peshawarzalmi" />
-                <ImageView
-                    android:id="@+id/team5b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/multan" />
-                <ImageView
-                    android:id="@+id/team6b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/karachi" />
+                    android:src="@drawable/loading" />
+
             </RelativeLayout>
 
 

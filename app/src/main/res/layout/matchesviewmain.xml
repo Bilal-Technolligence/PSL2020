@@ -16,6 +16,7 @@
             android:id="@+id/livematchNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
             android:weightSum="4"
             android:gravity="center"
             android:orientation="horizontal">
@@ -40,6 +41,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:id="@+id/imgLive"
                 android:src="@drawable/live"/>
 
             <TextView
@@ -65,32 +67,34 @@
             android:layout_height="wrap_content"
             android:weightSum="3"
 
-            android:layout_margin="50dp"
+            android:layout_margin="30dp"
             android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/team1"
-                    android:src="@drawable/lahoreaqalanders"/>
+                    android:src="@drawable/loading"
+                    android:id="@+id/team1"/>
 
-                 <ImageView
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="99dp"
+                android:paddingTop="20dp"
                 android:layout_weight="1"
-                android:src="@drawable/vs"/>
+                android:src="@drawable/vs" />
 
-                <ImageView
+            <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/team2"
-                    android:src="@drawable/peshawarzalmi"/>
+
+                    android:src="@drawable/loading"
+                    android:id="@+id/team2"/>
 
         </LinearLayout>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/matchresult"
+            android:id="@+id/matchTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
