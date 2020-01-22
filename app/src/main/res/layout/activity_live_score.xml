@@ -492,109 +492,147 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="20dp" />
             </RelativeLayout>
-
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/batsmanCrd"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="4"
-                android:padding="3dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/bowlerLayout"
-                app:cardBackgroundColor="@color/colorBlue">
+                android:background="@color/colorBlue"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:weightSum="9"
+                android:orientation="horizontal">
 
-                <TextView
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="Batsman"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text=" "
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:text="Batsman"
+                    android:layout_weight="1"
+                    android:text=" "
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                <TextView
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginLeft="210dp"
-                    android:paddingTop="5dp"
+                    android:layout_weight="1"
                     android:text="R"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="B"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="4s"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+
+                        android:text="6s"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginLeft="240dp"
-                    android:paddingTop="5dp"
-                    android:text="B"
+                    android:layout_weight="1"
+                    android:text=" "
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="270dp"
-                    android:paddingTop="5dp"
-                    android:text="4s"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="300dp"
-                    android:paddingTop="5dp"
-                    android:text="6s"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="355dp"
-                    android:paddingTop="5dp"
-                    android:text="S.R"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="S.R"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
 
 
 
-            </androidx.cardview.widget.CardView>
-            <RelativeLayout
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/batsmanOneLayout"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-
+                android:weightSum="9"
                 android:layout_below="@+id/batsmanCrd"
-
-                android:layout_height="40dp">
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/txtBatsman1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:layout_alignParentLeft="true"
-                    android:paddingTop="10dp"
+                    android:layout_weight="1"
                     android:text="Baber A"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="70dp"
-                    android:src="@drawable/asteric" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="         "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="    "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_weight="1"-->
+
+<!--                    android:src="@drawable/asteric" />-->
 
                 <TextView
                     android:id="@+id/txtRuns1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="208dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="10dp"
                     android:text="49"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
@@ -602,9 +640,8 @@
                     android:id="@+id/txtBlls1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="238dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="10dp"
                     android:text="24"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
@@ -612,35 +649,41 @@
                     android:id="@+id/txtFour1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="275dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="10dp"
                     android:text="3"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/txtSixer1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="305dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="10dp"
                     android:text="2"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text=" "
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
                 <TextView
                     android:id="@+id/txtStrikeRate1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="350dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingTop="10dp"
                     android:text="130.00"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
 
 
-            </RelativeLayout>
+            </LinearLayout>
             <RelativeLayout
                 android:id="@+id/batsmanTwoLayout"
                 android:layout_width="match_parent"
