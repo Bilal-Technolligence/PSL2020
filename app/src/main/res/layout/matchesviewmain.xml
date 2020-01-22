@@ -6,167 +6,136 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:layout_width="match_parent"
-
         android:layout_marginTop="30dp"
-        android:layout_weight="4"
         app:cardCornerRadius="40dp"
         android:padding="5dp"
-        app:cardBackgroundColor="#ffffff"
-        >
-        <RelativeLayout
+        app:cardBackgroundColor="#ffffff">
+        <LinearLayout
             android:id="@+id/livematchNo"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:weightSum="4"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/txtmatches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="3rd Match"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="12dp" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="40dp"
-                android:layout_height="15dp"
-                app:cardBackgroundColor="@color/colorRed"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="5dp"
-
-                app:cardCornerRadius="10dp">
-
-                <TextView
-                    android:id="@+id/txtlive"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Live"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="10dp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/secondlayout"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:layout_margin="30dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:id="@+id/l2"
+                android:textColor="@color/colorBlack"
+                android:textSize="14dp" />
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_alignParentRight="true"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/team1"
-                    android:src="@drawable/lahoreaqalanders"/>
+                android:layout_height="50dp"
+                android:id="@+id/imgLive"
+                android:src="@drawable/live"/>
 
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignRight="@id/l2"
-                android:layout_alignLeft="@id/l1"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/vs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif-monospace"
-                    android:text="VS"
-                    android:textColor="#5F76BB"
-                    android:textSize="40sp" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/l1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_alignParentLeft="true"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/team2"
-                    android:src="@drawable/peshawarzalmi"/>
-            </LinearLayout>
-
-
-
+                android:text="            "
+                android:textColor="@color/colorBlack"
+                android:textSize="12dp" />
 
 
 
         </LinearLayout>
-        <RelativeLayout
-            android:id="@+id/matchresult"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="160dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/secondlayout"
+            android:id="@+id/test"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/secondlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+
+            android:layout_margin="30dp"
+            android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/loading"
+                    android:id="@+id/team1"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="99dp"
+                android:paddingTop="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/vs" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:src="@drawable/loading"
+                    android:id="@+id/team2"/>
+
+        </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/matchTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:weightSum="3"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtDay"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:paddingTop="2dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
                 android:text="Today "
                 android:textColor="@color/colorBlack"
-                android:textSize="13dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:paddingTop="2dp"
                 android:text="20/02/2020 "
                 android:visibility="gone"
                 android:textColor="@color/colorBlack"
-                android:textSize="13dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:gravity="center"
-                android:paddingLeft="50dp"
-                android:paddingTop="2dp"
-
-                android:text="7:00 PM"
+                android:gravity="left"
+                android:text=" 7:00 PM"
                 android:textColor="@color/colorBlack"
-                android:textSize="13dp" />
+                android:textSize="16dp" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
