@@ -492,6 +492,11 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="20dp" />
             </RelativeLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TableLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/batsmanCrd"

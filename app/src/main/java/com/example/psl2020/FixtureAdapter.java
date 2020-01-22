@@ -46,6 +46,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         dref.child( "Teams" ).child( teamOne ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
                 Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1a );
             }
 
@@ -57,6 +58,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         dref.child( "Teams" ).child( teamTwo ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
                 Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1b );
             }
 

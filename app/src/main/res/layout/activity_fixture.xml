@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".FixtureActivity">
 
     <TextView
@@ -14,7 +15,7 @@
         android:text="Upcomings"
         android:textColor="@color/colorBlack"
         android:textSize="25dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:textStyle="bold"
         android:gravity="center"/>
 
@@ -24,8 +25,7 @@
             android:layout_marginTop="40dp"
             android:id="@+id/fixtureList"
             android:layout_marginBottom="60dp"
-            android:background="@android:color/white"
-            />
+            android:background="@android:color/white"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
