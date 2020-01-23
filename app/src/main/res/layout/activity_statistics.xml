@@ -4,28 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="40dp"
     android:orientation="vertical"
     tools:context=".Statistics">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/drawarLayout">
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/AppTheme"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <!-- View pager to swipe views -->
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
-        android:background="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-    </androidx.viewpager.widget.ViewPager>
+
+            <!-- our tablayout to display tabs  -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/Theme.MaterialComponents"/>
+
+            <!-- View pager to swipe views -->
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
+                android:background="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+            </androidx.viewpager.widget.ViewPager>
+        </LinearLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawerNavigationView"
             app:headerLayout="@layout/header"

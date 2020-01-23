@@ -119,13 +119,29 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                                     try {
 //                            name.setText( object.getJSONObject("friends").getJSONObject("summary").getString("total_count"));
 //                            Toast.makeText(getApplicationContext(), friend, Toast.LENGTH_LONG).show();
-                                        String first_name=object.getString("first_name");
-                                        String last_name=object.getString("last_name");
-                                        String userId=object.getString("id");
+                                        final String first_name=object.getString("first_name");
+                                        final String last_name=object.getString("last_name");
+                                        final String userId=object.getString("id");
                                         String image_url="https://graph.facebook.com/"+userId+"/picture?type=large";
                                         databaseReference.child("Users").child(userId).child("id").setValue(userId);
                                         databaseReference.child("Users").child(userId).child("image_url").setValue(image_url);
                                         databaseReference.child("Users").child(userId).child("name").setValue(first_name+" "+last_name);
+                                        databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (!dataSnapshot.exists()) {
+                                                    databaseReference.child("UsersPoints").child(userId).child("id").setValue(userId);
+                                                    databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                    databaseReference.child("UsersPoints").child(userId).child("points").setValue(0);
+
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                         SharedPreferences.Editor editor = getSharedPreferences("Log", MODE_PRIVATE).edit();
                                         editor.putBoolean("isLoggedIn", true );
                                         editor.putString("id", userId );
