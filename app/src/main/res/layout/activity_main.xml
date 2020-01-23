@@ -70,56 +70,11 @@
                 android:padding="7dp"
                 android:orientation="horizontal"
                 android:layout_below="@+id/videosLayout">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/videoCard"
-                    android:layout_margin="5dp"
-                    android:layout_height="160dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/web1"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/colorBlue">
-                    >
-                    <LinearLayout
-                        android:id="@+id/videosplayss"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:id="@+id/video"
-                            android:src="@drawable/pausevideos"/>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/videoCard2"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="160dp"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/colorBlue">
-                    <LinearLayout
-                        android:id="@+id/videosplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:id="@+id/videoplays"
-                            android:src="@drawable/pausevideos"/>
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/newsLayout"
