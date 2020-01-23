@@ -199,8 +199,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             //  intent.putExtra( "id","Friends" );
             startActivity(intent);
             finish();
-        } else if (itemId == R.id.nav_fixture) {
-            Intent intent = new Intent(this, MainActivity.class);
+        } else if (itemId == R.id.nav_statistics) {
+            Intent intent = new Intent(this, Statistics.class);
             //  intent.putExtra( "id","Family" );
             startActivity(intent);
             finish();

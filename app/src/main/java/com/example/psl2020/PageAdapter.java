@@ -18,11 +18,11 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-              //  VideoFolderFragment videoFolderFragment=new VideoFolderFragment();
-              //  return videoFolderFragment;
+                Fixture fixture=new Fixture();
+                return fixture;
             case 1:
-              //  AudioFolderFragment audioFolderFragment=new AudioFolderFragment();
-              //  return audioFolderFragment;
+                Scoreboard scoreboard=new Scoreboard();
+                return scoreboard;
             default:
                 return null;
 

@@ -8,15 +8,15 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class Statistics extends AppCompatActivity {
+public class Statistics extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+//        setContentView(R.layout.activity_statistics);
         TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Videos"));
-        tabLayout.addTab(tabLayout.newTab().setText("Audios"));
+        tabLayout.addTab(tabLayout.newTab().setText("Fixtures"));
+        tabLayout.addTab(tabLayout.newTab().setText("Scoreboard"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
@@ -41,5 +41,15 @@ public class Statistics extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_statistics;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_statistics;
     }
 }

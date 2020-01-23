@@ -9,14 +9,10 @@
         android:id="@+id/nav_matches"
         android:title="Matches"
         android:icon="@drawable/tennisball"/>
-    <!--<item-->
-        <!--android:id="@+id/nav_report"-->
-        <!--android:title="View report"-->
-        <!--android:icon="@drawable/ic_filter_none_black_24dp" />-->
     <item
-        android:id="@+id/nav_fixture"
+        android:id="@+id/nav_statistics"
         android:icon="@drawable/fixture"
-        android:title="Fixture"/>
+        android:title="Statistics"/>
     <item
         android:id="@+id/nav_liveStream"
         android:icon="@drawable/stream"
