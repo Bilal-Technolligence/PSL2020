@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/inviteFriends"
+        android:icon="@drawable/friends"
+        android:title="Invite Friends"></item>
+    <item
+        android:id="@+id/guideline"
+        android:icon="@drawable/guide"
+        android:title="Guideline"></item>
+    <item
+        android:id="@+id/scoreboard"
+        android:icon="@drawable/score"
+        android:title="Scoreboard"></item>
+    <item
+        android:id="@+id/rateUs"
+        android:icon="@drawable/rateus"
+        android:title="Rate Us"></item>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Logout"></item>
+
+
+</menu>
+

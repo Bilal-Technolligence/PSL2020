@@ -7,7 +7,10 @@
     android:background="@color/colorWhite"
     android:layout_margin="5dp"
     tools:context=".TeamsActivity">
-
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/drawarLayout">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -240,6 +243,19 @@
                         </LinearLayout>
                 </LinearLayout>
         </ScrollView>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNavigationView"
+            app:headerLayout="@layout/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            app:menu="@menu/drawar_menu"
+            app:itemTextColor="#6c6c6c"
+            android:layout_gravity="start"
+            ></com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigationView"

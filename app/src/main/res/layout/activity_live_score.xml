@@ -7,7 +7,10 @@
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".LiveScoreActivity">
-
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawarLayout">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -492,147 +495,114 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="20dp" />
             </RelativeLayout>
-            <LinearLayout
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TableLayout>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/batsmanCrd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="4"
+                android:padding="3dp"
+                android:layout_marginTop="3dp"
                 android:layout_below="@+id/bowlerLayout"
-                android:background="@color/colorBlue"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:weightSum="9"
-                android:orientation="horizontal">
+                app:cardBackgroundColor="@color/colorBlue">
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Batsman"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text=" "
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_weight="1"
-                    android:text=" "
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:text="Batsman"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                    <TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="210dp"
+                    android:paddingTop="5dp"
                     android:text="R"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="B"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="4s"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-
-                        android:text="6s"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_weight="1"
-                    android:text=" "
+                    android:layout_marginLeft="240dp"
+                    android:paddingTop="5dp"
+                    android:text="B"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="S.R"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="270dp"
+                    android:paddingTop="5dp"
+                    android:text="4s"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="300dp"
+                    android:paddingTop="5dp"
+                    android:text="6s"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="355dp"
+                    android:paddingTop="5dp"
+                    android:text="S.R"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp" />
 
 
 
-            </LinearLayout>
-
-
-            <LinearLayout
+            </androidx.cardview.widget.CardView>
+            <RelativeLayout
                 android:id="@+id/batsmanOneLayout"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="9"
+
                 android:layout_below="@+id/batsmanCrd"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:layout_height="wrap_content">
+
+                android:layout_height="40dp">
                 <TextView
                     android:id="@+id/txtBatsman1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="10dp"
                     android:text="Baber A"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="         "
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="    "
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12dp" />
-
-<!--                <ImageView-->
-<!--                    android:layout_width="10dp"-->
-<!--                    android:layout_height="10dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:layout_weight="1"-->
-
-<!--                    android:src="@drawable/asteric" />-->
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="70dp"
+                    android:src="@drawable/asteric" />
 
                 <TextView
                     android:id="@+id/txtRuns1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="208dp"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="49"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
@@ -640,8 +610,9 @@
                     android:id="@+id/txtBlls1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="238dp"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="24"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
@@ -649,41 +620,35 @@
                     android:id="@+id/txtFour1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="275dp"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="3"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
-
                 <TextView
                     android:id="@+id/txtSixer1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="305dp"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="2"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text=" "
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
                 <TextView
                     android:id="@+id/txtStrikeRate1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="350dp"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="130.00"
                     android:textColor="@color/colorBlack"
                     android:textSize="12dp" />
 
 
-            </LinearLayout>
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/batsmanTwoLayout"
                 android:layout_width="match_parent"
@@ -1029,6 +994,20 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/drawerNavigationView"
+        app:headerLayout="@layout/header"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        app:menu="@menu/drawar_menu"
+        app:itemTextColor="#6c6c6c"
+        android:layout_gravity="start"
+        ></com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"

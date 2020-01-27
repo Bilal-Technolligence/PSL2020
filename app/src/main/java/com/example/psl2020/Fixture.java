@@ -1,11 +1,16 @@
 package com.example.psl2020;
 
+
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,20 +20,22 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FixtureActivity extends BaseActivity {
+
+public class Fixture extends Fragment {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
     ArrayList<ScheduleAttr> scheduleAttrs;
     RecyclerView recyclerView;
-    //Pager
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        //setContentView( R.layout.activity_fixture );
-        recyclerView=findViewById(R.id.fixtureList);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.fragment_fixture, container, false);
+
+        recyclerView=view.findViewById(R.id.fixtureList);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -39,7 +46,7 @@ public class FixtureActivity extends BaseActivity {
                     scheduleAttrs.add(p);
                 }
 
-                recyclerView.setAdapter(new FixtureAdapter(scheduleAttrs ,FixtureActivity.this));
+                recyclerView.setAdapter(new FixtureAdapter(scheduleAttrs ,getActivity()));
 
 
             }
@@ -50,15 +57,9 @@ public class FixtureActivity extends BaseActivity {
             }
         });
 
+
+
+        return view;
     }
 
-    @Override
-    int getContentViewId() {
-        return R.layout.activity_fixture;
-    }
-
-    @Override
-    int getNavigationMenuItemId() {
-        return R.id.nav_fixture;
-    }
 }

@@ -6,7 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".Points"
     android:orientation="vertical">
-
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="65dp"
+        android:id="@+id/cr"
+        android:backgroundTint="#009900"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Name"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Points"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000"
+            android:layout_gravity="end"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:id="@+id/pointList"
+        android:layout_marginTop="55dp"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/card"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="#009900"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Name"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:id="@+id/txtNamee"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Points"
+            android:id="@+id/txtPoints"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000"
+            android:layout_gravity="end"/>
+    </androidx.cardview.widget.CardView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
