@@ -1,21 +1,14 @@
 package com.example.psl2020;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,23 +19,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import hotchemi.android.rate.AppRate;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
     ArrayList<ScheduleAttr> scheduleAttrs;
     RecyclerView recyclerView;
+    TextView newsTitle,newsDetail,newsDatetime;
     RecyclerView webView1;
     Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.rateapp);
         dialog.setTitle("Cricket Express PSL2020...");
@@ -53,7 +54,9 @@ public class MainActivity extends BaseActivity {
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
-
+        newsTitle=(TextView) findViewById(R.id.newsTitle);
+        newsDetail=(TextView) findViewById(R.id.newsDetail);
+        newsDatetime=(TextView) findViewById(R.id.newsDatetime);
         reference.child("Schedule").orderByChild("winner").equalTo("Upcoming").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -102,29 +105,30 @@ public class MainActivity extends BaseActivity {
 
 
         // set the custom dialog components - text, image and button
-        Button remind = (Button) dialog.findViewById(R.id.remindLater);
-        remind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button rateNow = (Button) dialog.findViewById(R.id.dialogButtonOK);
-        // if button is clicked, close the custom dialog
-        rateNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirect();
-
-                dialog.dismiss();
-            }
-
-
-        });
-
-        dialog.show();
+//        Button remind = (Button) dialog.findViewById(R.id.remindLater);
+//        remind.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        Button rateNow = (Button) dialog.findViewById(R.id.dialogButtonOK);
+//        // if button is clicked, close the custom dialog
+//        rateNow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirect();
+//
+//                dialog.dismiss();
+//            }
+//
+//
+//        });
+//
+//        dialog.show();
+        new ScrapeNews().execute();
     }
 
     private void redirect() {
@@ -162,5 +166,46 @@ public class MainActivity extends BaseActivity {
     @Override
     int getNavigationMenuItemId() {
         return R.id.nav_home;
+    }
+
+    public  class ScrapeNews extends AsyncTask<Void,Void,Void>{
+        String words;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(), "pre-processing", Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                Document document=Jsoup.connect("https://www.psl-t20.com/latest/latest-news").get();
+                Elements element=document.select("mt-3");
+                String title=element.select("h4.text-nowrap-no-lh").eq(0).text();
+//                Toast.makeText(getApplicationContext(), ""+title, Toast.LENGTH_LONG).show();
+                words=title;
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+//            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
+            newsTitle.setText(words);
+        }
     }
 }

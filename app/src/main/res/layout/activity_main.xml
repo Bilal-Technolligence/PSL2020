@@ -135,6 +135,7 @@
                             android:layout_weight="1"
                             app:cardCornerRadius="30dp">
                             <ImageView
+                                android:id="@+id/newsImg"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/pslnews"
@@ -155,22 +156,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="PSL 2020 set to begin on February 20...."
+                            android:text="asd"
                             android:textStyle="bold"
                             android:textColor="@color/colorDarkBlue"
-                            android:id="@+id/notification_title"
+                            android:id="@+id/newsTitle"
                             />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="The schedule for the much anticipated fifth edition of the Pakistan Super League was released by the Pakistan Cricket Board on Wednesday, ..."
-                            android:id="@+id/notification_description"
+                            android:id="@+id/newsDetail"
                             android:textColor="#000000"
 
                             />
 
                         <TextView
-                            android:id="@+id/notification_datetime"
+                            android:id="@+id/newsDatetime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000000"
