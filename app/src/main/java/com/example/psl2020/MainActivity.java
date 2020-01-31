@@ -9,6 +9,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,9 @@ public class MainActivity extends BaseActivity {
     DatabaseReference reference = firebaseDatabase.getReference();
     ArrayList<ScheduleAttr> scheduleAttrs;
     RecyclerView recyclerView;
-    TextView newsTitle,newsDetail,newsDatetime;
+    ArrayList<NewsDataClass> newsDataClassArray = new ArrayList<>();
     RecyclerView webView1;
+    ArrayList<String> str=new ArrayList<>();
     Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
 
     @Override
@@ -54,9 +56,7 @@ public class MainActivity extends BaseActivity {
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
-        newsTitle=(TextView) findViewById(R.id.newsTitle);
-        newsDetail=(TextView) findViewById(R.id.newsDetail);
-        newsDatetime=(TextView) findViewById(R.id.newsDatetime);
+
         reference.child("Schedule").orderByChild("winner").equalTo("Upcoming").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,7 +128,18 @@ public class MainActivity extends BaseActivity {
 //        });
 //
 //        dialog.show();
-        new ScrapeNews().execute();
+        fetchNews();
+    }
+
+    private void fetchNews(){
+
+        RecyclerView newsRecyclerView;
+        newsRecyclerView = findViewById(R.id.newsRecyclerView);
+        newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        str.add("2");
+        str.add("as");
+        recyclerView.setAdapter(new NewsAdapter(newsDataClassArray, getApplicationContext(),str));
+       // new ScrapeNews().execute();
     }
 
     private void redirect() {
@@ -146,17 +157,6 @@ public class MainActivity extends BaseActivity {
         TextView msgTxt = (TextView) alertDialog.findViewById(android.R.id.message);
         msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
     }
-//      //  setContentView( R.layout.activity_main );
-//        AppRate.with(this)
-//                .setInstallDays( 0 )
-//                .setLaunchTimes( 3 )
-//                .setRemindInterval( 5 )
-//                .monitor();
-//
-//        AppRate.showRateDialogIfMeetsConditions( this );
-//
-//        AppRate.with( this ).clearAgreeShowDialog();
-
 
     @Override
     int getContentViewId() {
@@ -188,11 +188,17 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                Document document=Jsoup.connect("https://www.psl-t20.com/latest/latest-news").get();
-                Elements element=document.select("mt-3");
-                String title=element.select("h4.text-nowrap-no-lh").eq(0).text();
-//                Toast.makeText(getApplicationContext(), ""+title, Toast.LENGTH_LONG).show();
-                words=title;
+                String url="https://www.cinemaqatar.com/";
+                Document document=Jsoup.connect(url).get();
+                Elements element=document.select("span.thumbnail");
+                int size=element.size();
+                for(int i=0;i<size;i++){
+                    String imgUrl=element.select("span.thumbnail").select("img").eq(i).attr("src");
+                    String title=element.select("h4.gridminfotitle").select("span").eq(i).text();
+                    String detail=element.select("p.gridminfo").eq(i).text();
+                    String datetime="jhhj";//element.select("a.btnmain").eq(i).text();
+                    newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
@@ -205,7 +211,6 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 //            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
-            newsTitle.setText(words);
         }
     }
 }
