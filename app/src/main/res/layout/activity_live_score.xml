@@ -54,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="3rd Match"
+                            android:text=" Match"
                             android:textColor="@color/colorBlue"
                             android:textSize="12dp" />
 
@@ -112,11 +112,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="145"
+                                    android:text="0"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
                                     android:textColor="@color/colorBlue"
                                     android:textSize="14dp"
+                                    android:id="@+id/txtScore2"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -132,6 +133,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="5"
+                                    android:id="@+id/txtWicket2"
                                     android:textColor="@color/colorBlue"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
@@ -149,9 +151,10 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="right"
                                     android:paddingLeft="3dp"
-                                    android:text="14.5 "
+                                    android:text="0.0 "
                                     android:textColor="@color/colorBlack"
                                     android:textSize="12dp"
+                                    android:id="@+id/txtOver2"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -187,9 +190,11 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
-                                    android:text="9.71"
+                                    android:text="0.00"
                                     android:textColor="@color/colorBlack"
                                     android:textSize="14dp"
+                                    android:maxLength="4"
+                                    android:id="@+id/txtRR2"
                                     android:textStyle="bold" />
 
 
@@ -209,7 +214,7 @@
                             android:padding="3dp">
 
                             <ImageView
-                                android:id="@+id/teamImage1"
+                                android:id="@+id/imgTeam1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
@@ -228,7 +233,7 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/t5"
+                                android:id="@+id/imgTeam2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
@@ -256,7 +261,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
-                                    android:text="190"
+                                    android:text="0"
+                                    android:id="@+id/txtScore1"
                                     android:textColor="@color/colorBlue"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
@@ -274,7 +280,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
-                                    android:text="7"
+                                    android:text="0"
+                                    android:id="@+id/txtWicket1"
                                     android:textColor="@color/colorBlue"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
@@ -292,7 +299,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
-                                    android:text="20.0 "
+                                    android:text="0.0 "
+                                    android:id="@+id/txtOver1"
                                     android:textColor="@color/colorBlack"
                                     android:textSize="12dp"
                                     android:textStyle="bold" />
@@ -330,7 +338,9 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
                                     android:paddingLeft="3dp"
-                                    android:text="9.88"
+                                    android:text="0.00"
+                                    android:maxLength="4"
+                                    android:id="@+id/txtRR1"
                                     android:textColor="@color/colorBlack"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
@@ -367,34 +377,9 @@
                             android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:paddingTop="2dp"
-                            android:text="Peshawer Zalmi Need 45 runs on 31 balls."
+                            android:text="  "
                             android:textColor="@color/colorBlack"
                             android:textSize="13dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="64dp"
-                            android:gravity="center"
-                            android:paddingTop="2dp"
-                            android:text="RRR."
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/txtRRR"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="38dp"
-                            android:gravity="center"
-                            android:paddingTop="2dp"
-                            android:text="7.5"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12dp" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
