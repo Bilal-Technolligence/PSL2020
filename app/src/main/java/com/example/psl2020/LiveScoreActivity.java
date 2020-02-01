@@ -27,9 +27,10 @@ public class LiveScoreActivity extends BaseActivity {
     ProgressBar simpleProgressBar;
     ImageView btnOut, btnOne, btnTwo, btnThree, btnWide, btnSix, btnFour, btnDot, btnNoball, btnRunout;
     ImageView team1, team2;
-    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon;
+    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon,bowler,recent;
     String one, two ,elected;
     Integer id,toss;
+    TextView bat1, bat2, run1,run2,ball1,ball2,four1,four2,six1,six2,sr1,sr2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,21 @@ public class LiveScoreActivity extends BaseActivity {
         rr2 = findViewById(R.id.txtRR2);
         match = findViewById(R.id.txtmatches);
         tosswon = findViewById(R.id.txtmatches1);
+        bowler = findViewById(R.id.txtBowler);
+        recent = findViewById(R.id.txtRecent);
+
+        bat1 = findViewById(R.id.txtBatsman1);
+        bat2 = findViewById(R.id.txtBatsman2);
+        run1 = findViewById(R.id.txtRuns1);
+        run2 = findViewById(R.id.txtRuns2);
+        ball1 = findViewById(R.id.txtBlls1);
+        ball2 = findViewById(R.id.txtBlls2);
+        four1 = findViewById(R.id.txtFour1);
+        four2 = findViewById(R.id.txtFour2);
+        six1 = findViewById(R.id.txtSixer1);
+        six2 = findViewById(R.id.txtSixer2);
+        sr1 = findViewById(R.id.txtStrikeRate1);
+        sr2 = findViewById(R.id.txtStrikeRate2);
 
         reference.child("Schedule").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,12 +95,32 @@ public class LiveScoreActivity extends BaseActivity {
                                 match.setText(id + "th Match");
                             }
 
+
+                            reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        String rece = " ";
+                                        for(int i=1 ; i<=6;i++ ){
+                                            rece =rece+ dataSnapshot.child(String.valueOf(i)).getValue().toString();
+                                        }
+                                        recent.setText(rece);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
                             reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                         elected = dataSnapshot.child("elected").getValue().toString();
+                                        bowler.setText(dataSnapshot.child("bowler").getValue().toString());
                                         if(toss == 51){
                                             tosswon.setText("Islamabad won the toss and elected to "+elected+ " first.");
                                         }
@@ -137,7 +173,78 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
+                            reference.child("LiveScore").child("batsmanScore").child("1").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        run1.setText(dataSnapshot.child("score").getValue().toString());
+                                        bat1.setText(dataSnapshot.child("name").getValue().toString());
+                                        ball1.setText(dataSnapshot.child("balls").getValue().toString());
+                                        four1.setText(dataSnapshot.child("fours").getValue().toString());
+                                        six1.setText(dataSnapshot.child("sixs").getValue().toString());
+                                        sr1.setText(dataSnapshot.child("rr").getValue().toString());
+                                        reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                                if(dataSnapshot1.exists()) {
+                                                    if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
+                                                        bat1.setText(dataSnapshot.child("name").getValue().toString()+" *");
+                                                    }
+                                                    else{
+                                                        bat1.setText(dataSnapshot.child("name").getValue().toString());
+                                                    }
+                                                }
+                                            }
 
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            reference.child("LiveScore").child("batsmanScore").child("2").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        run2.setText(dataSnapshot.child("score").getValue().toString());
+                                        bat2.setText(dataSnapshot.child("name").getValue().toString());
+                                        ball2.setText(dataSnapshot.child("balls").getValue().toString());
+                                        four2.setText(dataSnapshot.child("fours").getValue().toString());
+                                        six2.setText(dataSnapshot.child("sixs").getValue().toString());
+                                        sr2.setText(dataSnapshot.child("rr").getValue().toString());
+                                        reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                                if(dataSnapshot1.exists()) {
+                                                    if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
+                                                        bat2.setText(dataSnapshot.child("name").getValue().toString()+" *");
+                                                    }
+                                                    else{
+                                                        bat2.setText(dataSnapshot.child("name").getValue().toString());
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                             reference.child("LiveScore").child(one).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
