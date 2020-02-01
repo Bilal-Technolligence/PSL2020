@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class LiveScoreActivity extends BaseActivity {
     Integer id, toss;
     TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
     String selection="", userId="";
+    LinearLayout linearLayout1,linearLayout2;
 
 
     @Override
@@ -79,6 +81,9 @@ public class LiveScoreActivity extends BaseActivity {
         six2 = findViewById(R.id.txtBatsmanTwoSixes);
         sr1 = findViewById(R.id.txtBatsmanOneSr);
         sr2 = findViewById(R.id.txtBatsmanTwoSr);
+
+        linearLayout1=(LinearLayout) findViewById(R.id.points);
+        linearLayout2=(LinearLayout) findViewById(R.id.points2);
 
         reference.child("Schedule").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -311,6 +316,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "1 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -328,6 +335,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "2 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -344,6 +353,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "3 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -360,6 +371,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "4 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -376,6 +389,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "6 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -392,6 +407,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "W ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -408,6 +425,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "0 ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -424,6 +443,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "wd";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -440,6 +461,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "nb";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -456,6 +479,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "W ";
+                                            linearLayout1.setVisibility(View.GONE);
+                                            linearLayout2.setVisibility(View.GONE);
                                         }
 
                                     } else {
@@ -468,6 +493,8 @@ public class LiveScoreActivity extends BaseActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
                                         String lastBall = dataSnapshot.getValue().toString();
+                                        linearLayout1.setVisibility(View.VISIBLE);
+                                        linearLayout2.setVisibility(View.VISIBLE);
                                         if(selection.equals(lastBall)){
                                             if(!userId.equals(null)){
                                                 reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
@@ -477,6 +504,8 @@ public class LiveScoreActivity extends BaseActivity {
                                                             int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
                                                             int newPoints = oldPoints+10;
                                                             reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
+                                                            selection="";
+
                                                         }
                                                     }
 
