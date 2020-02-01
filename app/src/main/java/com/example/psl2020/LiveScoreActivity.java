@@ -23,6 +23,7 @@ import hotchemi.android.rate.AppRate;
 public class LiveScoreActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
+
     int progress = 0;
     ProgressBar simpleProgressBar;
     ImageView btnOut, btnOne, btnTwo, btnThree, btnWide, btnSix, btnFour, btnDot, btnNoball, btnRunout;
@@ -31,6 +32,7 @@ public class LiveScoreActivity extends BaseActivity {
     String one, two ,elected;
     Integer id,toss;
     TextView bat1, bat2, run1,run2,ball1,ball2,four1,four2,six1,six2,sr1,sr2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,21 +61,22 @@ public class LiveScoreActivity extends BaseActivity {
         rr2 = findViewById(R.id.txtRR2);
         match = findViewById(R.id.txtmatches);
         tosswon = findViewById(R.id.txtmatches1);
+
         bowler = findViewById(R.id.txtBowler);
         recent = findViewById(R.id.txtRecent);
 
-        bat1 = findViewById(R.id.txtBatsman1);
-        bat2 = findViewById(R.id.txtBatsman2);
-        run1 = findViewById(R.id.txtRuns1);
-        run2 = findViewById(R.id.txtRuns2);
-        ball1 = findViewById(R.id.txtBlls1);
-        ball2 = findViewById(R.id.txtBlls2);
-        four1 = findViewById(R.id.txtFour1);
-        four2 = findViewById(R.id.txtFour2);
-        six1 = findViewById(R.id.txtSixer1);
-        six2 = findViewById(R.id.txtSixer2);
-        sr1 = findViewById(R.id.txtStrikeRate1);
-        sr2 = findViewById(R.id.txtStrikeRate2);
+        bat1 = findViewById(R.id.txtBatsmanOneName);
+        bat2 = findViewById(R.id.txtBatsmanTwoName);
+        run1 = findViewById(R.id.txtBatsmanOneRun);
+        run2 = findViewById(R.id.txtBatsmanTwoRun);
+        ball1 = findViewById(R.id.txtBatsmanOneBalls);
+        ball2 = findViewById(R.id.txtBatsmanTwoBalls);
+        four1 = findViewById(R.id.txtBatsmanOneFours);
+        four2 = findViewById(R.id.txtBatsmanTwoFours);
+        six1 = findViewById(R.id.txtBatsmanOneSixes);
+        six2 = findViewById(R.id.txtBatsmanTwoSixes);
+        sr1 = findViewById(R.id.txtBatsmanOneSr);
+        sr2 = findViewById(R.id.txtBatsmanTwoSr);
 
         reference.child("Schedule").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -121,6 +124,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                         elected = dataSnapshot.child("elected").getValue().toString();
                                         bowler.setText(dataSnapshot.child("bowler").getValue().toString());
+
                                         if(toss == 51){
                                             tosswon.setText("Islamabad won the toss and elected to "+elected+ " first.");
                                         }
@@ -173,6 +177,7 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
+
                             reference.child("LiveScore").child("batsmanScore").child("1").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
@@ -290,38 +295,10 @@ public class LiveScoreActivity extends BaseActivity {
         });
 
 
-        simpleProgressBar = (ProgressBar) findViewById(R.id.progressBar5);
 
 
-        btnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//               reference.child( "Test" ).child( "ok" ).setValue( 100 ).toString();
-//                Toast.makeText( LiveScoreActivity.this, "Done", Toast.LENGTH_SHORT ).show();
-                setProgressValue(progress);
 
-            }
-        });
 
-    }
-
-    private void setProgressValue(final int progress) {
-
-        // set the progress
-        simpleProgressBar.setProgress(progress);
-        // thread is used to change the progress value
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                setProgressValue(progress + 10);
-            }
-        });
-        thread.start();
     }
 
     @Override
