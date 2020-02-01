@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,10 +29,11 @@ public class LiveScoreActivity extends BaseActivity {
     ProgressBar simpleProgressBar;
     ImageView btnOut, btnOne, btnTwo, btnThree, btnWide, btnSix, btnFour, btnDot, btnNoball, btnRunout;
     ImageView team1, team2;
-    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon,bowler,recent;
-    String one, two ,elected;
-    Integer id,toss;
-    TextView bat1, bat2, run1,run2,ball1,ball2,four1,four2,six1,six2,sr1,sr2;
+    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent;
+    String one, two, elected;
+    Integer id, toss;
+    TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
+    String selection="", userId="";
 
 
     @Override
@@ -102,10 +104,10 @@ public class LiveScoreActivity extends BaseActivity {
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.exists()){
+                                    if (dataSnapshot.exists()) {
                                         String rece = " ";
-                                        for(int i=1 ; i<=6;i++ ){
-                                            rece =rece+ dataSnapshot.child(String.valueOf(i)).getValue().toString();
+                                        for (int i = 1; i <= dataSnapshot.getChildrenCount(); i++) {
+                                            rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString();
                                         }
                                         recent.setText(rece);
                                     }
@@ -121,28 +123,26 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
-                                        elected = dataSnapshot.child("elected").getValue().toString();
-                                        bowler.setText(dataSnapshot.child("bowler").getValue().toString());
+                                        try{
+                                            toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
+                                            elected = dataSnapshot.child("elected").getValue().toString();
+                                            bowler.setText(dataSnapshot.child("bowler").getValue().toString());
 
-                                        if(toss == 51){
-                                            tosswon.setText("Islamabad won the toss and elected to "+elected+ " first.");
+                                            if (toss == 47) {
+                                                tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
+                                            } else if (toss == 12) {
+                                                tosswon.setText("Karachi won the toss and elected to " + elected + " first.");
+                                            } else if (toss == 13) {
+                                                tosswon.setText("Lahore won the toss and elected to " + elected + " first.");
+                                            } else if (toss == 14) {
+                                                tosswon.setText("Multan won the toss and elected to " + elected + " first.");
+                                            } else if (toss == 15) {
+                                                tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
+                                            } else if (toss == 16) {
+                                                tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
+                                            }
                                         }
-                                        else if(toss == 12){
-                                            tosswon.setText("Karachi won the toss and elected to "+elected+ " first.");
-                                        }
-                                        else if(toss == 13){
-                                            tosswon.setText("Lahore won the toss and elected to "+elected+ " first.");
-                                        }
-                                        else if(toss == 14){
-                                            tosswon.setText("Multan won the toss and elected to "+elected+ " first.");
-                                        }
-                                        else if(toss == 15){
-                                            tosswon.setText("Peshawar won the toss and elected to "+elected+ " first.");
-                                        }
-                                        else if(toss == 16){
-                                            tosswon.setText("Quetta won the toss and elected to "+elected+ " first.");
-                                        }
+                                        catch (Exception e){}
                                     }
                                 }
 
@@ -155,7 +155,8 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team1);
+                                        try{Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team1);}
+                                        catch (Exception e){}
                                     }
                                 }
 
@@ -168,7 +169,9 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team2);
+                                        try{Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team2);}
+                                        catch (Exception e){}
+
                                     }
                                 }
 
@@ -182,30 +185,34 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        run1.setText(dataSnapshot.child("score").getValue().toString());
-                                        bat1.setText(dataSnapshot.child("name").getValue().toString());
-                                        ball1.setText(dataSnapshot.child("balls").getValue().toString());
-                                        four1.setText(dataSnapshot.child("fours").getValue().toString());
-                                        six1.setText(dataSnapshot.child("sixs").getValue().toString());
-                                        sr1.setText(dataSnapshot.child("rr").getValue().toString());
-                                        reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                                                if(dataSnapshot1.exists()) {
-                                                    if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
-                                                        bat1.setText(dataSnapshot.child("name").getValue().toString()+" *");
-                                                    }
-                                                    else{
-                                                        bat1.setText(dataSnapshot.child("name").getValue().toString());
+                                        try {
+                                            run1.setText(dataSnapshot.child("score").getValue().toString());
+                                            bat1.setText(dataSnapshot.child("name").getValue().toString());
+                                            ball1.setText(dataSnapshot.child("balls").getValue().toString());
+                                            four1.setText(dataSnapshot.child("fours").getValue().toString());
+                                            six1.setText(dataSnapshot.child("sixs").getValue().toString());
+                                            sr1.setText(dataSnapshot.child("rr").getValue().toString());
+                                            reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                                    if (dataSnapshot1.exists()) {
+                                                        if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
+                                                            bat1.setText(dataSnapshot.child("name").getValue().toString() + " *");
+                                                        } else {
+                                                            bat1.setText(dataSnapshot.child("name").getValue().toString());
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                            }
-                                        });
+                                                }
+                                            });
+                                        } catch (Exception e) {
+
+                                        }
+
                                     }
                                 }
 
@@ -218,30 +225,34 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        run2.setText(dataSnapshot.child("score").getValue().toString());
-                                        bat2.setText(dataSnapshot.child("name").getValue().toString());
-                                        ball2.setText(dataSnapshot.child("balls").getValue().toString());
-                                        four2.setText(dataSnapshot.child("fours").getValue().toString());
-                                        six2.setText(dataSnapshot.child("sixs").getValue().toString());
-                                        sr2.setText(dataSnapshot.child("rr").getValue().toString());
-                                        reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                                                if(dataSnapshot1.exists()) {
-                                                    if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
-                                                        bat2.setText(dataSnapshot.child("name").getValue().toString()+" *");
-                                                    }
-                                                    else{
-                                                        bat2.setText(dataSnapshot.child("name").getValue().toString());
+                                        try {
+                                            run2.setText(dataSnapshot.child("score").getValue().toString());
+                                            bat2.setText(dataSnapshot.child("name").getValue().toString());
+                                            ball2.setText(dataSnapshot.child("balls").getValue().toString());
+                                            four2.setText(dataSnapshot.child("fours").getValue().toString());
+                                            six2.setText(dataSnapshot.child("sixs").getValue().toString());
+                                            sr2.setText(dataSnapshot.child("rr").getValue().toString());
+                                            reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                                    if (dataSnapshot1.exists()) {
+                                                        if (dataSnapshot.child("name").getValue().toString().equals(dataSnapshot1.child("currentBatting").getValue().toString())) {
+                                                            bat2.setText(dataSnapshot.child("name").getValue().toString() + " *");
+                                                        } else {
+                                                            bat2.setText(dataSnapshot.child("name").getValue().toString());
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                            }
-                                        });
+                                                }
+                                            });
+                                        } catch (Exception e) {
+
+                                        }
+
                                     }
                                 }
 
@@ -254,10 +265,14 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        score1.setText(dataSnapshot.child("score").getValue().toString());
-                                        wicket1.setText(dataSnapshot.child("wicket").getValue().toString());
-                                        over1.setText(dataSnapshot.child("over").getValue().toString());
-                                        rr1.setText(dataSnapshot.child("rr").getValue().toString());
+                                        try {
+                                            score1.setText(dataSnapshot.child("score").getValue().toString());
+                                            over1.setText(dataSnapshot.child("over").getValue().toString());
+                                            rr1.setText(dataSnapshot.child("rr").getValue().toString());
+                                            wicket1.setText(dataSnapshot.child("wicket").getValue().toString());
+                                        } catch (Exception e) {
+
+                                        }
                                     }
                                 }
 
@@ -270,10 +285,14 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        score2.setText(dataSnapshot.child("score").getValue().toString());
-                                        wicket2.setText(dataSnapshot.child("wicket").getValue().toString());
-                                        over2.setText(dataSnapshot.child("over").getValue().toString());
-                                        rr2.setText(dataSnapshot.child("rr").getValue().toString());
+                                        try {
+                                            score2.setText(dataSnapshot.child("score").getValue().toString());
+                                            over2.setText(dataSnapshot.child("over").getValue().toString());
+                                            rr2.setText(dataSnapshot.child("rr").getValue().toString());
+                                            wicket2.setText(dataSnapshot.child("wicket").getValue().toString());
+                                        } catch (Exception e) {
+
+                                        }
                                     }
                                 }
 
@@ -282,6 +301,207 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
+
+                            btnOne.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "1 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+                            btnTwo.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "2 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnThree.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "3 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnFour.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "4 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnSix.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "6 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnOut.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "W ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnDot.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "0 ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnWide.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "wd";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnNoball.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        String userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "nb";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            btnRunout.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                    if (isLoggedIn) {
+                                        userId = prefs.getString("id", "");
+                                        if (!userId.equals("")) {
+                                            selection = "W ";
+                                        }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            reference.child("LiveScore").child("recent").child("6").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        String lastBall = dataSnapshot.getValue().toString();
+                                        if(selection.equals(lastBall)){
+                                            if(!userId.equals(null)){
+                                                reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        if(dataSnapshot.exists()){
+                                                            int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
+                                                            int newPoints = oldPoints+10;
+                                                            reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                            }
+
+                                        }
+
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
+
+
                         }
                     }
                 } else
@@ -293,10 +513,6 @@ public class LiveScoreActivity extends BaseActivity {
 
             }
         });
-
-
-
-
 
 
     }

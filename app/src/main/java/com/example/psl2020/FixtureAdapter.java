@@ -102,6 +102,20 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         String time = scheduleAttrs.get(position).getTime();
         String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
         holder.liveMatches.setText( finalString);
+        String ID = scheduleAttrs.get(position).getId();
+        dref.child("FinishMatches").child(ID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    holder.matchresult.setText(dataSnapshot.child("note").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -112,13 +126,14 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img1a,img1b;
-        TextView liveMatches,winning;
+        TextView liveMatches,winning, matchresult;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             liveMatches =(TextView) itemView.findViewById(R.id.txtMatches);
             winning=(TextView) itemView.findViewById(R.id.txtWinner);
             img1a = (ImageView) itemView.findViewById(R.id.team1a);
             img1b = (ImageView) itemView.findViewById(R.id.team1b);
+            matchresult = (TextView) itemView.findViewById(R.id.txtmatchresult);
         }
     }
 }

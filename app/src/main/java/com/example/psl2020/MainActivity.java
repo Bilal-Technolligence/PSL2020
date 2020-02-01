@@ -42,18 +42,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        final Dialog dialog = new Dialog(this);
-//        dialog.setContentView(R.layout.rateapp);
-//        dialog.setTitle("Cricket Express PSL2020...");
-
-        Context context;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
-
         reference.child("Schedule").orderByChild("winner").equalTo("Upcoming").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,10 +55,7 @@ public class MainActivity extends BaseActivity {
                     ScheduleAttr p = dataSnapshot1.getValue(ScheduleAttr.class);
                     scheduleAttrs.add(p);
                 }
-
                 recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
-
-
             }
 
             @Override
@@ -77,9 +66,7 @@ public class MainActivity extends BaseActivity {
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
         webView1.setLayoutManager(layoutManager1);
-
         reference.child("RecentVideos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,61 +85,7 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        //youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/lsNcUkAFxuk\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"));
-
-
-//        // set the custom dialog components - text, image and button
-//        Button remind = (Button) dialog.findViewById(R.id.remindLater);
-//        remind.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button rateNow = (Button) dialog.findViewById(R.id.dialogButtonOK);
-//        // if button is clicked, close the custom dialog
-//        rateNow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                redirect();
-//
-//                dialog.dismiss();
-//            }
-//
-//
-//        });
-//
-//        dialog.show();
     }
-
-//    private void redirect() {
-//        String link1 = "<a href=\"https://play.google.com/store/apps\">https://play.google.com/store/apps</a>";
-//        String message = "Some links: " + link1 + "link1, link2, link3";
-//        Spanned myMessage = Html.fromHtml(message);
-//
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("This is a title");
-//        builder.setMessage(myMessage);
-//        builder.setCancelable(true);
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
-//        TextView msgTxt = (TextView) alertDialog.findViewById(android.R.id.message);
-//        msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
-//    }
-//      //  setContentView( R.layout.activity_main );
-//        AppRate.with(this)
-//                .setInstallDays( 0 )
-//                .setLaunchTimes( 3 )
-//                .setRemindInterval( 5 )
-//                .monitor();
-//
-//        AppRate.showRateDialogIfMeetsConditions( this );
-//
-//        AppRate.with( this ).clearAgreeShowDialog();
-
 
     @Override
     int getContentViewId() {
