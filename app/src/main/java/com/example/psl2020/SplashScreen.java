@@ -18,20 +18,18 @@ public class SplashScreen extends AppCompatActivity {
         setContentView( R.layout.activity_splash_screen );
 
         ImageView imageView = findViewById( R.id.imagelogo );
-        TextView txtName = findViewById( R.id.txtName );
+//        ImageView imageView1 = findViewById( R.id.imagelogo1 );
         Animation animation = AnimationUtils.loadAnimation( getApplicationContext(),R.anim.fade );
-        Animation animation1 = AnimationUtils.loadAnimation( getApplicationContext(),R.anim.textanimation );
+//        Animation animation1 = AnimationUtils.loadAnimation( getApplicationContext(),R.anim.fade1 );
         imageView.startAnimation( animation );
-        txtName.startAnimation( animation1 );
-
+//        imageView1.startAnimation( animation1 );
         Thread timer = new Thread(  ) {
             @Override
             public void run() {
                 try {
-                    sleep( 7000 );
+                    sleep( 5000 );
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class );
-                        startActivity( intent );
+                    startActivity( new Intent( getApplicationContext(),MainActivity.class ) );
                         finish();
 
 
@@ -44,5 +42,7 @@ public class SplashScreen extends AppCompatActivity {
             }
         };
         timer.start();
+
+
     }
 }

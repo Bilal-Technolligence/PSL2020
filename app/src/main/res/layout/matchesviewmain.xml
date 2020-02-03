@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginTop="5dp"
         app:cardElevation="10dp"
@@ -64,16 +64,16 @@
             android:layout_width="match_parent"
             android:id="@+id/test"
             android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/secondlayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:weightSum="3"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/secondlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:weightSum="3"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
                 <ImageView
                     android:layout_width="300dp"
                     android:layout_height="120dp"
@@ -81,21 +81,21 @@
                     android:src="@drawable/loading"
                     android:id="@+id/team1"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:paddingTop="20dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/vs" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:paddingTop="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/vs" />
 
-                <ImageView
+            <ImageView
                     android:layout_width="300dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:src="@drawable/loading"
                     android:id="@+id/team2"/>
 
-            </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/matchTime"
