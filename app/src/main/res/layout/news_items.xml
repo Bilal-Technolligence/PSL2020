@@ -19,7 +19,7 @@
                 android:id="@+id/newsImage"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:src="@drawable/pslne"
+                android:src="@drawable/peshawarzalmi"
                 />
             <TextView
                 android:layout_width="match_parent"

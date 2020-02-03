@@ -25,15 +25,13 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBlue"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="1dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/matchesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBlue"
-            android:layout_margin="5dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
         </androidx.recyclerview.widget.RecyclerView>
 
