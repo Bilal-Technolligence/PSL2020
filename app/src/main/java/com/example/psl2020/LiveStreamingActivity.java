@@ -31,11 +31,11 @@ public class LiveStreamingActivity extends BaseActivity {
 
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         webView1.setLayoutManager(layoutManager1);
 
-        reference.child("RecentVideos").addValueEventListener(new ValueEventListener() {
+        reference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
