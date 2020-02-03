@@ -52,8 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     TextView textView;
     private CallbackManager callbackManager;
     protected ActionBarDrawerToggle drawerToggle;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
+    private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,18 +76,18 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         //header click navbar
         View headerview = drawerNavigationView.getHeaderView(0);
         imageView = (ImageView) headerview.findViewById(R.id.profile_image);
-        textView = (TextView) headerview.findViewById(R.id.name);
+        textView=(TextView) headerview.findViewById(R.id.name);
 
         //shared prefrences
         SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
         if (isLoggedIn) {
-            String userId = prefs.getString("id", "");
-            if (!userId.equals("")) {
+            String userId=prefs.getString("id","");
+            if(!userId.equals("")){
                 databaseReference.child("Users").child(userId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
+                        if(dataSnapshot.exists()){
                             textView.setText(dataSnapshot.child("name").getValue().toString());
                             Picasso.get().load(dataSnapshot.child("image_url").getValue().toString()).into(imageView);
                         }
@@ -109,31 +108,30 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     //fb login button code
                     callbackManager = CallbackManager.Factory.create();
                     //loginButton= findViewById(R.id.login_button);
-                    LoginManager.getInstance().logInWithReadPermissions(BaseActivity.this, Arrays.asList("public_profile", "user_friends"));
+                    LoginManager.getInstance().logInWithReadPermissions(BaseActivity.this,Arrays.asList("public_profile","user_friends"));
                     LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                         @Override
                         public void onSuccess(final LoginResult loginResult) {
 //                            String accessToken=loginResult.getAccessToken().getToken();
-                            GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                            GraphRequest request=GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                                 @Override
                                 public void onCompleted(JSONObject object, GraphResponse response) {
                                     try {
 //                            name.setText( object.getJSONObject("friends").getJSONObject("summary").getString("total_count"));
 //                            Toast.makeText(getApplicationContext(), friend, Toast.LENGTH_LONG).show();
-                                        final String first_name = object.getString("first_name");
-                                        final String last_name = object.getString("last_name");
-                                        final String userId = object.getString("id");
-                                        final String image_url = "https://graph.facebook.com/" + userId + "/picture?type=large";
+                                        final String first_name=object.getString("first_name");
+                                        final String last_name=object.getString("last_name");
+                                        final String userId=object.getString("id");
+                                        String image_url="https://graph.facebook.com/"+userId+"/picture?type=large";
                                         databaseReference.child("Users").child(userId).child("id").setValue(userId);
                                         databaseReference.child("Users").child(userId).child("image_url").setValue(image_url);
-                                        databaseReference.child("Users").child(userId).child("name").setValue(first_name + " " + last_name);
-
-                                        databaseReference.child("UserPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        databaseReference.child("Users").child(userId).child("name").setValue(first_name+" "+last_name);
+                                        databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if (!dataSnapshot.exists()) {
-                                                    databaseReference.child("UserPoints").child(userId).child("id").setValue(userId);
-                                                    databaseReference.child("UserPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                    databaseReference.child("UsersPoints").child(userId).child("id").setValue(userId);
+                                                    databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
                                                     databaseReference.child("UsersPoints").child(userId).child("points").setValue(0);
 
                                                 }
@@ -144,10 +142,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                                             }
                                         });
-
                                         SharedPreferences.Editor editor = getSharedPreferences("Log", MODE_PRIVATE).edit();
-                                        editor.putBoolean("isLoggedIn", true);
-                                        editor.putString("id", userId);
+                                        editor.putBoolean("isLoggedIn", true );
+                                        editor.putString("id", userId );
                                         editor.commit();
                                         recreate();
                                     } catch (JSONException e) {
@@ -157,8 +154,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                                     }
                                 }
                             });
-                            Bundle parameters = new Bundle();
-                            parameters.putString("fields", "first_name,last_name,id,friends");
+                            Bundle parameters= new Bundle();
+                            parameters.putString("fields","first_name,last_name,id,friends");
                             request.setParameters(parameters);
                             request.executeAsync();
                         }
@@ -171,7 +168,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                         @Override
                         public void onError(FacebookException error) {
-                            Snackbar.make(drawerLayout, "" + error, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(drawerLayout, ""+error, Snackbar.LENGTH_LONG).show();
 
 
                         }
@@ -180,14 +177,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             });
         }
     }
-
-    //fb login code
+    //fb login code 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    
 
     @Override
     protected void onStart() {
@@ -207,12 +204,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         if (itemId == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-        } else if (itemId == R.id.nav_team) {
+        }else if (itemId == R.id.nav_team) {
             Intent intent = new Intent(this, TeamsActivity.class);
             //  intent.putExtra( "id","Friends" );
             startActivity(intent);
             finish();
-        } else if (itemId == R.id.nav_matches) {
+        }
+        else if (itemId == R.id.nav_matches) {
             Intent intent = new Intent(this, LiveScoreActivity.class);
             //  intent.putExtra( "id","Friends" );
             startActivity(intent);
@@ -239,19 +237,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
             boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
             if (isLoggedIn) {
-                String userId = prefs.getString("id", "");
-                if (!userId.equals("")) {
+                String userId=prefs.getString("id","");
+                if(!userId.equals("")) {
                     final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setMessage("Are you sure want to logout?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             LoginManager.getInstance().logOut();
                             Snackbar.make(drawerLayout, "Logout ok", Snackbar.LENGTH_LONG).show();
-                            SharedPreferences settings = getSharedPreferences("Log", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.remove("isLoggedIn");
-                            editor.remove("id");
-                            editor.commit();
-                            recreate();
+                                        SharedPreferences settings = getSharedPreferences("Log", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = settings.edit();
+                                        editor.remove("isLoggedIn");
+                                        editor.remove("id");
+                                        editor.commit();
+                                        recreate();
                         }
                     }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -259,7 +257,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                         }
                     }).show();
                 }
-            } else {
+                }
+            else{
                 Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
             }
 
