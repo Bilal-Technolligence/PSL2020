@@ -34,7 +34,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NewsDataClass newsDataClass=newsDataClassArray.get(position);
         holder.newsTitle.setText(newsDataClass.getNewsTitle());
-        holder.newsDetail.setText(newsDataClass.getNewsDetails());
+        //holder.newsDetail.setText(newsDataClass.getNewsDetails());
         holder.newsDatetime.setText(newsDataClass.getNewsDatetime());
         Picasso.get().load(newsDataClass.getImgUrl()).into(holder.newsImage);
 
@@ -51,7 +51,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             newsTitle=(TextView) itemView.findViewById(R.id.newsTitle);
-           // newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
+           //newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
             newsDatetime=(TextView) itemView.findViewById(R.id.newsDatetime);
             newsImage=(ImageView) itemView.findViewById(R.id.newsImage);
         }

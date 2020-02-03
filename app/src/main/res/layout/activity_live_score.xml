@@ -65,6 +65,7 @@
                                 android:textColor="@color/colorBlue"
                                 android:textSize="12dp" />
                             <ImageView
+                                android:id="@+id/imgLL"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -111,7 +112,7 @@
                                     android:id="@+id/imgTeam1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/lahoreaqalanders" />
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -347,8 +348,7 @@
                                 <ImageView
                                     android:id="@+id/imgTeam2"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:src="@drawable/peshawarzalmi" />
+                                    android:layout_height="match_parent" />
 
                             </LinearLayout>
 
@@ -363,7 +363,8 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="123dp"
                             android:layout_height="wrap_content"
-                            android:weightSum="3"
+                            android:weightSum="2"
+                            android:gravity="center"
                             android:layout_below="@+id/livematch2"
                             android:orientation="horizontal">
 
@@ -372,30 +373,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:paddingLeft="7dp"
-                                android:text="Won The toss and elected to bat first "
+                                android:paddingLeft="10dp"
+                                android:text=""
                                 android:textColor="@color/colorBlack"
                                 android:textSize="11dp" />
 
-                            <TextView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="right"
-                                android:padding="2dp"
-                                android:text="RRR"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="11dp" />
-                            <TextView
-                                android:id="@+id/txtRRR"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text=" 3.7 "
-                                android:textColor="@color/colorBlack"
-                                android:textSize="11dp" />
+
+
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -413,8 +397,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:text="     "
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
                         android:paddingTop="5dp"
                         android:text="Recent  "
                         android:textColor="@color/colorWhite"
@@ -428,14 +421,6 @@
                         android:gravity="left"
                         android:paddingTop="5dp"
                         android:text=" "
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="5dp"
-                        android:text="  "
                         android:textColor="@color/colorWhite"
                         android:textSize="20dp" />
 
@@ -458,7 +443,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="  Batsman"
+                            android:text="Batsman"
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
                         <TextView
@@ -733,18 +718,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  "
-                        android:padding="2dp"
+                        android:text="     "
                         android:textSize="20dp"
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Ball by Ball Predicition "
-                        android:padding="2dp"
                         android:textSize="20dp"
+                        android:gravity="center"
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                 </LinearLayout>
@@ -864,16 +847,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Karachi Kings "
-                        android:padding="2dp"
+                        android:text="     "
                         android:textSize="20dp"
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="IslamabadUnited"
-                        android:padding="2dp"
+                        android:text="Summary"
                         android:textSize="20dp"
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
@@ -897,7 +878,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="  Bating"
+                            android:text="Bating"
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
                         <TextView

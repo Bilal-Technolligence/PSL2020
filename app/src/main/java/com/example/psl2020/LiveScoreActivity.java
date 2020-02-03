@@ -31,12 +31,12 @@ public class LiveScoreActivity extends BaseActivity {
     ImageView btnOut, btnOne, btnTwo, btnThree, btnWide, btnSix, btnFour, btnDot, btnNoball, btnRunout;
     ImageView team1, team2;
     TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent;
-    String one, two, elected;
+    String one, two, elected,scheduleId;
     Integer id, toss;
     TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
     String selection="", userId="";
     LinearLayout linearLayout1,linearLayout2;
-
+    ImageView live;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +82,11 @@ public class LiveScoreActivity extends BaseActivity {
         sr1 = findViewById(R.id.txtBatsmanOneSr);
         sr2 = findViewById(R.id.txtBatsmanTwoSr);
 
+        live = findViewById(R.id.imgLL);
         linearLayout1=(LinearLayout) findViewById(R.id.points);
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
 
-        reference.child("Schedule").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -94,6 +95,7 @@ public class LiveScoreActivity extends BaseActivity {
                             one = dataSnapshot1.child("teamOne").getValue().toString();
                             two = dataSnapshot1.child("teamTwo").getValue().toString();
                             id = Integer.parseInt(dataSnapshot1.child("sid").getValue().toString());
+                            scheduleId = dataSnapshot1.child("id").getValue().toString();
                             if (id == 0) {
                                 match.setText("1st Match");
                             } else if (id == 1) {
@@ -156,6 +158,22 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
+                            reference.child( "FinishMatches" ).child( String.valueOf( scheduleId ) ).addValueEventListener( new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        tosswon.setText( dataSnapshot.child( "note" ).getValue(  ).toString() );
+                                        live.setVisibility( View.GONE );
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            } );
+
                             reference.child("Teams").child(one).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
