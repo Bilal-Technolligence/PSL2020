@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_margin="5dp"
+    tools:context=".TeamsActivity">
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/drawarLayout">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:paddingBottom="90dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:text="Teams"
+                            android:textColor="@color/colorBlack"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:textStyle="bold"
+                            android:textSize="25dp"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:id="@+id/buttons1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:orientation="horizontal">
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardPeshawerZalmi"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    app:cardElevation="10dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorYellow">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/peshawarzalmi"/>
+
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardLahoreQalandar"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    app:cardElevation="10dp"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorLightYellow">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_gravity="center"
+                                                    android:layout_height="match_parent"
+                                                    android:src="@drawable/lahoreaqalanders"/>
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/buttons2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="2"
+                            android:padding="2dp"
+                            android:orientation="horizontal"
+                            android:layout_below="@+id/buttons1">
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardMultanSultan"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_weight="1"
+                                    app:cardElevation="10dp"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorGreen">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/multan"/>
+
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardQuetta"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    app:cardElevation="10dp"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorPurple">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/queta"/>
+
+
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/buttons3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:layout_below="@+id/buttons2">
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardIslamabad"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_weight="1"
+                                    app:cardElevation="10dp"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorRed">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/islamabad"/>
+
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardKarachi"
+                                    android:layout_height="170dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    app:cardElevation="10dp"
+                                    app:cardCornerRadius="10dp"
+                                    android:layout_margin="10dp"
+                                    app:cardBackgroundColor="@color/colorDarkBlue">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentLeft="true"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:layout_width="150dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/karachi"/>
+
+
+                                        </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+
+
+
+                        </LinearLayout>
+                </LinearLayout>
+        </ScrollView>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNavigationView"
+            app:headerLayout="@layout/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            app:menu="@menu/drawar_menu"
+            app:itemTextColor="#6c6c6c"
+            android:layout_gravity="start"
+            ></com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="0dp"
+            app:labelVisibilityMode="labeled"
+            android:layout_marginEnd="0dp"
+            android:background="#ffffff"
+            app:itemTextColor="@color/colorDarkBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/navigation"/>
+
+
+
+</RelativeLayout>
