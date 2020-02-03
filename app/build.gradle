@@ -8,12 +8,14 @@ android {
         applicationId "com.example.psl2020"
         minSdkVersion 21
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -44,5 +46,5 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'com.facebook.android:facebook-login:[5,6)'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation 'org.jsoup:jsoup:1.12.1'
 }

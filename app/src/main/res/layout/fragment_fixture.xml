@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fixture">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
@@ -15,9 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fixtureList"
-            android:layout_marginBottom="60dp"
-            android:background="@android:color/white"/>
+            android:layout_marginBottom="60dp"/>
 
-    </RelativeLayout>
-
-</FrameLayout>
+    </LinearLayout>
