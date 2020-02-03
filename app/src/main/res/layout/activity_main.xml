@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/colorWhite"
     tools:context=".MainActivity">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
@@ -17,16 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="90dp"
-
             android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorBlue"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/matchesRecyclerView"
             android:layout_width="match_parent"
@@ -42,35 +41,35 @@
     </RelativeLayout>
         <LinearLayout
             android:id="@+id/videosLayout"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal"
-            android:layout_weight="1"
+            android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/topLayout">
             <ImageView
                 android:id="@+id/videologo"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="5dp"
                 android:padding="5dp"
                 android:src="@drawable/video" />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Previous Matches Videos"
                 android:padding="2dp"
                 android:textColorHint="#000000"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textColor="#000000"/>
         </LinearLayout>
             <LinearLayout
                 android:id="@+id/videosL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 android:padding="7dp"
                 android:orientation="horizontal"
                 android:layout_below="@+id/videosLayout">
@@ -83,26 +82,26 @@
             <LinearLayout
                 android:id="@+id/newsLayout"
                 android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:weightSum="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/videosL">
                 <ImageView
                     android:id="@+id/news"
-                    android:layout_width="50dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_alignParentLeft="true"
-                    android:layout_margin="5dp"
                     android:padding="5dp"
                     android:src="@drawable/lnews" />
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Latest News"
                     android:padding="2dp"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textColorHint="#000000"
                     android:textColor="#000000"/>
             </LinearLayout>
