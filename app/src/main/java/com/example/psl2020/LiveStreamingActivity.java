@@ -31,7 +31,7 @@ public class LiveStreamingActivity extends BaseActivity {
 
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         webView1.setLayoutManager(layoutManager1);
 
