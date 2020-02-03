@@ -174,14 +174,14 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "pre-processing", Toast.LENGTH_LONG).show();
+          //  Toast.makeText(getApplicationContext(), "pre-processing", Toast.LENGTH_LONG).show();
 
         }
 
         @Override
         protected void onCancelled() {
             super.onCancelled();
-            Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
 
         }
 
@@ -194,14 +194,14 @@ public class MainActivity extends BaseActivity {
                 int size=element.size();
                 for(int i=0;i<size;i++){
                     String imgUrl=element.select("li.col-xs-12").select("img").eq(i).attr("src");
-                    String title=element.select("li.col-xs-12").select("a").eq(i).text();//element.select("h4.m-f-12").eq(i).text();
+                    String title=element.select("li.col-xs-12").select("a").eq(i).attr("title");//element.select("h4.m-f-12").eq(i).text();
                     String detail="";//element.select("p.m-f-11").eq(i).text();
-                    String datetime="";//element.select("p.m-f-11").eq(i).text();
+                    String datetime=element.select("li.col-xs-12").select("div.meta-tag").select("li").eq(i).text();
                     newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
 
             }
             return null;
@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             fetchNews();
-            Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
         }
     }
 }
