@@ -188,15 +188,15 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String url="https://www.psl-t20.com/latest/latest-news";
+                String url="https://www.geosuper.tv/featured-news";
                 Document document=Jsoup.connect(url).get();
-                Elements element=document.select("div.stories-list-card");
+                Elements element=document.select("li.col-xs-12");
                 int size=element.size();
                 for(int i=0;i<size;i++){
-                    String imgUrl=element.select("div.w-100").select("img").eq(i).attr("src");
-                    String title="kj";//element.select("h4.m-f-12").eq(i).text();
-                    String detail="asasasdasdasdasdasdasdasdasdasd";//element.select("p.m-f-11").eq(i).text();
-                    String datetime="bh";//element.select("p.m-f-11").eq(i).text();
+                    String imgUrl=element.select("li.col-xs-12").select("img").eq(i).attr("src");
+                    String title=element.select("li.col-xs-12").select("a").eq(i).text();//element.select("h4.m-f-12").eq(i).text();
+                    String detail="";//element.select("p.m-f-11").eq(i).text();
+                    String datetime="";//element.select("p.m-f-11").eq(i).text();
                     newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
                 }
             } catch (IOException e) {
