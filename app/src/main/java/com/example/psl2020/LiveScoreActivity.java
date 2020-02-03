@@ -111,8 +111,11 @@ public class LiveScoreActivity extends BaseActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         String rece = " ";
-                                        for (int i = 1; i <= dataSnapshot.getChildrenCount(); i++) {
-                                            rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString();
+                                            for (int i = 1; i <= 6; i++) {
+                                            try {
+                                                rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString();
+                                            }
+                                        catch (Exception e){}
                                         }
                                         recent.setText(rece);
                                     }
