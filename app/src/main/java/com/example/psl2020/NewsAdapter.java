@@ -16,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     ArrayList<NewsDataClass> newsDataClassArray;
-    ArrayList<String> str;
     Context context;
 
-    public NewsAdapter(ArrayList<NewsDataClass> newsDataClassArray,Context context,ArrayList<String> str){
-        this.str=str;
+    public NewsAdapter(ArrayList<NewsDataClass> newsDataClassArray,Context context){
         this.newsDataClassArray=newsDataClassArray;
         this.context=context;
     }
@@ -34,18 +32,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        NewsDataClass newsDataClass=newsDataClassArray.get(position);
-//        holder.newsTitle.setText(newsDataClass.getNewsTitle());
-//        holder.newsDetail.setText(newsDataClass.getNewsDetails());
-//        holder.newsDatetime.setText(newsDataClass.getNewsDatetime());
-//        Picasso.get().load(newsDataClass.getImgUrl()).into(holder.newsImage);
-        holder.newsTitle.setText(str.get(position));
+        NewsDataClass newsDataClass=newsDataClassArray.get(position);
+        holder.newsTitle.setText(newsDataClass.getNewsTitle());
+        //holder.newsDetail.setText(newsDataClass.getNewsDetails());
+        holder.newsDatetime.setText(newsDataClass.getNewsDatetime());
+        Picasso.get().load(newsDataClass.getImgUrl()).into(holder.newsImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return str.size();//newsDataClassArray.size();
+        return newsDataClassArray.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -54,7 +51,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             newsTitle=(TextView) itemView.findViewById(R.id.newsTitle);
-            newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
+           //newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
             newsDatetime=(TextView) itemView.findViewById(R.id.newsDatetime);
             newsImage=(ImageView) itemView.findViewById(R.id.newsImage);
         }

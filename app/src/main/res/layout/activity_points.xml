@@ -20,7 +20,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="65dp"
         android:id="@+id/cr"
-        android:backgroundTint="#009900"
+        android:backgroundTint="@color/colorBlue"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:textSize="30dp"
             android:layout_marginLeft="10dp"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:layout_marginRight="10dp"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="end"/>
     </androidx.cardview.widget.CardView>
     <androidx.recyclerview.widget.RecyclerView
@@ -55,7 +55,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:cardCornerRadius="15dp"
-        android:backgroundTint="#009900"
+        android:backgroundTint="@color/colorBlue"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
             android:textSize="30dp"
             android:id="@+id/txtNamee"
             android:layout_marginLeft="10dp"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:layout_marginRight="10dp"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="end"/>
     </androidx.cardview.widget.CardView>
         </RelativeLayout>

@@ -37,16 +37,16 @@
 
 
 
-            <TextView
-                android:id="@+id/txtWinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="viewEnd"
-                android:text="Upcoming"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/colorBlue"
-                android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/txtWinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="Upcoming"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="14dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
-                android:layout_weight="1"
+               android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
