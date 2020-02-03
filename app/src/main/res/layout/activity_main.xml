@@ -83,7 +83,7 @@
             <LinearLayout
                 android:id="@+id/newsLayout"
                 android:orientation="horizontal"
-                android:layout_margin="7dp"
+                android:layout_marginTop="7dp"
                 android:weightSum="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
