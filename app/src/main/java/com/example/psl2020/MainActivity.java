@@ -128,18 +128,18 @@ public class MainActivity extends BaseActivity {
 //        });
 //
 //        dialog.show();
-        fetchNews();
+        new ScrapeNews().execute();
+
     }
 
     private void fetchNews(){
-
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        str.add("2");
-        str.add("as");
-        recyclerView.setAdapter(new NewsAdapter(newsDataClassArray, getApplicationContext(),str));
-       // new ScrapeNews().execute();
+//        str.add("2");
+//        str.add("as");
+        newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, getApplicationContext()));
+
     }
 
     private void redirect() {
@@ -188,15 +188,15 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String url="https://www.cinemaqatar.com/";
+                String url="https://www.psl-t20.com/latest/latest-news";
                 Document document=Jsoup.connect(url).get();
-                Elements element=document.select("span.thumbnail");
+                Elements element=document.select("div.stories-list-card");
                 int size=element.size();
                 for(int i=0;i<size;i++){
-                    String imgUrl=element.select("span.thumbnail").select("img").eq(i).attr("src");
-                    String title=element.select("h4.gridminfotitle").select("span").eq(i).text();
-                    String detail=element.select("p.gridminfo").eq(i).text();
-                    String datetime="jhhj";//element.select("a.btnmain").eq(i).text();
+                    String imgUrl=element.select("div.w-100").select("img").eq(i).attr("src");
+                    String title="kj";//element.select("h4.m-f-12").eq(i).text();
+                    String detail="asasasdasdasdasdasdasdasdasdasd";//element.select("p.m-f-11").eq(i).text();
+                    String datetime="bh";//element.select("p.m-f-11").eq(i).text();
                     newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
                 }
             } catch (IOException e) {
@@ -210,7 +210,8 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-//            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
+            fetchNews();
+            Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.psl2020"
-        minSdkVersion 19
+        minSdkVersion 18
         targetSdkVersion 29
         multiDexEnabled true
         versionCode 1
@@ -15,6 +15,7 @@ android {
     }
     buildTypes {
         release {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
