@@ -519,5 +519,20 @@
         </TableRow>
 
     </TableLayout>
+    <LinearLayout
+        android:layout_below="@+id/batsmanCrd"
+        android:layout_width="match_parent"
+        android:layout_marginTop="220dp"
+        android:orientation="vertical"
+        android:layout_height="300dp">
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/gif"
+            android:background="#000000"/>
+
+    </LinearLayout>
+
+
 
 </FrameLayout>
