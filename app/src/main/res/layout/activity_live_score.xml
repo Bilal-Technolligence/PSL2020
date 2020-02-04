@@ -926,71 +926,7 @@
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
                     </TableRow>
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:weightSum="6"
-                        android:padding="3dp"
-                        android:background="@color/colorWhite">
 
-                        <TextView
-                            android:id="@+id/txtBatsmanName"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text=""
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-                        <TextView
-                            android:id="@+id/txtBatsmanRun"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="0"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/txtBatsmanBalls"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="0"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/txtBatsmanSixes"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="0"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/txtBatsmanFours"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="0"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/txtBatsmanSr"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="0.0"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15dp" />
-                    </TableRow>
 <!--                    <TableRow-->
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:weightSum="6"-->

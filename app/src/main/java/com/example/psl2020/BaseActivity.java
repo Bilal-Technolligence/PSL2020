@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -227,11 +228,35 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             Snackbar.make(drawerLayout, "Invite Friends", Snackbar.LENGTH_LONG).show();
 
         } else if (itemId == R.id.scoreboard) {
-            Snackbar.make(drawerLayout, "scoreboard", Snackbar.LENGTH_LONG).show();
+            Intent intent = new Intent(this, Points.class);
+            startActivity(intent);
+            finish();
         } else if (itemId == R.id.guideline) {
             Snackbar.make(drawerLayout, "GuideLine", Snackbar.LENGTH_LONG).show();
         } else if (itemId == R.id.rateUs) {
-            Snackbar.make(drawerLayout, "rateus", Snackbar.LENGTH_LONG).show();
+            try {
+                databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            final String url = dataSnapshot.getValue().toString();
+                            Intent viewIntent =
+                                    new Intent("android.intent.action.VIEW",
+                                            Uri.parse(url));
+                            startActivity(viewIntent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }catch(Exception e) {
+                Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                        Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         } else if (itemId == R.id.logout) {
             //shared prefrences
             SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);

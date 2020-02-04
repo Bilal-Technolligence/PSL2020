@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Points"
     android:orientation="vertical">
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawarLayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -43,7 +52,6 @@
         android:layout_height="50dp"
         android:id="@+id/card"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="65dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:cardCornerRadius="15dp"
@@ -70,6 +78,22 @@
             android:textColor="@color/colorWhite"
             android:layout_gravity="end"/>
     </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNavigationView"
+            app:headerLayout="@layout/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            app:menu="@menu/drawar_menu"
+            app:itemTextColor="#6c6c6c"
+            android:layout_gravity="start"
+            ></com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"

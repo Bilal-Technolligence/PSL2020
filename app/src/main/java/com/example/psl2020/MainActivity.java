@@ -10,6 +10,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,7 +139,7 @@ public class MainActivity extends BaseActivity {
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        str.add("2");
 //        str.add("as");
-        newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, getApplicationContext()));
+        newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, MainActivity.this));
 
     }
 
@@ -169,12 +170,13 @@ public class MainActivity extends BaseActivity {
     }
 
     public  class ScrapeNews extends AsyncTask<Void,Void,Void>{
-        String words;
+        ProgressBar progressBar=(ProgressBar) findViewById(R.id.progress_bar);
+
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-          //  Toast.makeText(getApplicationContext(), "pre-processing", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.VISIBLE);
 
         }
 
@@ -194,8 +196,8 @@ public class MainActivity extends BaseActivity {
                 int size=element.size();
                 for(int i=0;i<size;i++){
                     String imgUrl=element.select("li.col-xs-12").select("img").eq(i).attr("src");
-                    String title=element.select("li.col-xs-12").select("a").eq(i).attr("title");//element.select("h4.m-f-12").eq(i).text();
-                    String detail="";//element.select("p.m-f-11").eq(i).text();
+                    String title=element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("title");
+                    String detail=element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("href");
                     String datetime=element.select("li.col-xs-12").select("div.meta-tag").select("li").eq(i).text();
                     newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
                 }
@@ -210,6 +212,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            progressBar.setVisibility(View.GONE);
             fetchNews();
            // Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
         }

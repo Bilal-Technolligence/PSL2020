@@ -37,6 +37,7 @@
         <activity android:name=".LiveMatchActivity" />
         <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" />
+        <activity android:name=".NewsDetail" />
         <activity android:name=".MainActivity">
 
         </activity>
