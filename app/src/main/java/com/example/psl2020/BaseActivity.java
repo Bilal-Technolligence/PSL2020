@@ -372,7 +372,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
                 }
             else{
-                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(drawerLayout, "You are not login", Snackbar.LENGTH_LONG).show();
             }
 
 
