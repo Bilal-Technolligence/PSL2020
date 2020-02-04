@@ -12,34 +12,29 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:textColor="#ffffff"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:textColor="#ffffff"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Points">
-
-        </activity>
+        <activity android:name=".FbShare"></activity>
+        <activity android:name=".NewsDetail" />
+        <activity android:name=".Points" />
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        <activity android:name=".Statistics"></activity>
-        <activity android:name=".FacebookLogin"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Statistics" />
+        <activity android:name=".FacebookLogin" />
         <activity android:name=".PlayersActivity" />
         <activity android:name=".TeamsActivity" />
         <activity android:name=".LiveMatchActivity" />
         <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" />
-        <activity android:name=".NewsDetail" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -57,6 +52,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider769950596837523"
+            android:exported="true" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

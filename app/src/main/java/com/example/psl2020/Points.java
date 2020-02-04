@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Points extends AppCompatActivity {
+public class Points extends BaseActivity {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     TextView name, point;
     CardView card;
@@ -84,5 +84,15 @@ public class Points extends AppCompatActivity {
         } else {
             card.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_points;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_home;
     }
 }
