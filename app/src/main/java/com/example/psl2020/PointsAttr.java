@@ -5,6 +5,15 @@ public class PointsAttr {
     String name;
     Integer points;
 
+    public PointsAttr() {
+    }
+
+    public PointsAttr(String id, String name, Integer points) {
+        this.id = id;
+        this.name = name;
+        this.points = points;
+    }
+
     public String getId() {
         return id;
     }
@@ -26,15 +35,6 @@ public class PointsAttr {
     }
 
     public void setPoints(Integer points) {
-        this.points = points;
-    }
-
-    public PointsAttr() {
-    }
-
-    public PointsAttr(String id, String name, Integer points) {
-        this.id = id;
-        this.name = name;
         this.points = points;
     }
 }

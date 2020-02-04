@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableRow
+        android:layout_width="match_parent"
+        android:weightSum="6"
+        android:padding="3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/txtBowlerName"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/txtBowlerOvers"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtBowlerMiddens"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtBowlerRuns"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtBowlerWickts"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtBowlerEcon"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0.0"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp" />
+    </TableRow>
+
+</TableLayout>

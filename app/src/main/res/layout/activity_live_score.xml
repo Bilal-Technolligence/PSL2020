@@ -861,7 +861,75 @@
                 </LinearLayout>
 
                 <TableLayout
-                    android:id="@+id/Team1Summary"
+                    android:id="@+id/TeamTwoBowling"
+                    android:layout_width="fill_parent"
+                    android:layout_below="@+id/TeamOneBating"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:weightSum="6"
+                        android:layout_marginTop="1dp"
+                        android:padding="3dp"
+                        android:background="@color/colorBlue">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Bowling"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="O"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="M"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="R"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="W"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Eco"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+                    </TableRow>
+
+                </TableLayout>
+                <TableLayout
+                    android:id="@+id/TeamOneBating"
                     android:layout_width="fill_parent"
                     android:layout_below="@+id/batingTeamOne"
                     android:gravity="center"
@@ -926,72 +994,6 @@
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
                     </TableRow>
-
-<!--                    <TableRow-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:weightSum="6"-->
-<!--                        android:padding="3dp"-->
-<!--                        android:background="@color/colorWhite">-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoName"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="center"-->
-<!--                            android:text=""-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoRun"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="right"-->
-<!--                            android:text="0"-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoBalls"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="right"-->
-<!--                            android:text="0"-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoSixes"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="right"-->
-<!--                            android:text="0"-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoFours"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="right"-->
-<!--                            android:text="0"-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtBatsmanTwoSr"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="center"-->
-<!--                            android:text="0.0"-->
-<!--                            android:textColor="@color/colorBlack"-->
-<!--                            android:textSize="15dp" />-->
-<!--                    </TableRow>-->
 
                 </TableLayout>
 

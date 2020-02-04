@@ -102,8 +102,8 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         String time = scheduleAttrs.get(position).getTime();
         String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
         holder.liveMatches.setText( finalString);
-        String ID = scheduleAttrs.get(position).getId();
-        dref.child("FinishMatches").child(ID).addValueEventListener(new ValueEventListener() {
+        int ID = scheduleAttrs.get(position).getSid();
+        dref.child("FinishMatches").child(String.valueOf(ID)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
