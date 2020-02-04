@@ -230,72 +230,89 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             startActivity(new Intent(this, LiveStreamingActivity.class));
             finish();
         } else if (itemId == R.id.inviteFriends) {
-            databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        link=dataSnapshot.getValue().toString();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-            if (ShareDialog.canShow(ShareLinkContent.class)) {
-                ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                        .setContentUrl(Uri.parse(link))
-                        .setContentTitle("Win PSL 2020 Final Tickets")
-                        .setQuote("There is a chance to win PSL 2020 final ticket")
-                        .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
-                        .build();
-                shareDialog.show(linkContent);
-            }
-            shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                @Override
-                public void onSuccess(Sharer.Result result) {
-                    //shared prefrences
-                    SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
-                    boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
-                    if (isLoggedIn) {
-                        final String userId=prefs.getString("id","");
-                        if(!userId.equals("")) {
-                            databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    // if(dataSnapshot.exists()){
-                                    int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
-                                    int newPoints = oldPoints+50;
-                                    databaseReference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
-
-                                    //}
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+            //shared prefrences
+            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+            if (isLoggedIn) {
+                final String userId=prefs.getString("id","");
+                if(!userId.equals("")) {
+                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                link=dataSnapshot.getValue().toString();
+                            }
                         }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                .setContentUrl(Uri.parse(link))
+                                .setContentTitle("Win PSL 2020 Final Tickets")
+                                .setQuote("There is a chance to win PSL 2020 final ticket")
+                                .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
+                                .build();
+                        shareDialog.show(linkContent);
                     }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Kindly Login First", Toast.LENGTH_LONG).show();
-                    }
+                    shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                        @Override
+                        public void onSuccess(Sharer.Result result) {
+                            //shared prefrences
+//                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+//                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+//                            if (isLoggedIn) {
+//                                final String userId=prefs.getString("id","");
+//                                if(!userId.equals("")) {
+                                    databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            // if(dataSnapshot.exists()){
+                                            int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
+                                            int newPoints = oldPoints+50;
+                                            databaseReference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
 
+                                            //}
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+//                                }
+//                            }
+//                            else{
+//                                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+//                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onError(FacebookException error) {
+
+                        }
+                    });
 
                 }
+            }
+            else{
+                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+            }
 
-                @Override
-                public void onCancel() {
 
-                }
 
-                @Override
-                public void onError(FacebookException error) {
 
-                }
-            });
+
 
 
         } else if (itemId == R.id.scoreboard) {
@@ -355,7 +372,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
                 }
             else{
-                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(drawerLayout, "You are not login", Snackbar.LENGTH_LONG).show();
             }
 
 

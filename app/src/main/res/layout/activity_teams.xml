@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:layout_margin="5dp"
     tools:context=".TeamsActivity">
         <androidx.drawerlayout.widget.DrawerLayout
             android:layout_width="match_parent"
@@ -22,22 +21,12 @@
                     android:paddingBottom="90dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/colorWhite"
-                            android:text="Teams"
-                            android:textColor="@color/colorBlack"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:textStyle="bold"
-                            android:textSize="25dp"
-                            android:gravity="center"/>
 
                         <LinearLayout
                             android:id="@+id/buttons1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="0dp"
                             android:layout_weight="2"
                             android:gravity="center"
                             android:padding="2dp"

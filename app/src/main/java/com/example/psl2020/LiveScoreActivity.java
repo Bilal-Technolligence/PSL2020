@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -581,29 +582,46 @@ public class LiveScoreActivity extends BaseActivity {
 
     private void congratulations() {
 
-//        ImageView image = new ImageView(this);
-//        image.setImageResource(R.drawable.gif);
-//        Context context;
-//        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( LiveScoreActivity.this );
-//        alertDialogBuilder.setTitle( "Are you sure to exit?" )
-//                .setNegativeButton( "No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                } ).setView( image );
-//              alertDialogBuilder.create().show();
+        int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
+        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
+
+
+
         AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
         LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
         final View view = factory.inflate(R.layout.congratulationdialogbox, null);
+       // layout.setMinimumWidth((int)(displayRectangle.width() * 0.9f));
+      //  layout.setMinimumHeight((int)(displayRectangle.height() * 0.9f));
         alertadd.setView(view);
-        alertadd.setNeutralButton("Here!", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dlg, int sumthin) {
+//        alertadd.setNeutralButton("", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dlg, int sumthin) {
+//
+//            }
+//        });
+       // alertadd.show();
 
+        final AlertDialog alert = alertadd.create();
+        alert.show();
+
+// Hide after some seconds
+        final Handler handler  = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (alert.isShowing()) {
+                    alert.dismiss();
+                }
+            }
+        };
+
+        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                handler.removeCallbacks(runnable);
             }
         });
 
-        alertadd.show();
+        handler.postDelayed(runnable, 10000);
 
 
 
