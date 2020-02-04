@@ -16,11 +16,12 @@
         android:supportsRtl="true"
         android:textColor="#ffffff"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewsDetail"></activity>
-        <activity android:name=".Points"></activity>
+        <activity android:name=".FbShare"></activity>
+        <activity android:name=".NewsDetail" />
+        <activity android:name=".Points" />
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Statistics" />
         <activity android:name=".FacebookLogin" />
         <activity android:name=".PlayersActivity" />
@@ -51,6 +52,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider769950596837523"
+            android:exported="true" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

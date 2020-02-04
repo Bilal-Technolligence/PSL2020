@@ -34,7 +34,7 @@ public class LiveScoreActivity extends BaseActivity {
     String one, two, elected,scheduleId;
     Integer id, toss;
     TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
-    String selection="", userId="";
+    String selection="";
     LinearLayout linearLayout1,linearLayout2;
     ImageView live;
 
@@ -497,7 +497,7 @@ public class LiveScoreActivity extends BaseActivity {
                                     SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
                                     boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
                                     if (isLoggedIn) {
-                                        userId = prefs.getString("id", "");
+                                       String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "W ";
                                             linearLayout1.setVisibility(View.GONE);
@@ -517,24 +517,29 @@ public class LiveScoreActivity extends BaseActivity {
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
                                         if(selection.equals(lastBall)){
-                                            if(!userId.equals(null)){
-                                                reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                        if(dataSnapshot.exists()){
-                                                            int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
-                                                            int newPoints = oldPoints+10;
-                                                            reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
-                                                            selection="";
+                                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                            if (isLoggedIn) {
+                                                final String userId = prefs.getString("id", "");
+                                                if (!userId.equals("")) {
+                                                    reference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            if (dataSnapshot.exists()) {
+                                                                int oldPoints = Integer.parseInt(dataSnapshot.child("points").getValue().toString());
+                                                                int newPoints = oldPoints + 10;
+                                                                reference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
+                                                                selection = "";
+
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                                         }
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                    }
-                                                });
+                                                    });
+                                                }
                                             }
 
                                         }
