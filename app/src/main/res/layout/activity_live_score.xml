@@ -835,7 +835,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/batingTeamOne"
+                    android:id="@+id/summaryLayout"
                     android:orientation="horizontal"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
@@ -859,155 +859,31 @@
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/mainLayout"
+                    android:layout_below="@+id/summaryLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TableLayout
-                    android:id="@+id/TeamOneBating"
-                    android:layout_width="fill_parent"
-                    android:layout_below="@+id/batingTeamOne"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TableRow
+                    <!-- our tablayout to display tabs  -->
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
                         android:layout_width="match_parent"
-                        android:weightSum="6"
-                        android:layout_marginTop="1dp"
-                        android:padding="3dp"
-                        android:background="@color/colorBlue">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Bating"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="B"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="6s"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="4s"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="S.R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                    </TableRow>
-
-                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:id="@+id/recyclerbating"
-                        android:layout_weight="1"/>
+                        android:background="@color/colorBlue"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="@style/Theme.MaterialComponents"/>
 
-                </TableLayout>
-                <TableLayout
-                    android:id="@+id/TeamTwoBowling"
-                    android:layout_width="fill_parent"
-                    android:layout_below="@+id/TeamOneBating"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TableRow
+                    <!-- View pager to swipe views -->
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:background="#fff"
                         android:layout_width="match_parent"
-                        android:weightSum="6"
-                        android:layout_marginTop="1dp"
-                        android:padding="3dp"
-                        android:background="@color/colorBlue">
+                        android:layout_height="fill_parent">
+                    </androidx.viewpager.widget.ViewPager>
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Bowling"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="O"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="M"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="W"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Eco"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                    </TableRow>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:id="@+id/recyclerbowling"
-                        android:layout_weight="1"/>
-
-
-                </TableLayout>
 
 
 
