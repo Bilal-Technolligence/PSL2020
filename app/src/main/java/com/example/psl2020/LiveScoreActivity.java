@@ -3,6 +3,8 @@ package com.example.psl2020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import hotchemi.android.rate.AppRate;
 
@@ -37,6 +41,9 @@ public class LiveScoreActivity extends BaseActivity {
     String selection="", userId="";
     LinearLayout linearLayout1,linearLayout2;
     ImageView live;
+    ArrayList<BatsmanAttr> batsmanAttrs;
+    ArrayList<BowlerAttr> bowlerAttrs;
+    RecyclerView batsmanRecycler,bowlingRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +93,20 @@ public class LiveScoreActivity extends BaseActivity {
         linearLayout1=(LinearLayout) findViewById(R.id.points);
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
 
+
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        batsmanRecycler = findViewById(R.id.recyclerbating);
+        batsmanAttrs = new ArrayList<BatsmanAttr>();
+        batsmanRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+
+        bowlingRecycler = findViewById(R.id.recyclerbowling);
+        bowlerAttrs = new ArrayList<BowlerAttr>();
+        bowlingRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+
+
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -106,6 +127,46 @@ public class LiveScoreActivity extends BaseActivity {
                                 id++;
                                 match.setText(id + "th Match");
                             }
+                            reference.child("LiveScore").child("summary").child(two).child("batting").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    batsmanAttrs.clear();
+                                    //profiledata.clear();
+                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
+                                        batsmanAttrs.add(p);
+                                    }
+
+                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            reference.child("LiveScore").child("summary").child(one).child("bowling").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    bowlerAttrs.clear();
+                                    //profiledata.clear();
+                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                        BowlerAttr p = dataSnapshot1.getValue(BowlerAttr.class);
+                                        bowlerAttrs.add(p);
+                                    }
+
+                                    bowlingRecycler.setAdapter(new BowlerRecylerView(bowlerAttrs, getApplicationContext()));
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
 
 
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
@@ -121,6 +182,26 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
                                         recent.setText(rece);
                                     }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            reference.child("LiveScore").child("summary").child("Islamabad United").child("batting").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    batsmanAttrs.clear();
+                                    //profiledata.clear();
+                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
+                                        batsmanAttrs.add(p);
+                                    }
+
+                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
+
+
                                 }
 
                                 @Override
@@ -547,11 +628,6 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
-
-
-
-
-
                         }
                     }
                 } else
