@@ -202,6 +202,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
             });
         }
+        //get app link
+        databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    if(dataSnapshot.exists()){
+                        link=dataSnapshot.getValue().toString();
+                    }
+                }catch (Exception e){
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
     //fb login code 
     @Override
@@ -256,30 +275,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if (isLoggedIn) {
                 final String userId=prefs.getString("id","");
                 if(!userId.equals("")) {
-                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            try{
-                                if(dataSnapshot.exists()){
-                                    link=dataSnapshot.getValue().toString();
-                                }
-                            }catch (Exception e){
 
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                                .setContentUrl(Uri.parse("WWW.technolligencee.com"))
-                                .setContentTitle("Win PSL 2020 Final Tickets")
-                                .setQuote("There is a chance to win PSL 2020 final ticket")
-                                .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
+                                .setContentUrl(Uri.parse(link))
+                                .setQuote("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
                                 .build();
                         shareDialog.show(linkContent);
                     }
