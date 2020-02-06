@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import androidx.viewpager.widget.ViewPager;
 import hotchemi.android.rate.AppRate;
 
 public class LiveScoreActivity extends BaseActivity {
@@ -640,7 +642,33 @@ public class LiveScoreActivity extends BaseActivity {
             }
         });
 
+        //summary pager code
+        TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Team 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Team 2"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
+        SummaryPagerAdapter summaryPagerAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager.setAdapter(summaryPagerAdapter);
+//        viewPager.setPageTransformer(true, new ZoomOutTranformer());
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override

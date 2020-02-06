@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected DrawerLayout drawerLayout;
     protected NavigationView drawerNavigationView;
     ImageView imageView;
-    TextView textView;
+    TextView textView,pointsTextView;
     ShareDialog shareDialog=new ShareDialog(this);
     String link;
     private CallbackManager callbackManager;
@@ -83,6 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         View headerview = drawerNavigationView.getHeaderView(0);
         imageView = (ImageView) headerview.findViewById(R.id.profile_image);
         textView=(TextView) headerview.findViewById(R.id.name);
+        pointsTextView=(TextView) headerview.findViewById(R.id.userPoints);
 
         //shared prefrences
         SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
@@ -104,6 +105,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                     }
                 });
+
+                databaseReference.child("UsersPoints").child(userId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        try{
+                            if(dataSnapshot.exists()){
+                                pointsTextView.setText(dataSnapshot.child("points").getValue().toString()+" Points");
+                            }
+                        }catch (Exception e){
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
         } else {
@@ -114,7 +134,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                     //fb login button code
                     callbackManager = CallbackManager.Factory.create();
                     //loginButton= findViewById(R.id.login_button);
-                    LoginManager.getInstance().logInWithReadPermissions(BaseActivity.this,Arrays.asList("public_profile","user_friends"));
+                    LoginManager.getInstance().logInWithReadPermissions(BaseActivity.this,Arrays.asList("public_profile"));
                     LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                         @Override
                         public void onSuccess(final LoginResult loginResult) {
@@ -161,7 +181,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                                 }
                             });
                             Bundle parameters= new Bundle();
-                            parameters.putString("fields","first_name,last_name,id,friends");
+                            parameters.putString("fields","first_name,last_name,id");
                             request.setParameters(parameters);
                             request.executeAsync();
                         }
@@ -182,6 +202,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
             });
         }
+        //get app link
+        databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    if(dataSnapshot.exists()){
+                        link=dataSnapshot.getValue().toString();
+                    }
+                }catch (Exception e){
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
     //fb login code 
     @Override
@@ -236,37 +275,18 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if (isLoggedIn) {
                 final String userId=prefs.getString("id","");
                 if(!userId.equals("")) {
-                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-                                link=dataSnapshot.getValue().toString();
-                            }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                 .setContentUrl(Uri.parse(link))
-                                .setContentTitle("Win PSL 2020 Final Tickets")
-                                .setQuote("There is a chance to win PSL 2020 final ticket")
-                                .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
+                                .setQuote("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
                                 .build();
                         shareDialog.show(linkContent);
                     }
+                    callbackManager = CallbackManager.Factory.create();
                     shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
                         @Override
                         public void onSuccess(Sharer.Result result) {
-                            //shared prefrences
-//                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
-//                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
-//                            if (isLoggedIn) {
-//                                final String userId=prefs.getString("id","");
-//                                if(!userId.equals("")) {
                                     databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -283,12 +303,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                                         }
                                     });
-//                                }
-//                            }
-//                            else{
-//                                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
-//                            }
-
 
                         }
 
@@ -299,6 +313,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                         @Override
                         public void onError(FacebookException error) {
+                            Snackbar.make(drawerLayout, ""+ error, Snackbar.LENGTH_INDEFINITE).show();
+
 
                         }
                     });

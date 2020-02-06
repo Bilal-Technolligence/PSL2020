@@ -60,7 +60,7 @@ public class FbShare extends AppCompatActivity {
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
                     .setContentUrl(Uri.parse(link))
                     .setContentTitle("Win PSL 2020 Final Tickets")
-                    .setQuote("There is a chance to win PSL 2020 final ticket")
+                    .setQuote("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
                     .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
                     .build();
             shareDialog.show(linkContent);
