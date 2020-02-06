@@ -19,9 +19,14 @@
         <activity android:name=".FbShare"></activity>
         <activity android:name=".NewsDetail" />
         <activity android:name=".Points" />
-        <activity
-            android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".SplashScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Statistics" />
         <activity android:name=".FacebookLogin" />
         <activity android:name=".PlayersActivity" />
@@ -30,11 +35,11 @@
         <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"

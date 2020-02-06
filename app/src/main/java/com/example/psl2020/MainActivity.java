@@ -1,7 +1,9 @@
 package com.example.psl2020;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -216,5 +218,56 @@ public class MainActivity extends BaseActivity {
             fetchNews();
            // Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+        builder.setTitle("Rate us and get a chance to win");
+        //  builder.setMessage("Rate us and get a chance to win");
+        // add the buttons
+        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                try {
+                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                startActivity(viewIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        builder.setNeutralButton("Remind me later", null);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 }

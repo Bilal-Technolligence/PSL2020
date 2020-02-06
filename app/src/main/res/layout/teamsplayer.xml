@@ -7,11 +7,12 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp">
     <androidx.cardview.widget.CardView
-        android:id="@+id/main"
+        android:id="@+id/playerCard"
         android:layout_width="match_parent"
+
         app:cardElevation="12dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorYellow"
+
         app:cardCornerRadius="15dp">
         <LinearLayout
             android:id="@+id/playerImages"
@@ -40,8 +41,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Shoaib Malik"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="23dp" />
+
 
             <TextView
                 android:id="@+id/txtPCategory"
@@ -49,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="All Rounder"
+                android:textColor="@color/colorWhite"
                 android:textSize="18dp" />
         </LinearLayout>
 

@@ -2,9 +2,12 @@ package com.example.psl2020;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.api.Context;
@@ -27,6 +30,12 @@ public class PlayersActivity extends BaseActivity {
         super.onCreate( savedInstanceState );
        // setContentView( R.layout.activity_players );
 
+//        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.bgcolor);
+        Intent intent = getIntent();
+       String teamName = intent.getStringExtra( "teamname" );
+
+
+
 
         Context context;
         //GridLayoutManager layoutManager= new GridLayoutManager(this, GridLayout., false );
@@ -35,7 +44,7 @@ public class PlayersActivity extends BaseActivity {
         playerAttributes = new ArrayList<PlayerAttributes>();
         recyclerView.setLayoutManager(new GridLayoutManager( this,2 ));
 
-        reference.child("Players").child( "Peshawar Zalmi" ).addValueEventListener(new ValueEventListener() {
+        reference.child("Players").child( teamName ).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 playerAttributes.clear();

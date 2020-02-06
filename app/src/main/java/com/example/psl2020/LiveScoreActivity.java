@@ -7,7 +7,10 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -90,7 +93,6 @@ public class LiveScoreActivity extends BaseActivity {
         live = findViewById(R.id.imgLL);
         linearLayout1=(LinearLayout) findViewById(R.id.points);
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
-
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -551,6 +553,37 @@ public class LiveScoreActivity extends BaseActivity {
                                             }
 
                                         }
+//                                        else{
+//                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+//                                           // LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+//                                          //  final View view = factory.inflate(R.layout.congratulationdialogbox, null);
+//                                            alertadd.setTitle("Opps Batter Luck for Next");
+//                                          //  alertadd.setView(view);
+//                                            final AlertDialog alert = alertadd.create();
+//                                            alert.show();
+//// Hide after some seconds
+//                                            final Handler handler  = new Handler();
+//                                            final Runnable runnable = new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    if (alert.isShowing()) {
+//                                                        alert.dismiss();
+//                                                    }
+//                                                }
+//                                            };
+//
+//                                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                                @Override
+//                                                public void onDismiss(DialogInterface dialog) {
+//                                                    handler.removeCallbacks(runnable);
+//                                                }
+//                                            });
+//
+//                                            handler.postDelayed(runnable, 5000);
+//
+//
+//
+//                                        }
 
                                     }
                                 }
@@ -581,28 +614,12 @@ public class LiveScoreActivity extends BaseActivity {
     }
 
     private void congratulations() {
-
-        int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
-        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
-
-
-
         AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
         LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
         final View view = factory.inflate(R.layout.congratulationdialogbox, null);
-       // layout.setMinimumWidth((int)(displayRectangle.width() * 0.9f));
-      //  layout.setMinimumHeight((int)(displayRectangle.height() * 0.9f));
         alertadd.setView(view);
-//        alertadd.setNeutralButton("", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dlg, int sumthin) {
-//
-//            }
-//        });
-       // alertadd.show();
-
         final AlertDialog alert = alertadd.create();
         alert.show();
-
 // Hide after some seconds
         final Handler handler  = new Handler();
         final Runnable runnable = new Runnable() {
@@ -621,7 +638,7 @@ public class LiveScoreActivity extends BaseActivity {
             }
         });
 
-        handler.postDelayed(runnable, 10000);
+        handler.postDelayed(runnable, 3000);
 
 
 
@@ -629,18 +646,54 @@ public class LiveScoreActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( LiveScoreActivity.this );
-        alertDialogBuilder.setTitle( "Are you sure to exit?" )
-                .setNegativeButton( "No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                } ).setPositiveButton( "Exit", new DialogInterface.OnClickListener() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+        builder.setTitle("Rate us and get a chance to win");
+        //  builder.setMessage("Rate us and get a chance to win");
+        // add the buttons
+        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                try {
+                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                startActivity(viewIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        builder.setNeutralButton("Remind me later", null);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
             }
-        } ).show();
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 
     @Override

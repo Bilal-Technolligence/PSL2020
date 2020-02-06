@@ -37,12 +37,54 @@ public class TeamsActivity extends BaseActivity {
         karachiKings=findViewById( R.id.cardKarachi );
         lahoreQalanders=findViewById( R.id.cardLahoreQalandar );
 
-        multanSultan=findViewById( R.id.cardKarachi );
+        multanSultan=findViewById( R.id.cardMultanSultan );
 
         peshawerZalmi.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent( TeamsActivity.this,PlayersActivity.class ) );
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Peshawar Zalmi" );
+                startActivity(intent);
+            }
+        } );
+        lahoreQalanders.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Lahore Qalandars" );
+                startActivity(intent);
+            }
+        } );
+        karachiKings.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Karachi Kings" );
+                startActivity(intent);
+            }
+        } );
+        islamabadUnited.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Islamabad United" );
+                startActivity(intent);
+            }
+        } );
+        multanSultan.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Multan Sultan" );
+                startActivity(intent);
+            }
+        } );
+        quettaGladiator.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
+                intent.putExtra( "teamname", "Quetta Gladiators" );
+                startActivity(intent);
             }
         } );
 

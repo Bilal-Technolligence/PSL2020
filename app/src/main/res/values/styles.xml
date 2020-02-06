@@ -9,5 +9,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/btnColor</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+    </style>
+
+
 
 </resources>
