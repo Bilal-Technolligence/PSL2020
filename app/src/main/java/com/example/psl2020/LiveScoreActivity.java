@@ -544,7 +544,8 @@ public class LiveScoreActivity extends BaseActivity {
                                         String lastBall = dataSnapshot.getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
-                                        if(selection.equals(lastBall)){ SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                        if(selection.equals(lastBall)){
+                                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
                                             boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
                                             if (isLoggedIn) {
                                                 userId = prefs.getString("id", "");
@@ -571,8 +572,8 @@ public class LiveScoreActivity extends BaseActivity {
                                             }
 
                                         }
-                                        else
-                                        {
+//                                        else
+//                                        {
                                             selection="";
 //                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
 //                                            LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
@@ -602,7 +603,7 @@ public class LiveScoreActivity extends BaseActivity {
 //                                            handler.postDelayed(runnable, 5000);
                                         }
 
-                                    }
+//                                    }
                                 }
 
                                 @Override

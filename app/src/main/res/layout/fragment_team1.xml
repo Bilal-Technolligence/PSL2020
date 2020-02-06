@@ -9,7 +9,6 @@
     <TableLayout
         android:id="@+id/TeamOneBating"
         android:layout_width="fill_parent"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:layout_height="wrap_content">
         <TableRow
@@ -24,7 +23,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Bating"
+                android:text="Batsman"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
             <TextView
@@ -74,7 +73,7 @@
         </TableRow>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="wrap_content"
+            android:layout_height="220dp"
             android:layout_width="wrap_content"
             android:id="@+id/recyclerbating"
             android:layout_weight="1"/>
@@ -98,7 +97,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Bowling"
+                android:text="Bowler"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
             <TextView
@@ -147,7 +146,7 @@
                 android:textSize="20dp" />
         </TableRow>
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="wrap_content"
+            android:layout_height="220dp"
             android:layout_width="wrap_content"
             android:id="@+id/recyclerbowling"
             android:layout_weight="1"/>
