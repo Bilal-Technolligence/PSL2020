@@ -544,26 +544,30 @@ public class LiveScoreActivity extends BaseActivity {
                                         String lastBall = dataSnapshot.getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
-                                        if(selection.contains(lastBall)&& !selection.equals("")){
-                                            if(!userId.equals(null)){
-                                                reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                        if(dataSnapshot.exists()){
+                                        if(selection.equals(lastBall)){ SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                            if (isLoggedIn) {
+                                                userId = prefs.getString("id", "");
+
+                                                if (!userId.equals(null)) {
+                                                    reference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
                                                             int newPoints = oldPoints+10;
-                                                            reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
-                                                            selection="";
-                                                            congratulations();
+                                                            reference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
+                                                            selection = "";
+                                                                congratulations();
+
+                                                            //}
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                                         }
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                    }
-                                                });
+                                                    });
+                                                }
                                             }
 
                                         }
