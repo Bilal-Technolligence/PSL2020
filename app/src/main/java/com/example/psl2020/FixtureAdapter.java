@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.os.Build.ID;
+
 public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHolder> {
     ArrayList<ScheduleAttr> scheduleAttrs;
     Context activity;
@@ -102,8 +104,8 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         String time = scheduleAttrs.get(position).getTime();
         String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
         holder.liveMatches.setText( finalString);
-        int ID = scheduleAttrs.get(position).getSid();
-        dref.child("FinishMatches").child(String.valueOf(ID)).addValueEventListener(new ValueEventListener() {
+        int secid = scheduleAttrs.get(position).getSid();
+        dref.child("FinishMatches").child(String.valueOf(secid)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){

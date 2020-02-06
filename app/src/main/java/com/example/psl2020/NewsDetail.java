@@ -40,7 +40,7 @@ public class NewsDetail extends AppCompatActivity {
         new ScrapeNews().execute();
     }
     public  class ScrapeNews extends AsyncTask<Void,Void,Void> {
-        //ProgressBar progressBar=(ProgressBar) findViewById(R.id.progress_bar);
+        ProgressBar progressBar=(ProgressBar) findViewById(R.id.progress_bar);
         ArrayList<String> newsDetail=new ArrayList<>();
 
 
@@ -48,7 +48,7 @@ public class NewsDetail extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-           // progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
             detail=(TextView) findViewById(R.id.newsDetail);
 
 
@@ -88,11 +88,16 @@ public class NewsDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            //progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
             if(newsDetail.size()!=0){
                 String text="";
             for(int j=0;j<newsDetail.size();j++) {
-                text=text+newsDetail.get(j);
+                if(j==0){
+                    text=text+newsDetail.get(j);
+                }else{
+                    text=text+"\n \n"+newsDetail.get(j);
+                }
+
                 detail.setText(text);
             }
         }}

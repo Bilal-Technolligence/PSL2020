@@ -24,6 +24,9 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -51,6 +54,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected NavigationView drawerNavigationView;
     ImageView imageView;
     TextView textView;
+    ShareDialog shareDialog=new ShareDialog(this);
+    String link;
     private CallbackManager callbackManager;
     protected ActionBarDrawerToggle drawerToggle;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
@@ -225,7 +230,90 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             startActivity(new Intent(this, LiveStreamingActivity.class));
             finish();
         } else if (itemId == R.id.inviteFriends) {
-            Snackbar.make(drawerLayout, "Invite Friends", Snackbar.LENGTH_LONG).show();
+            //shared prefrences
+            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+            if (isLoggedIn) {
+                final String userId=prefs.getString("id","");
+                if(!userId.equals("")) {
+                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                link=dataSnapshot.getValue().toString();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                .setContentUrl(Uri.parse(link))
+                                .setContentTitle("Win PSL 2020 Final Tickets")
+                                .setQuote("There is a chance to win PSL 2020 final ticket")
+                                .setContentDescription("Download this app for PSL live score, standings, updates and all latest news. Play and get a chance to win PSL 2020 final ticket.")
+                                .build();
+                        shareDialog.show(linkContent);
+                    }
+                    shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                        @Override
+                        public void onSuccess(Sharer.Result result) {
+                            //shared prefrences
+//                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+//                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+//                            if (isLoggedIn) {
+//                                final String userId=prefs.getString("id","");
+//                                if(!userId.equals("")) {
+                                    databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            // if(dataSnapshot.exists()){
+                                            int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
+                                            int newPoints = oldPoints+50;
+                                            databaseReference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
+
+                                            //}
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+//                                }
+//                            }
+//                            else{
+//                                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+//                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onError(FacebookException error) {
+
+                        }
+                    });
+
+                }
+            }
+            else{
+                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+            }
+
+
+
+
+
+
 
         } else if (itemId == R.id.scoreboard) {
             Intent intent = new Intent(this, Points.class);
@@ -284,7 +372,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
                 }
             else{
-                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(drawerLayout, "You are not login", Snackbar.LENGTH_LONG).show();
             }
 
 
