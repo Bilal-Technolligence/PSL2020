@@ -865,7 +865,8 @@
                     android:id="@+id/mainLayout"
                     android:layout_below="@+id/summaryLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="300dp">
 
                     <!-- our tablayout to display tabs  -->
                     <com.google.android.material.tabs.TabLayout
@@ -881,7 +882,7 @@
                         android:id="@+id/pager"
                         android:background="#fff"
                         android:layout_width="match_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="match_parent">
                     </androidx.viewpager.widget.ViewPager>
                 </LinearLayout>
 

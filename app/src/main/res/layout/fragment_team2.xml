@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Team2Fragment">
 
     <TableLayout
         android:id="@+id/TeamOneBating"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/batingTeamOne"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:layout_height="wrap_content">

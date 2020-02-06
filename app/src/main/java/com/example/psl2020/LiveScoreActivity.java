@@ -98,14 +98,14 @@ public class LiveScoreActivity extends BaseActivity {
 
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        batsmanRecycler = findViewById(R.id.recyclerbating);
-        batsmanAttrs = new ArrayList<BatsmanAttr>();
-        batsmanRecycler.setLayoutManager(new LinearLayoutManager(this));
-
-
-        bowlingRecycler = findViewById(R.id.recyclerbowling);
-        bowlerAttrs = new ArrayList<BowlerAttr>();
-        bowlingRecycler.setLayoutManager(new LinearLayoutManager(this));
+//        batsmanRecycler = findViewById(R.id.recyclerbating);
+//        batsmanAttrs = new ArrayList<BatsmanAttr>();
+//        batsmanRecycler.setLayoutManager(new LinearLayoutManager(this));
+//
+//
+//        bowlingRecycler = findViewById(R.id.recyclerbowling);
+//        bowlerAttrs = new ArrayList<BowlerAttr>();
+//        bowlingRecycler.setLayoutManager(new LinearLayoutManager(this));
 
 
 
@@ -129,46 +129,46 @@ public class LiveScoreActivity extends BaseActivity {
                                 id++;
                                 match.setText(id + "th Match");
                             }
-                            reference.child("LiveScore").child("summary").child(two).child("batting").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    batsmanAttrs.clear();
-                                    //profiledata.clear();
-                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
-                                        batsmanAttrs.add(p);
-                                    }
-
-                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                            reference.child("LiveScore").child("summary").child(one).child("bowling").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    bowlerAttrs.clear();
-                                    //profiledata.clear();
-                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                        BowlerAttr p = dataSnapshot1.getValue(BowlerAttr.class);
-                                        bowlerAttrs.add(p);
-                                    }
-
-                                    bowlingRecycler.setAdapter(new BowlerRecylerView(bowlerAttrs, getApplicationContext()));
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+//                            reference.child("LiveScore").child("summary").child(two).child("batting").addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                    batsmanAttrs.clear();
+//                                    //profiledata.clear();
+//                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+//                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
+//                                        batsmanAttrs.add(p);
+//                                    }
+//
+//                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
+//
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                }
+//                            });
+//                            reference.child("LiveScore").child("summary").child(one).child("bowling").addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                    bowlerAttrs.clear();
+//                                    //profiledata.clear();
+//                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+//                                        BowlerAttr p = dataSnapshot1.getValue(BowlerAttr.class);
+//                                        bowlerAttrs.add(p);
+//                                    }
+//
+//                                    bowlingRecycler.setAdapter(new BowlerRecylerView(bowlerAttrs, getApplicationContext()));
+//
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                }
+//                            });
 
 
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
@@ -191,26 +191,6 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
-                            reference.child("LiveScore").child("summary").child("Islamabad United").child("batting").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    batsmanAttrs.clear();
-                                    //profiledata.clear();
-                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
-                                        batsmanAttrs.add(p);
-                                    }
-
-                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
 
                             reference.child("LiveScore").addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -221,7 +201,7 @@ public class LiveScoreActivity extends BaseActivity {
                                             elected = dataSnapshot.child("elected").getValue().toString();
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
 
-                                            if (toss == 47) {
+                                            if (toss == 51) {
                                                 tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
                                             } else if (toss == 12) {
                                                 tosswon.setText("Karachi won the toss and elected to " + elected + " first.");
@@ -231,7 +211,7 @@ public class LiveScoreActivity extends BaseActivity {
                                                 tosswon.setText("Multan won the toss and elected to " + elected + " first.");
                                             } else if (toss == 15) {
                                                 tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
-                                            } else if (toss == 16) {
+                                            } else if (toss == 54) {
                                                 tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
                                             }
                                         }
@@ -644,8 +624,8 @@ public class LiveScoreActivity extends BaseActivity {
 
         //summary pager code
         TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Team 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Team 2"));
+        tabLayout.addTab(tabLayout.newTab().setText(one));
+        tabLayout.addTab(tabLayout.newTab().setText(two));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
