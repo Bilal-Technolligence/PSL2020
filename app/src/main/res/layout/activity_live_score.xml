@@ -364,7 +364,7 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="123dp"
                             android:layout_height="wrap_content"
-                            android:weightSum="2"
+                            android:weightSum="1"
                             android:gravity="center"
                             android:layout_below="@+id/livematch2"
                             android:orientation="horizontal">

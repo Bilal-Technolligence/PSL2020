@@ -102,7 +102,7 @@ public class LiveScoreActivity extends BaseActivity {
                             one = dataSnapshot1.child("teamOne").getValue().toString();
                             two = dataSnapshot1.child("teamTwo").getValue().toString();
                             id = Integer.parseInt(dataSnapshot1.child("sid").getValue().toString());
-                            scheduleId = dataSnapshot1.child("id").getValue().toString();
+                            scheduleId = dataSnapshot1.child("sid").getValue().toString();
                             if (id == 0) {
                                 match.setText("1st Match");
                             } else if (id == 1) {
@@ -143,9 +143,9 @@ public class LiveScoreActivity extends BaseActivity {
                                         try{
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
-                                            bowler.setText(dataSnapshot.child("bowler").getValue().toString());
 
-                                            if (toss == 47) {
+
+                                            if (toss==51) {
                                                 tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
                                             } else if (toss == 12) {
                                                 tosswon.setText("Karachi won the toss and elected to " + elected + " first.");
@@ -155,9 +155,10 @@ public class LiveScoreActivity extends BaseActivity {
                                                 tosswon.setText("Multan won the toss and elected to " + elected + " first.");
                                             } else if (toss == 15) {
                                                 tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
-                                            } else if (toss == 16) {
+                                            } else if (toss == 54) {
                                                 tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
                                             }
+                                            bowler.setText(dataSnapshot.child("bowler").getValue().toString());
                                         }
                                         catch (Exception e){}
                                     }

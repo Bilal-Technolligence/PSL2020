@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -41,6 +43,7 @@ public class LiveStreamingActivity extends BaseActivity {
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
 
+
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         webView1.setLayoutManager(layoutManager1);
@@ -55,6 +58,7 @@ public class LiveStreamingActivity extends BaseActivity {
                         }
                         VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                         webView1.setAdapter(videoAdapter);
+
                     } catch (Exception e) {
                     }
                 }
