@@ -1,19 +1,23 @@
 package com.example.psl2020;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import androidx.viewpager.widget.ViewPager;
-import hotchemi.android.rate.AppRate;
 
 public class LiveScoreActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -46,6 +47,57 @@ public class LiveScoreActivity extends BaseActivity {
     ArrayList<BatsmanAttr> batsmanAttrs;
     ArrayList<BowlerAttr> bowlerAttrs;
     RecyclerView batsmanRecycler,bowlingRecycler;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+        builder.setTitle("Rate us and get a chance to win");
+        //  builder.setMessage("Rate us and get a chance to win");
+        // add the buttons
+        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                try {
+                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                startActivity(viewIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        builder.setNeutralButton("Remind me later", null);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +170,8 @@ public class LiveScoreActivity extends BaseActivity {
                             one = dataSnapshot1.child("teamOne").getValue().toString();
                             two = dataSnapshot1.child("teamTwo").getValue().toString();
                             id = Integer.parseInt(dataSnapshot1.child("sid").getValue().toString());
-                            scheduleId = dataSnapshot1.child("id").getValue().toString();
+                            scheduleId = dataSnapshot1.child("sid").getValue().toString();
+
                             if (id == 0) {
                                 match.setText("1st Match");
                             } else if (id == 1) {
@@ -178,7 +231,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String rece = " ";
                                             for (int i = 1; i <= 6; i++) {
                                             try {
-                                                rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString();
+                                                rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString()+" ";
                                             }
                                         catch (Exception e){}
                                         }
@@ -199,7 +252,6 @@ public class LiveScoreActivity extends BaseActivity {
                                         try{
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
-                                            bowler.setText(dataSnapshot.child("bowler").getValue().toString());
 
                                             if (toss == 51) {
                                                 tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
@@ -214,6 +266,8 @@ public class LiveScoreActivity extends BaseActivity {
                                             } else if (toss == 54) {
                                                 tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
                                             }
+                                            bowler.setText(dataSnapshot.child("bowler").getValue().toString());
+
                                         }
                                         catch (Exception e){}
                                     }
@@ -589,6 +643,7 @@ public class LiveScoreActivity extends BaseActivity {
                                                             int newPoints = oldPoints+10;
                                                             reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
                                                             selection="";
+                                                            congratulations();
 
                                                         }
                                                     }
@@ -600,6 +655,9 @@ public class LiveScoreActivity extends BaseActivity {
                                                 });
                                             }
 
+                                        }
+                                        else {
+                                            selection="";
                                         }
 
                                     }
@@ -615,6 +673,7 @@ public class LiveScoreActivity extends BaseActivity {
                 } else
                     Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_LONG).show();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -649,6 +708,34 @@ public class LiveScoreActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void congratulations() {
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+        LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+        final View view = factory.inflate(R.layout.congratulationdialogbox, null);
+        alertadd.setView(view);
+        final AlertDialog alert = alertadd.create();
+        alert.show();
+// Hide after some seconds
+        final Handler handler  = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (alert.isShowing()) {
+                    alert.dismiss();
+                }
+            }
+        };
+
+        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                handler.removeCallbacks(runnable);
+            }
+        });
+
+        handler.postDelayed(runnable, 3000);
     }
 
     @Override
