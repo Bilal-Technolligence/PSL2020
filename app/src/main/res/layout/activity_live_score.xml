@@ -865,12 +865,12 @@
                     android:id="@+id/mainLayout"
                     android:layout_below="@+id/summaryLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="300dp">
+                    android:layout_marginBottom="60dp"
+                    android:layout_height="350dp">
 
                     <!-- our tablayout to display tabs  -->
                     <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
+                        android:id="@+id/summaryTabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBlue"
@@ -879,10 +879,10 @@
 
                     <!-- View pager to swipe views -->
                     <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/pager"
+                        android:id="@+id/summaryPager"
                         android:background="#fff"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
                     </androidx.viewpager.widget.ViewPager>
                 </LinearLayout>
 

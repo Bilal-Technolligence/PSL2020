@@ -601,6 +601,10 @@ public class LiveScoreActivity extends BaseActivity {
                                             }
 
                                         }
+                                        else
+                                        {
+                                            selection="";
+                                        }
 
                                     }
                                 }
@@ -623,32 +627,50 @@ public class LiveScoreActivity extends BaseActivity {
         });
 
         //summary pager code
-        TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText(one));
-        tabLayout.addTab(tabLayout.newTab().setText(two));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        reference.child("Schedule").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        if (dataSnapshot1.child("status").getValue().toString().equals("Live")) {
+                            one = dataSnapshot1.child("teamOne").getValue().toString();
+                            two = dataSnapshot1.child("teamTwo").getValue().toString();
+                            TabLayout tabLayout=(TabLayout) findViewById(R.id.summaryTabLayout);
+                            tabLayout.addTab(tabLayout.newTab().setText(one));
+                            tabLayout.addTab(tabLayout.newTab().setText(two));
+                            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
-        SummaryPagerAdapter summaryPagerAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(summaryPagerAdapter);
+
+                            final ViewPager viewPager= (ViewPager) findViewById(R.id.summaryPager);
+                            SummaryPagerAdapter pageAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+                            viewPager.setAdapter(pageAdapter);
 //        viewPager.setPageTransformer(true, new ZoomOutTranformer());
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+                            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                @Override
+                                public void onTabSelected(TabLayout.Tab tab) {
+                                    viewPager.setCurrentItem(tab.getPosition());
+                                }
+
+                                @Override
+                                public void onTabUnselected(TabLayout.Tab tab) {
+
+                                }
+
+                                @Override
+                                public void onTabReselected(TabLayout.Tab tab) {
+
+                                }
+                            });
+                        }
+                    }
+                }
             }
-
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
     }
 
     @Override
