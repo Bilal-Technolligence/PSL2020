@@ -1,5 +1,12 @@
 package com.example.psl2020;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,11 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import androidx.viewpager.widget.ViewPager;
+import hotchemi.android.rate.AppRate;
 
 public class LiveScoreActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -47,57 +52,6 @@ public class LiveScoreActivity extends BaseActivity {
     ArrayList<BatsmanAttr> batsmanAttrs;
     ArrayList<BowlerAttr> bowlerAttrs;
     RecyclerView batsmanRecycler,bowlingRecycler;
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        builder.setTitle("Rate us and get a chance to win");
-        //  builder.setMessage("Rate us and get a chance to win");
-        // add the buttons
-        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                try {
-                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-                                final String url = dataSnapshot.getValue().toString();
-                                Intent viewIntent =
-                                        new Intent("android.intent.action.VIEW",
-                                                Uri.parse(url));
-                                startActivity(viewIntent);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
-        builder.setNeutralButton("Remind me later", null);
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +125,6 @@ public class LiveScoreActivity extends BaseActivity {
                             two = dataSnapshot1.child("teamTwo").getValue().toString();
                             id = Integer.parseInt(dataSnapshot1.child("sid").getValue().toString());
                             scheduleId = dataSnapshot1.child("sid").getValue().toString();
-
                             if (id == 0) {
                                 match.setText("1st Match");
                             } else if (id == 1) {
@@ -182,48 +135,6 @@ public class LiveScoreActivity extends BaseActivity {
                                 id++;
                                 match.setText(id + "th Match");
                             }
-//                            reference.child("LiveScore").child("summary").child(two).child("batting").addValueEventListener(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    batsmanAttrs.clear();
-//                                    //profiledata.clear();
-//                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//                                        BatsmanAttr p = dataSnapshot1.getValue(BatsmanAttr.class);
-//                                        batsmanAttrs.add(p);
-//                                    }
-//
-//                                    batsmanRecycler.setAdapter(new BatsmanRecylerView(batsmanAttrs, getApplicationContext()));
-//
-//
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                }
-//                            });
-//                            reference.child("LiveScore").child("summary").child(one).child("bowling").addValueEventListener(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    bowlerAttrs.clear();
-//                                    //profiledata.clear();
-//                                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//                                        BowlerAttr p = dataSnapshot1.getValue(BowlerAttr.class);
-//                                        bowlerAttrs.add(p);
-//                                    }
-//
-//                                    bowlingRecycler.setAdapter(new BowlerRecylerView(bowlerAttrs, getApplicationContext()));
-//
-//
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                }
-//                            });
-
-
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -253,6 +164,7 @@ public class LiveScoreActivity extends BaseActivity {
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
 
+
                                             if (toss == 51) {
                                                 tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
                                             } else if (toss == 12) {
@@ -267,7 +179,6 @@ public class LiveScoreActivity extends BaseActivity {
                                                 tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
                                             }
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
-
                                         }
                                         catch (Exception e){}
                                     }
@@ -633,7 +544,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String lastBall = dataSnapshot.getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
-                                        if(selection.equals(lastBall)){
+                                        if(selection.contains(lastBall)&& !selection.equals("")){
                                             if(!userId.equals(null)){
                                                 reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
                                                     @Override
@@ -656,8 +567,35 @@ public class LiveScoreActivity extends BaseActivity {
                                             }
 
                                         }
-                                        else {
+                                        else
+                                        {
                                             selection="";
+//                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+//                                            LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+//                                            final View view = factory.inflate(R.layout.congratulationdialogbox, null);
+//                                            alertadd.setTitle("Opps Batter Luck for Next");
+//                                            alertadd.setView(view);
+//                                            final AlertDialog alert = alertadd.create();
+//                                            alert.show();
+////// Hide after some seconds
+//                                            final Handler handler  = new Handler();
+//                                            final Runnable runnable = new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    if (alert.isShowing()) {
+//                                                        alert.dismiss();
+//                                                    }
+//                                                }
+//                                            };
+//
+//                                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                                @Override
+//                                                public void onDismiss(DialogInterface dialog) {
+//                                                    handler.removeCallbacks(runnable);
+//                                                }
+//                                            });
+//
+//                                            handler.postDelayed(runnable, 5000);
                                         }
 
                                     }
@@ -674,7 +612,6 @@ public class LiveScoreActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_LONG).show();
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -682,32 +619,101 @@ public class LiveScoreActivity extends BaseActivity {
         });
 
         //summary pager code
-        TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText(one));
-        tabLayout.addTab(tabLayout.newTab().setText(two));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        reference.child("Schedule").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        if (dataSnapshot1.child("status").getValue().toString().equals("Live")) {
+                            one = dataSnapshot1.child("teamOne").getValue().toString();
+                            two = dataSnapshot1.child("teamTwo").getValue().toString();
+                            TabLayout tabLayout=(TabLayout) findViewById(R.id.summaryTabLayout);
+                            tabLayout.addTab(tabLayout.newTab().setText(one));
+                            tabLayout.addTab(tabLayout.newTab().setText(two));
+                            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
-        SummaryPagerAdapter summaryPagerAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(summaryPagerAdapter);
+
+                            final ViewPager viewPager= (ViewPager) findViewById(R.id.summaryPager);
+                            SummaryPagerAdapter pageAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+                            viewPager.setAdapter(pageAdapter);
 //        viewPager.setPageTransformer(true, new ZoomOutTranformer());
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+                            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                @Override
+                                public void onTabSelected(TabLayout.Tab tab) {
+                                    viewPager.setCurrentItem(tab.getPosition());
+                                }
+
+                                @Override
+                                public void onTabUnselected(TabLayout.Tab tab) {
+
+                                }
+
+                                @Override
+                                public void onTabReselected(TabLayout.Tab tab) {
+
+                                }
+                            });
+                        }
+                    }
+                }
             }
-
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
+        });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+        builder.setTitle("Rate us and get a chance to win");
+        //  builder.setMessage("Rate us and get a chance to win");
+        // add the buttons
+        builder.setPositiveButton("Rate us",  new DialogInterface.OnClickListener() {
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onClick(DialogInterface dialog, int which) {
+
+                try {
+                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                startActivity(viewIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
 
             }
         });
+        builder.setNeutralButton("Cancel", null);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     private void congratulations() {
@@ -736,6 +742,8 @@ public class LiveScoreActivity extends BaseActivity {
         });
 
         handler.postDelayed(runnable, 3000);
+
+
     }
 
     @Override

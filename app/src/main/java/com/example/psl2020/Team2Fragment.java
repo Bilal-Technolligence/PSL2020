@@ -53,7 +53,7 @@ public class Team2Fragment extends Fragment {
                     if (dataSnapshot1.child("status").getValue().toString().equals("Live")) {
                         one = dataSnapshot1.child("teamOne").getValue().toString();
                         two = dataSnapshot1.child("teamTwo").getValue().toString();
-                        reference.child("LiveScore").child("summary").child(one).child("batting").addValueEventListener(new ValueEventListener() {
+                        reference.child("LiveScore").child("summary").child(two).child("batting").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 batsmanAttrs.clear();
@@ -73,7 +73,7 @@ public class Team2Fragment extends Fragment {
 
                             }
                         });
-                        reference.child("LiveScore").child("summary").child(one).child("bowling").addValueEventListener(new ValueEventListener() {
+                        reference.child("LiveScore").child("summary").child(two).child("bowling").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 bowlerAttrs.clear();
