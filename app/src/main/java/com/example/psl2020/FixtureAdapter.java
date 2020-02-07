@@ -104,12 +104,15 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         String time = scheduleAttrs.get(position).getTime();
         String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
         holder.liveMatches.setText( finalString);
-        int secid = scheduleAttrs.get(position).getSid();
-        dref.child("FinishMatches").child(String.valueOf(secid)).addListenerForSingleValueEvent(new ValueEventListener() {
+        String winner = scheduleAttrs.get(position).getWinner();
+        if(winner.equals("Finished")){
+            Integer secduleid = scheduleAttrs.get(position).getSid();
+        dref.child("FinishMatches").child(String.valueOf(secduleid)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     holder.matchresult.setText(dataSnapshot.child("note").getValue().toString());
+
                 }
             }
 
@@ -118,6 +121,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
 
             }
         });
+        }
 
 
     }

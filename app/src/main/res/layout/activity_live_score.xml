@@ -739,7 +739,7 @@
                     android:id="@+id/points"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/predicition_layout"
                     android:padding="5dp"
@@ -776,21 +776,13 @@
                         android:layout_weight="1"
                         android:src="@drawable/three" />
 
-                    <ImageView
-                        android:id="@+id/imgWide"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_weight="1"
-                        android:src="@drawable/wide" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/points2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/points"
 
@@ -820,13 +812,6 @@
                         android:src="@drawable/dot"/>
 
                     <ImageView
-                        android:id="@+id/imgNoball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/noball" />
-
-                    <ImageView
                         android:id="@+id/imgRunout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -836,7 +821,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/batingTeamOne"
+                    android:id="@+id/summaryLayout"
                     android:orientation="horizontal"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
@@ -860,143 +845,32 @@
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/mainLayout"
+                    android:layout_below="@+id/summaryLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp">
 
-                <TableLayout
-                    android:id="@+id/TeamTwoBowling"
-                    android:layout_width="fill_parent"
-                    android:layout_below="@+id/TeamOneBating"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TableRow
+                    <!-- our tablayout to display tabs  -->
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/summaryTabLayout"
                         android:layout_width="match_parent"
-                        android:weightSum="6"
-                        android:layout_marginTop="1dp"
-                        android:padding="3dp"
-                        android:background="@color/colorBlue">
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBlue"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="@style/Theme.MaterialComponents"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Bowling"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="O"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="M"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="W"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Eco"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                    </TableRow>
-
-                </TableLayout>
-                <TableLayout
-                    android:id="@+id/TeamOneBating"
-                    android:layout_width="fill_parent"
-                    android:layout_below="@+id/batingTeamOne"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TableRow
+                    <!-- View pager to swipe views -->
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/summaryPager"
+                        android:background="#fff"
                         android:layout_width="match_parent"
-                        android:weightSum="6"
-                        android:layout_marginTop="1dp"
-                        android:padding="3dp"
-                        android:background="@color/colorBlue">
+                        android:layout_height="wrap_content">
+                    </androidx.viewpager.widget.ViewPager>
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Bating"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="B"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="6s"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="4s"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="S.R"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-                    </TableRow>
-
-                </TableLayout>
 
 
             </RelativeLayout>

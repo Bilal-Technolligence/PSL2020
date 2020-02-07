@@ -87,8 +87,12 @@ public class MainActivity extends BaseActivity {
         webView1.setLayoutManager(layoutManager1);
 
         reference.child("RecentVideos").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ProgressBar progressBar1=(ProgressBar) findViewById(R.id.progress_barVideos);
+                progressBar1.setVisibility(View.VISIBLE);
+
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         // Toast.makeText(getApplicationContext() ,dataSnapshot1.child("url").getValue().toString(), Toast.LENGTH_LONG).show();
@@ -96,41 +100,21 @@ public class MainActivity extends BaseActivity {
                     }
                     VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                     webView1.setAdapter(videoAdapter);
+                    progressBar1.setVisibility(View.GONE);
                 }
+
+
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        //youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/lsNcUkAFxuk\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"));
 
 
-        // set the custom dialog components - text, image and button
-//        Button remind = (Button) dialog.findViewById(R.id.remindLater);
-//        remind.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button rateNow = (Button) dialog.findViewById(R.id.dialogButtonOK);
-//        // if button is clicked, close the custom dialog
-//        rateNow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                redirect();
-//
-//                dialog.dismiss();
-//            }
-//
-//
-//        });
-//
-//        dialog.show();
         new ScrapeNews().execute();
 
     }
@@ -270,4 +254,7 @@ public class MainActivity extends BaseActivity {
 
 
     }
+
+
+
 }

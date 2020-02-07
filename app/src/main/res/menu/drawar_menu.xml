@@ -12,7 +12,7 @@
     <item
         android:id="@+id/scoreboard"
         android:icon="@drawable/score"
-        android:title="Scoreboard"></item>
+        android:title="Points"></item>
     <item
         android:id="@+id/rateUs"
         android:icon="@drawable/rateus"

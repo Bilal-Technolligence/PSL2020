@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,15 +27,17 @@ public class Points extends BaseActivity {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     TextView name, point;
     CardView card;
+    ImageView userProfileImage;
     ArrayList<PointsAttr> scheduleAttrs;
     RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_points);
+        //setContentView(R.layout.activity_points);
         name = findViewById(R.id.txtNamee);
         point = findViewById(R.id.txtPoints);
+       userProfileImage = (ImageView)findViewById(R.id.imgProfile);
         card = findViewById(R.id.card);
         recyclerView=findViewById(R.id.pointList);
         scheduleAttrs = new ArrayList<PointsAttr>();
@@ -71,6 +74,8 @@ public class Points extends BaseActivity {
                         if (dataSnapshot.exists()) {
                             name.setText(dataSnapshot.child("name").getValue().toString());
                             point.setText(dataSnapshot.child("points").getValue().toString());
+                            Picasso.get().load(dataSnapshot.child("image_url").getValue().toString()).into(userProfileImage);
+
                         }
                     }
 

@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:design:29.0.0-alpha3'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
 //
     implementation 'com.android.support:recyclerview-v7:29.0.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.4'
