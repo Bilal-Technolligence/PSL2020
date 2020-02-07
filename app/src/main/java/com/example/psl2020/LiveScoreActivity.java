@@ -546,7 +546,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         linearLayout2.setVisibility(View.VISIBLE);
                                         if(selection.contains(lastBall)&& !selection.equals("")){
                                             if(!userId.equals(null)){
-                                                reference.child("UserPoints").child(userId).addValueEventListener(new ValueEventListener() {
+                                                reference.child("UsersPoints").child(userId).addValueEventListener(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                         if(dataSnapshot.exists()){
