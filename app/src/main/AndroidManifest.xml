@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorYellow"
         android:theme="@style/AppTheme">
 
         <activity android:name=".FbShare"></activity>

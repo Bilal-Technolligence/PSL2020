@@ -364,7 +364,7 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="123dp"
                             android:layout_height="wrap_content"
-                            android:weightSum="2"
+                            android:weightSum="1"
                             android:gravity="center"
                             android:layout_below="@+id/livematch2"
                             android:orientation="horizontal">
@@ -724,9 +724,20 @@
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                     <TextView
+                        android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ball by Ball Predicition "
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColorHint="@color/colorWhite"
+                        android:textColor="@color/colorWhite"/>
+                    <TextView
+                        android:id="@+id/txtwaitforresult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wait For Result "
+                        android:visibility="gone"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:textColorHint="@color/colorWhite"
@@ -739,7 +750,7 @@
                     android:id="@+id/points"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/predicition_layout"
                     android:padding="5dp"
@@ -776,21 +787,13 @@
                         android:layout_weight="1"
                         android:src="@drawable/three" />
 
-                    <ImageView
-                        android:id="@+id/imgWide"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_weight="1"
-                        android:src="@drawable/wide" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/points2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/points"
 
@@ -818,13 +821,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/dot"/>
-
-                    <ImageView
-                        android:id="@+id/imgNoball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/noball" />
 
                     <ImageView
                         android:id="@+id/imgRunout"
