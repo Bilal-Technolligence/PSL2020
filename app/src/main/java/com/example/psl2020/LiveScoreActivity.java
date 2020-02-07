@@ -521,11 +521,11 @@ public class LiveScoreActivity extends BaseActivity {
                                     }
                                 }
                             });
-                            reference.child("LiveScore").child("recent").child("6").addValueEventListener(new ValueEventListener() {
+                            reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
-                                        String lastBall = dataSnapshot.getValue().toString();
+                                        String lastBall = dataSnapshot.child("6").getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
 
