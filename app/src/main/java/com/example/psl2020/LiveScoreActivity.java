@@ -42,16 +42,13 @@ public class LiveScoreActivity extends BaseActivity {
     ProgressBar simpleProgressBar;
     ImageView btnOut, btnOne, btnTwo, btnThree, btnSix, btnFour, btnDot, btnRunout;
     ImageView team1, team2;
-    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent;
+    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent,predictionHeading,resultHeading;
     String one, two, elected,scheduleId;
     Integer id, toss;
     TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
     String selection="", userId="";
     LinearLayout linearLayout1,linearLayout2;
     ImageView live;
-    ArrayList<BatsmanAttr> batsmanAttrs;
-    ArrayList<BowlerAttr> bowlerAttrs;
-    RecyclerView batsmanRecycler,bowlingRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +62,8 @@ public class LiveScoreActivity extends BaseActivity {
         btnFour = findViewById(R.id.imgFour);
         btnDot = findViewById(R.id.imgDot);
         btnRunout = findViewById(R.id.imgRunout);
+        predictionHeading = findViewById(R.id.txtballbyballprediction);
+        resultHeading = findViewById(R.id.txtwaitforresult);
 
         team1 = findViewById(R.id.imgTeam1);
         team2 = findViewById(R.id.imgTeam2);
@@ -98,8 +97,6 @@ public class LiveScoreActivity extends BaseActivity {
         live = findViewById(R.id.imgLL);
         linearLayout1=(LinearLayout) findViewById(R.id.points);
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
-
-
 
 
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
@@ -352,8 +349,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "1 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                        GoneVisibility();
                                         }
 
                                     } else {
@@ -361,6 +357,8 @@ public class LiveScoreActivity extends BaseActivity {
                                     }
 
                                 }
+
+
                             });
                             btnTwo.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -371,8 +369,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "2 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -389,8 +386,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "3 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -407,8 +403,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "4 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -425,8 +420,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "6 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -443,8 +437,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "W ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -461,8 +454,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "0 ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -480,8 +472,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "W ";
-                                            linearLayout1.setVisibility(View.GONE);
-                                            linearLayout2.setVisibility(View.GONE);
+                                            GoneVisibility();
                                         }
 
                                     } else {
@@ -489,19 +480,21 @@ public class LiveScoreActivity extends BaseActivity {
                                     }
                                 }
                             });
-                            reference.child("LiveScore").child("recent").child("6").addValueEventListener(new ValueEventListener() {
+                            reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
-                                        String lastBall = dataSnapshot.getValue().toString();
+                                        String lastBall = dataSnapshot.child("6").getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
+                                        predictionHeading.setVisibility(View.VISIBLE );
+                                        resultHeading.setVisibility( View.GONE );
+
                                         if(selection.equals(lastBall)){
                                             SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
                                             boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
                                             if (isLoggedIn) {
                                                 userId = prefs.getString("id", "");
-
                                                 if (!userId.equals(null)) {
                                                     reference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                                                         @Override
@@ -524,10 +517,41 @@ public class LiveScoreActivity extends BaseActivity {
                                             }
 
                                         }
+                                        else if(!selection.equals(""))
+                                        {
+                                            selection="";
+                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+                                            LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+                                            final View view = factory.inflate(R.layout.badluck, null);
+                                            //alertadd.setTitle("Opps Better Luck for Next");
+                                            alertadd.setView(view);
+                                            final AlertDialog alert = alertadd.create();
+                                            alert.show();
+//// Hide after some seconds
+                                            final Handler handler  = new Handler();
+                                            final Runnable runnable = new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (alert.isShowing()) {
+                                                        alert.dismiss();
+                                                    }
+                                                }
+                                            };
+
+                                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                @Override
+                                                public void onDismiss(DialogInterface dialog) {
+                                                    handler.removeCallbacks(runnable);
+                                                }
+                                            });
+
+                                            handler.postDelayed(runnable, 5000);
+                                        }
+                                        else {
                                             selection="";
                                         }
 
-
+                                    }
                                 }
 
                                 @Override
@@ -592,6 +616,13 @@ public class LiveScoreActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void GoneVisibility() {
+        linearLayout1.setVisibility(View.GONE);
+        linearLayout2.setVisibility(View.GONE);
+        predictionHeading.setVisibility(View.GONE );
+        resultHeading.setVisibility( View.VISIBLE );
     }
 
     @Override

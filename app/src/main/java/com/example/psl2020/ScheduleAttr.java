@@ -10,11 +10,12 @@ public class ScheduleAttr {
     String status;
     String city;
     String winner;
+    String note;
 
     public ScheduleAttr() {
     }
 
-    public ScheduleAttr(String teamOne, String teamTwo, Integer sid, String id, String time, String date, String status, String city, String winner) {
+    public ScheduleAttr(String teamOne, String teamTwo, Integer sid, String id, String time, String date, String status, String city, String winner, String note) {
         this.teamOne = teamOne;
         this.teamTwo = teamTwo;
         this.sid = sid;
@@ -24,6 +25,7 @@ public class ScheduleAttr {
         this.status = status;
         this.city = city;
         this.winner = winner;
+        this.note = note;
     }
 
     public String getTeamOne() {
@@ -64,6 +66,14 @@ public class ScheduleAttr {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getDate() {

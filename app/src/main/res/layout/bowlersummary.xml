@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TableRow
         android:layout_width="match_parent"
@@ -10,10 +10,10 @@
 
         <TextView
             android:id="@+id/txtBowlerName"
-            android:layout_width="65dp"
+            android:layout_width="60dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:paddingLeft="5dp"
             android:text=""
             android:textColor="@color/colorBlack"
             android:textSize="15dp" />
@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="0.0"
+            android:maxLength="3"
             android:textColor="@color/colorBlack"
             android:textSize="15dp" />
     </TableRow>

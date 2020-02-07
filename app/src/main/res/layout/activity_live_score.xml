@@ -724,9 +724,20 @@
                         android:textColorHint="@color/colorWhite"
                         android:textColor="@color/colorWhite"/>
                     <TextView
+                        android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ball by Ball Predicition "
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColorHint="@color/colorWhite"
+                        android:textColor="@color/colorWhite"/>
+                    <TextView
+                        android:id="@+id/txtwaitforresult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wait For Result "
+                        android:visibility="gone"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:textColorHint="@color/colorWhite"

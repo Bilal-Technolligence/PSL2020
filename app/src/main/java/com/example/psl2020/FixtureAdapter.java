@@ -104,24 +104,37 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         String time = scheduleAttrs.get(position).getTime();
         String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
         holder.liveMatches.setText( finalString);
-        String winner = scheduleAttrs.get(position).getWinner();
-        if(winner.equals("Finished")){
-            Integer secduleid = scheduleAttrs.get(position).getSid();
-        dref.child("FinishMatches").child(String.valueOf(secduleid)).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    holder.matchresult.setText(dataSnapshot.child("note").getValue().toString());
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        try {
+            holder.matchresult.setText(scheduleAttrs.get(position).getNote());
         }
+        catch (Exception e){}
+//        String winner = scheduleAttrs.get(position).getWinner();
+//        final int secid = scheduleAttrs.get(position).getSid();
+//        dref.child("FinishMatches").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+//                    String ch = dataSnapshot1.child(String.valueOf(secid)).getValue().toString();
+//                    if(!ch.isEmpty()){
+//                        holder.matchresult.setText(dataSnapshot1.child("note").getValue().toString());
+//                    }
+//
+////                    int id = Integer.parseInt(dataSnapshot1.child("id").getValue().toString());
+////                    if(id ==secid){
+////                        holder.matchresult.setText(dataSnapshot1.child("note").getValue().toString());
+////                    }
+//                    else{
+//                        holder.matchresult.setText("  ");
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
     }
