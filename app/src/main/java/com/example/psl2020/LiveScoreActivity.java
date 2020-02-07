@@ -49,9 +49,6 @@ public class LiveScoreActivity extends BaseActivity {
     String selection="", userId="";
     LinearLayout linearLayout1,linearLayout2;
     ImageView live;
-    ArrayList<BatsmanAttr> batsmanAttrs;
-    ArrayList<BowlerAttr> bowlerAttrs;
-    RecyclerView batsmanRecycler,bowlingRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,19 +97,6 @@ public class LiveScoreActivity extends BaseActivity {
         live = findViewById(R.id.imgLL);
         linearLayout1=(LinearLayout) findViewById(R.id.points);
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
-
-
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
-//        batsmanRecycler = findViewById(R.id.recyclerbating);
-//        batsmanAttrs = new ArrayList<BatsmanAttr>();
-//        batsmanRecycler.setLayoutManager(new LinearLayoutManager(this));
-//
-//
-//        bowlingRecycler = findViewById(R.id.recyclerbowling);
-//        bowlerAttrs = new ArrayList<BowlerAttr>();
-//        bowlingRecycler.setLayoutManager(new LinearLayoutManager(this));
-
 
 
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
@@ -544,58 +528,66 @@ public class LiveScoreActivity extends BaseActivity {
                                         String lastBall = dataSnapshot.getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
-                                        if(selection.contains(lastBall)&& !selection.equals("")){
-                                            if(!userId.equals(null)){
-                                                reference.child("UsersPoints").child(userId).addValueEventListener(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                        if(dataSnapshot.exists()){
+
+                                        if(selection.equals(lastBall)){
+                                            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+                                            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                                            if (isLoggedIn) {
+                                                userId = prefs.getString("id", "");
+                                                if (!userId.equals(null)) {
+                                                    reference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
                                                             int newPoints = oldPoints+10;
-                                                            reference.child("UserPoints").child(userId).child("points").setValue(newPoints);
-                                                            selection="";
-                                                            congratulations();
+                                                            reference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
+                                                            selection = "";
+                                                                congratulations();
+
+                                                            //}
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                                         }
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                    }
-                                                });
+                                                    });
+                                                }
                                             }
 
                                         }
-                                        else
+                                        else if(!selection.equals(""))
                                         {
                                             selection="";
-//                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
-//                                            LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
-//                                            final View view = factory.inflate(R.layout.congratulationdialogbox, null);
-//                                            alertadd.setTitle("Opps Batter Luck for Next");
-//                                            alertadd.setView(view);
-//                                            final AlertDialog alert = alertadd.create();
-//                                            alert.show();
-////// Hide after some seconds
-//                                            final Handler handler  = new Handler();
-//                                            final Runnable runnable = new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    if (alert.isShowing()) {
-//                                                        alert.dismiss();
-//                                                    }
-//                                                }
-//                                            };
-//
-//                                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//                                                @Override
-//                                                public void onDismiss(DialogInterface dialog) {
-//                                                    handler.removeCallbacks(runnable);
-//                                                }
-//                                            });
-//
-//                                            handler.postDelayed(runnable, 5000);
+                                            AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+                                            LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+                                            final View view = factory.inflate(R.layout.congratulationdialogbox, null);
+                                            alertadd.setTitle("Opps Batter Luck for Next");
+                                            alertadd.setView(view);
+                                            final AlertDialog alert = alertadd.create();
+                                            alert.show();
+//// Hide after some seconds
+                                            final Handler handler  = new Handler();
+                                            final Runnable runnable = new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (alert.isShowing()) {
+                                                        alert.dismiss();
+                                                    }
+                                                }
+                                            };
+
+                                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                @Override
+                                                public void onDismiss(DialogInterface dialog) {
+                                                    handler.removeCallbacks(runnable);
+                                                }
+                                            });
+
+                                            handler.postDelayed(runnable, 5000);
+                                        }
+                                        else {
+                                            selection="";
                                         }
 
                                     }

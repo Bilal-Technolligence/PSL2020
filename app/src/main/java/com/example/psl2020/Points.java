@@ -32,7 +32,7 @@ public class Points extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_points);
+        //setContentView(R.layout.activity_points);
         name = findViewById(R.id.txtNamee);
         point = findViewById(R.id.txtPoints);
         card = findViewById(R.id.card);

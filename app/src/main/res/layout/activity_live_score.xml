@@ -865,8 +865,7 @@
                     android:id="@+id/mainLayout"
                     android:layout_below="@+id/summaryLayout"
                     android:layout_width="match_parent"
-                    android:layout_marginBottom="60dp"
-                    android:layout_height="350dp">
+                    android:layout_height="500dp">
 
                     <!-- our tablayout to display tabs  -->
                     <com.google.android.material.tabs.TabLayout

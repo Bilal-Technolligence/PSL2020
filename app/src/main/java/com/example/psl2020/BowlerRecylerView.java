@@ -33,7 +33,11 @@ public class BowlerRecylerView extends RecyclerView.Adapter<BowlerRecylerView.Vi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.runs.setText( bowlerAttrs.get( position ).getScore() );
-        holder.name.setText( bowlerAttrs.get( position ).getName() );
+        String UserFullName =  bowlerAttrs.get( position ).getName();
+        int firstSpace = UserFullName.indexOf(" "); // detect the first space character
+        String firstName = UserFullName.substring(0, firstSpace);  // get everything upto the first space character
+        String lastName = UserFullName.substring(firstSpace).trim();
+        holder.name.setText( firstName.substring(0, 1) +" "+lastName );
         holder.overs.setText( bowlerAttrs.get( position ).getOvers() );
         holder.medians.setText( bowlerAttrs.get( position ).getMedians() );
         holder.wickets.setText( bowlerAttrs.get( position ).getWickets() );
