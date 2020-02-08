@@ -119,6 +119,11 @@ public class LiveScoreActivity extends BaseActivity {
                                 id++;
                                 match.setText(id + "th Match");
                             }
+                            try {
+                                String note = dataSnapshot1.child("note").getValue().toString();
+                                tosswon.setText(note);
+                            }
+                            catch (Exception e){}
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -159,7 +164,7 @@ public class LiveScoreActivity extends BaseActivity {
                                                 tosswon.setText("Multan won the toss and elected to " + elected + " first.");
                                             } else if (toss == 15) {
                                                 tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
-                                            } else if (toss == 54) {
+                                            } else if (toss == 53) {
                                                 tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
                                             }
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
