@@ -12,7 +12,7 @@
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/profilepic"
+        android:src="@drawable/profilelogin"
         app:civ_border_color="#FFF"
         app:civ_border_width="2dp" />
 

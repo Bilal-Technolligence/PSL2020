@@ -4,22 +4,21 @@ public class PointsAttr {
     String id;
     String name;
     Integer points;
-    String ImageUrl;
+    String image_url;
 
     public PointsAttr() {
     }
 
-    public PointsAttr(String imageUrl) {
-        ImageUrl = imageUrl;
+    public PointsAttr(String image_url) {
+        this.image_url = image_url;
     }
 
-
-    public String getImageUrl() {
-        return ImageUrl;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        ImageUrl = imageUrl;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public PointsAttr(String id, String name, Integer points) {

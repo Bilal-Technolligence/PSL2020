@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgcolor"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_height="match_parent"
 
     tools:context=".LiveStreamingActivity">
@@ -14,22 +16,26 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/videosL"
+        <VideoView
+            android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="7dp"
-            android:orientation="vertical"
-            android:layout_below="@+id/videosLayout">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/web1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"/>
+<!--        <LinearLayout-->
+<!--            android:id="@+id/videosL"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="7dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_below="@+id/videosLayout">-->
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/web1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+<!--            </androidx.recyclerview.widget.RecyclerView>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
     </ScrollView>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawerNavigationView"
@@ -60,4 +66,4 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation"/>
-</RelativeLayout>
+</LinearLayout>
