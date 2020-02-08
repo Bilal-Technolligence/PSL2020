@@ -720,7 +720,7 @@
                         android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Choose what wil happen on next ball. "
+                        android:text=" What wil happen on next ball? "
                         android:textSize="20dp"
                         android:gravity="center"
                         android:textColorHint="@color/colorWhite"
