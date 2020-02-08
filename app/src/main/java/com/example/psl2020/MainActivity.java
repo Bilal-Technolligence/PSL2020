@@ -1,10 +1,13 @@
 package com.example.psl2020;
 
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -16,12 +19,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.api.Context;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,6 +51,8 @@ public class MainActivity extends BaseActivity {
     RecyclerView webView1;
     ArrayList<String> str=new ArrayList<>();
     Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
+    private final String CHANNEL_ID ="personal" ;
+    public final int NOTIFICATION_ID = 001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,26 @@ public class MainActivity extends BaseActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.rateapp);
         dialog.setTitle("Cricket Express PSL2020...");
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+        {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel notificationChannel = new NotificationChannel( CHANNEL_ID,CHANNEL_ID,importance );
+
+            NotificationManager notificationManager = (NotificationManager)getSystemService( NOTIFICATION_SERVICE );
+            notificationManager.createNotificationChannel( notificationChannel );
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "i got";
+                        if (!task.isSuccessful()) {
+                            msg = "fail";
+                        }
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         Context context;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
