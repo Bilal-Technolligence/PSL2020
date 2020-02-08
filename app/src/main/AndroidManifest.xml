@@ -41,13 +41,10 @@
         <activity android:name=".TeamsActivity" />
         <activity android:name=".LiveMatchActivity" />
         <activity android:name=".LiveStreamingActivity" />
-        <activity android:name=".LiveScoreActivity" />
-        <activity android:name=".MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".LiveScoreActivity" >
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"

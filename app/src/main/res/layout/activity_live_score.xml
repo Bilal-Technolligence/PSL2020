@@ -376,8 +376,9 @@
                                 android:gravity="center"
                                 android:paddingLeft="10dp"
                                 android:text=""
+                                android:textStyle="bold"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="11dp" />
+                                android:textSize="15dp" />
 
 
 
@@ -647,7 +648,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Bowling"
+                        android:text="Bowler"
                         android:textColor="@color/colorWhite"
                         android:textSize="20dp" />
 
@@ -657,18 +658,10 @@
                     android:id="@+id/bowlerLayout"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_below="@+id/bowlingCard"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/bowlerName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text=" Bowler"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15dp" />
+
                     <TextView
                         android:id="@+id/txtBowler"
                         android:layout_width="wrap_content"
@@ -727,7 +720,7 @@
                         android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ball by Ball Predicition "
+                        android:text=" Choose what wil happen on next ball. "
                         android:textSize="20dp"
                         android:gravity="center"
                         android:textColorHint="@color/colorWhite"
@@ -749,7 +742,7 @@
                 <LinearLayout
                     android:id="@+id/points"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/predicition_layout"
@@ -763,6 +756,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/out"/>
+
+                    <ImageView
+                        android:id="@+id/imgDot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/dot"/>
+
                     <ImageView
                         android:id="@+id/imgOne"
                         android:layout_width="wrap_content"
@@ -779,20 +780,13 @@
                         android:layout_weight="1"
                         android:src="@drawable/two"/>
 
-                    <ImageView
-                        android:id="@+id/imgThree"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/three" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/points2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:weightSum="4"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/points"
@@ -801,26 +795,30 @@
                     android:layout_alignParentLeft="true"
                     android:orientation="horizontal">
 
+
+                    <ImageView
+                        android:id="@+id/imgThree"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/three" />
+
+
+                    <ImageView
+                        android:id="@+id/imgFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/four"/>
+
                     <ImageView
                         android:id="@+id/imgSix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/six"/>
-                    <ImageView
-                        android:id="@+id/imgFour"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
 
-                        android:layout_weight="1"
-
-                        android:src="@drawable/four"/>
-                    <ImageView
-                        android:id="@+id/imgDot"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/dot"/>
 
                     <ImageView
                         android:id="@+id/imgRunout"
@@ -828,7 +826,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_weight="1"
-                        android:src="@drawable/runout" />
+                        android:src="@drawable/out" />
                 </LinearLayout>
 
                 <LinearLayout

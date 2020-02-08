@@ -23,7 +23,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="Bating"
+                android:text="Batsmen"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
             <TextView
@@ -97,7 +97,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="Bowling"
+                android:text="Bowler"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
             <TextView

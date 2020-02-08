@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity {
                         if (!task.isSuccessful()) {
                             msg = "fail";
                         }
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 
