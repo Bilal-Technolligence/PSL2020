@@ -7,18 +7,24 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -36,138 +42,125 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class LiveStreamingActivity extends BaseActivity {
-    VideoView videoView;
-    ProgressDialog pd;
-    String videoUrl ="https://www.sonyliv.com/details/live/6077649606001/Aljazeera-Channel";
- //   RecyclerView webView1;
- //   Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
- //   private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+    String url = "";
+    WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-      //  webView1 = (RecyclerView) findViewById(R.id.web1);
-      //  webView1.setHasFixedSize(true);
-      videoView = findViewById( R.id.videoView );
-      Context context;
-      pd = new ProgressDialog(this);
-      pd.setMessage( "Buffering.." );
-      pd.setCancelable( true );
-
-        MediaController mc = new MediaController(this);
-        mc.setAnchorView(videoView);
-        mc.setMediaPlayer(videoView);
-        Uri video = Uri.parse(videoUrl);
-        videoView.setMediaController(mc);
-        videoView.setVideoURI(video);
-        videoView.start();
-
-    //  playVideo();
+        super.onCreate( savedInstanceState );
 
 
-//        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//
-//        webView1.setLayoutManager(layoutManager1);
-//
-//        reference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//                    try {
-//                        if (dataSnapshot.exists()) {
-//                            youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + dataSnapshot1.child("url").getValue().toString() + "\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"));
-//                        }
-//                        VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
-//                        webView1.setAdapter(videoAdapter);
-//
-//                    } catch (Exception e) {
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        mWebView = (WebView) findViewById(R.id.webView);
+        mWebView.setWebChromeClient(new WebChromeClient());
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
 
+        databaseReference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ProgressBar progressBar1=(ProgressBar) findViewById(R.id.progress_barVideos);
+                progressBar1.setVisibility(View.VISIBLE);
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    if (dataSnapshot.exists()) {
+                        url = dataSnapshot.child( "1" ).getValue(  ).toString();
+                        mWebView.loadUrl(url);
+                    }
+
+                    progressBar1.setVisibility(View.GONE);
+                }
+
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @SuppressWarnings("deprecation")
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @TargetApi(Build.VERSION_CODES.N)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.getUrl().toString());
+                return true;
+            }
+        });
     }
-
-//    private void playVideo() {
-//        try {
-//            getWindow().setFormat( PixelFormat.TRANSLUCENT );
-//           // MediaController mediaController = new MediaController( this );
-//
-//
-//
-//
-////            mediaController.setAnchorView( videoView );
-////            Uri videoUri = Uri.parse(videoUrl);
-////            videoView.setMediaController(mediaController);
-////            videoView.setVideoURI( videoUri );
-////            videoView.requestFocus();
-////
-////            videoView.setOnPreparedListener( new MediaPlayer.OnPreparedListener() {
-////                @Override
-////                public void onPrepared(MediaPlayer mp) {
-////                    pd.dismiss();
-////                    videoView.start();
-////                }
-////            } );
-//
-//        }catch (Exception e){}
-//    }
-
     @Override
     public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+        builder.setTitle("Rate us and get a chance to win");
+      //  builder.setMessage("Rate us and get a chance to win");
+        // add the buttons
+        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        return;
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-//        builder.setTitle("Rate us and get a chance to win");
-//      //  builder.setMessage("Rate us and get a chance to win");
-//        // add the buttons
-//        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//                try {
-//                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if(dataSnapshot.exists()){
-//                                final String url = dataSnapshot.getValue().toString();
-//                                Intent viewIntent =
-//                                        new Intent("android.intent.action.VIEW",
-//                                                Uri.parse(url));
-//                                startActivity(viewIntent);
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                        }
-//                    });
-//                }catch(Exception e) {
-//                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
-//                            Toast.LENGTH_LONG).show();
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//        });
-//        builder.setNeutralButton("Remind me later", null);
-//        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                finish();
-//            }
-//        });
-//        // create and show the alert dialog
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//
+                try {
+                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                startActivity(viewIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        builder.setNeutralButton("Remind me later", null);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
 
     }
 
