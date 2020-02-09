@@ -162,6 +162,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                                                     databaseReference.child("UsersPoints").child(userId).child("points").setValue(0);
 
                                                 }
+                                                else{
+                                                    //databaseReference.child("UsersPoints").child(userId).child("image_url").setValue(image_url);
+                                                    databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                }
                                             }
 
                                             @Override

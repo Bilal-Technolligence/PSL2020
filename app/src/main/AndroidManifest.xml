@@ -16,12 +16,24 @@
         android:supportsRtl="true"
         android:textColor="@color/colorYellow"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".FirebaseMessaging"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".FbShare"></activity>
         <activity android:name=".NewsDetail" />
         <activity android:name=".Points" />
         <activity android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Statistics" />
         <activity android:name=".FacebookLogin" />
@@ -30,11 +42,7 @@
         <activity android:name=".LiveMatchActivity" />
         <activity android:name=".LiveStreamingActivity" />
         <activity android:name=".LiveScoreActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
         </activity>

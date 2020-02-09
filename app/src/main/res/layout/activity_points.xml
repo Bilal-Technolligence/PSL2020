@@ -55,7 +55,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/colorGreen">
+        android:backgroundTint="@color/colorBlue">
         <ImageView
             android:id="@+id/imgProfileOne"
             android:layout_width="90dp"
@@ -76,7 +76,7 @@
             android:layout_height="fill_parent"
             android:text="Name"
             android:gravity="center"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:id="@+id/txtNamee"
             android:layout_marginLeft="90dp"
             android:textColor="@color/colorWhite"

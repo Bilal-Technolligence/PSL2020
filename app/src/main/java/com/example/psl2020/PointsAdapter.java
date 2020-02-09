@@ -42,6 +42,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.name.setText(scheduleAttrs.get(position).getName());
         holder.point.setText( scheduleAttrs.get(position).getPoints().toString());
+        holder.serial.setText( String.valueOf(position+1));
         Picasso.get().load(scheduleAttrs.get(position).getImage_url()).into(holder.userProfileImage);
     }
 
@@ -50,11 +51,12 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
         return scheduleAttrs.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name,point;
+        TextView name,point , serial;
         ImageView userProfileImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name =(TextView) itemView.findViewById(R.id.txtNamee);
+            serial =(TextView) itemView.findViewById(R.id.txtSerial);
             point=(TextView) itemView.findViewById(R.id.txtPoints);
             userProfileImage =(ImageView)itemView.findViewById( R.id.imgProfile );
 

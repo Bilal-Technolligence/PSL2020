@@ -37,7 +37,7 @@ public class Points extends BaseActivity {
         //setContentView(R.layout.activity_points);
         name = findViewById(R.id.txtNamee);
         point = findViewById(R.id.txtPoints);
-       userProfileImage = (ImageView)findViewById(R.id.imgProfile);
+       userProfileImage = (ImageView)findViewById(R.id.imgProfileOne);
         card = findViewById(R.id.card);
         recyclerView=findViewById(R.id.pointList);
         scheduleAttrs = new ArrayList<PointsAttr>();

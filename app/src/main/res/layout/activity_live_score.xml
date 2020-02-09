@@ -376,8 +376,9 @@
                                 android:gravity="center"
                                 android:paddingLeft="10dp"
                                 android:text=""
+                                android:textStyle="bold"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="11dp" />
+                                android:textSize="15dp" />
 
 
 
@@ -647,7 +648,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Bowling"
+                        android:text="Bowler"
                         android:textColor="@color/colorWhite"
                         android:textSize="20dp" />
 
@@ -657,18 +658,10 @@
                     android:id="@+id/bowlerLayout"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="5"
+                    android:weightSum="4"
                     android:layout_below="@+id/bowlingCard"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/bowlerName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text=" Bowler"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="15dp" />
+
                     <TextView
                         android:id="@+id/txtBowler"
                         android:layout_width="wrap_content"
@@ -727,7 +720,7 @@
                         android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ball by Ball Predicition "
+                        android:text=" What wil happen on next ball? "
                         android:textSize="20dp"
                         android:gravity="center"
                         android:textColorHint="@color/colorWhite"
@@ -833,7 +826,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_weight="1"
-                        android:src="@drawable/runout" />
+                        android:src="@drawable/out" />
                 </LinearLayout>
 
                 <LinearLayout
