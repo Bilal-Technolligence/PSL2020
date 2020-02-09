@@ -16,6 +16,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,42 +47,82 @@ public class LiveStreamingActivity extends BaseActivity {
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
-    String url = "";
+  //  String url = "";
     WebView mWebView;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
 
-
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         mWebView = (WebView) findViewById(R.id.webView);
-        mWebView.setWebChromeClient(new WebChromeClient());
+
+        progressBar.setVisibility(View.VISIBLE);
+        mWebView.setWebViewClient(new Browser_home());
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
-        mWebView.loadUrl(url);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAppCacheEnabled(true);
+        loadWebsite();
 
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @SuppressWarnings("deprecation")
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-
-            @TargetApi(Build.VERSION_CODES.N)
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                view.loadUrl(request.getUrl().toString());
-                return true;
-            }
-        });
     }
+
+    private void loadWebsite() {
+        ConnectivityManager cm = (ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            mWebView.loadUrl("https://www.youtube.com/");
+        } else {
+            mWebView.setVisibility(View.GONE);
+        }
+    }
+
+    class Browser_home extends WebViewClient {
+
+        Browser_home() {
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            setTitle(view.getTitle());
+            progressBar.setVisibility(View.GONE);
+            super.onPageFinished(view, url);
+
+        }
+    }
+//        mWebView = (WebView) findViewById(R.id.webView);
+//        mWebView.setWebChromeClient(new WebChromeClient());
+//        WebSettings webSettings = mWebView.getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setUseWideViewPort(true);
+//        webSettings.setLoadWithOverviewMode(true);
+//        mWebView.loadUrl(url);
+//
+//        mWebView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                super.onPageStarted(view, url, favicon);
+//            }
+//            @SuppressWarnings("deprecation")
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                return false;
+//            }
+//
+//            @TargetApi(Build.VERSION_CODES.N)
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                view.loadUrl(request.getUrl().toString());
+//                return true;
+//            }
+//        });
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);

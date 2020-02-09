@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -81,12 +83,27 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
+
+
+
         Context context;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
+
+        final int duration = 3;
+        final int pixelsToMove = 250;
+        final Handler mHandler = new Handler( Looper.getMainLooper());
+        final Runnable SCROLLING_RUNNABLE = new Runnable() {
+
+            @Override
+            public void run() {
+                recyclerView.smoothScrollBy(pixelsToMove, 0);
+                mHandler.postDelayed(this, duration);
+            }
+        };
 
         reference.child("Schedule").orderByChild("winner").equalTo("Upcoming").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,6 +125,30 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(final RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
+                if(lastItem == layoutManager.getItemCount()-1){
+                    mHandler.removeCallbacks(SCROLLING_RUNNABLE);
+                    Handler postHandler = new Handler();
+                    postHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView.setAdapter(null);
+                            recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
+                            mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+                        }
+                    }, 4000);
+                }
+            }
+        });
+        mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+
+
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -141,6 +182,8 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+
 
 
         new ScrapeNews().execute();
