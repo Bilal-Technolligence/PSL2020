@@ -59,39 +59,7 @@ public class LiveStreamingActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-
-        databaseReference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProgressBar progressBar1=(ProgressBar) findViewById(R.id.progress_barVideos);
-                progressBar1.setVisibility(View.VISIBLE);
-
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    if (dataSnapshot.exists()) {
-                        url = dataSnapshot.child( "1" ).getValue(  ).toString();
-                        mWebView.loadUrl(url);
-                    }
-
-                    progressBar1.setVisibility(View.GONE);
-                }
-
-
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-
+        mWebView.loadUrl(url);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
