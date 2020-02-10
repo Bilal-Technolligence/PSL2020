@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -81,12 +83,27 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
+
+
+
         Context context;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
+
+        final int duration = 3;
+        final int pixelsToMove = 250;
+        final Handler mHandler = new Handler( Looper.getMainLooper());
+        final Runnable SCROLLING_RUNNABLE = new Runnable() {
+
+            @Override
+            public void run() {
+                recyclerView.smoothScrollBy(pixelsToMove, 0);
+                mHandler.postDelayed(this, duration);
+            }
+        };
 
         reference.child("Schedule").orderByChild("winner").equalTo("Upcoming").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +117,7 @@ public class MainActivity extends BaseActivity {
 
                 recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
 
+
             }
 
             @Override
@@ -107,6 +125,30 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(final RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
+                if(lastItem == layoutManager.getItemCount()-1){
+                    mHandler.removeCallbacks(SCROLLING_RUNNABLE);
+                    Handler postHandler = new Handler();
+                    postHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView.setAdapter(null);
+                            recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
+                            mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+                        }
+                    }, 4000);
+                }
+            }
+        });
+        mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+
+
         webView1 = (RecyclerView) findViewById(R.id.web1);
         webView1.setHasFixedSize(true);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -123,25 +165,37 @@ public class MainActivity extends BaseActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         // Toast.makeText(getApplicationContext() ,dataSnapshot1.child("url").getValue().toString(), Toast.LENGTH_LONG).show();
-                        youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + dataSnapshot1.child("url").getValue().toString() + "\" frameborder=\"0\" allowfullscreen></iframe>" ));
+                        youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + dataSnapshot1.child("url").getValue().toString() + "\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"));
                     }
                     VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                     webView1.setAdapter(videoAdapter);
                     progressBar1.setVisibility(View.GONE);
                 }
+
+
+
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
+
+
         new ScrapeNews().execute();
+
     }
 
     private void fetchNews(){
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        str.add("2");
+//        str.add("as");
         newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, MainActivity.this));
 
     }
@@ -150,6 +204,7 @@ public class MainActivity extends BaseActivity {
         String link1 = "<a href=\"https://play.google.com/store/apps\">https://play.google.com/store/apps</a>";
         String message = "Some links: " + link1 + "link1, link2, link3";
         Spanned myMessage = Html.fromHtml(message);
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("This is a title");
@@ -186,6 +241,7 @@ public class MainActivity extends BaseActivity {
         protected void onCancelled() {
             super.onCancelled();
            // Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
+
         }
 
         @Override
@@ -220,6 +276,7 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
         builder.setTitle("Rate us and get a chance to win");
         //  builder.setMessage("Rate us and get a chance to win");
@@ -251,6 +308,8 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
+
+
             }
         });
         builder.setNeutralButton("Remind me later", null);
@@ -263,5 +322,10 @@ public class MainActivity extends BaseActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+
+
     }
+
+
+
 }
