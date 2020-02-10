@@ -577,7 +577,7 @@ public class LiveScoreActivity extends BaseActivity {
         });
 
         //summary pager code
-        reference.child("Schedule").addValueEventListener(new ValueEventListener() {
+        reference.child("Schedule").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
