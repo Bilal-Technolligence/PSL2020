@@ -45,6 +45,8 @@
     </RelativeLayout>
         <LinearLayout
             android:id="@+id/videosLayout"
+            android:layout_marginTop="7dp"
+
             android:orientation="horizontal"
             android:weightSum="2"
             android:background="@color/colorBlue"
