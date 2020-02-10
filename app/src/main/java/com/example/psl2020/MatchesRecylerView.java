@@ -70,8 +70,8 @@ public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.
             holder.live.setVisibility( View.GONE );
         }
         if(status.equals( "Live" )){
-            holder.date.setVisibility( View.GONE );
-            holder.time.setVisibility( View.GONE );
+            holder.date.setVisibility( View.INVISIBLE );
+            holder.time.setVisibility( View.INVISIBLE );
         }
         holder.time.setText( scheduleAttrs.get( position ).getTime() );
         String teamOne = scheduleAttrs.get( position ).getTeamOne();

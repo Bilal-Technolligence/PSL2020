@@ -100,7 +100,6 @@ public class MainActivity extends BaseActivity {
 
                 recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
 
-
             }
 
             @Override
@@ -124,35 +123,25 @@ public class MainActivity extends BaseActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         // Toast.makeText(getApplicationContext() ,dataSnapshot1.child("url").getValue().toString(), Toast.LENGTH_LONG).show();
-                        youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + dataSnapshot1.child("url").getValue().toString() + "\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"));
+                        youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + dataSnapshot1.child("url").getValue().toString() + "\" frameborder=\"0\" allowfullscreen></iframe>" ));
                     }
                     VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                     webView1.setAdapter(videoAdapter);
                     progressBar1.setVisibility(View.GONE);
                 }
-
-
-
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-
         new ScrapeNews().execute();
-
     }
 
     private void fetchNews(){
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        str.add("2");
-//        str.add("as");
         newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, MainActivity.this));
 
     }
@@ -161,7 +150,6 @@ public class MainActivity extends BaseActivity {
         String link1 = "<a href=\"https://play.google.com/store/apps\">https://play.google.com/store/apps</a>";
         String message = "Some links: " + link1 + "link1, link2, link3";
         Spanned myMessage = Html.fromHtml(message);
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("This is a title");
@@ -198,7 +186,6 @@ public class MainActivity extends BaseActivity {
         protected void onCancelled() {
             super.onCancelled();
            // Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
-
         }
 
         @Override
@@ -233,7 +220,6 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
         builder.setTitle("Rate us and get a chance to win");
         //  builder.setMessage("Rate us and get a chance to win");
@@ -265,8 +251,6 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
             }
         });
         builder.setNeutralButton("Remind me later", null);
@@ -279,10 +263,5 @@ public class MainActivity extends BaseActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
-
-
     }
-
-
-
 }
