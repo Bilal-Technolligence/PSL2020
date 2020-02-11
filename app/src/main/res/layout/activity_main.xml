@@ -57,7 +57,7 @@
                 android:id="@+id/videologo"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:src="@drawable/video" />
@@ -99,7 +99,7 @@
                     android:id="@+id/news"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_gravity="left"
                     android:padding="5dp"
                     android:src="@drawable/lnews" />
