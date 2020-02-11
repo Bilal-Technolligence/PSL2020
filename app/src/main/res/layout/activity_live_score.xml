@@ -807,7 +807,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_weight="1"
-                        android:src="@drawable/out" />
+                        android:src="@drawable/runout" />
                 </LinearLayout>
 
                 <LinearLayout

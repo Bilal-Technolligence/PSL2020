@@ -476,7 +476,7 @@ public class LiveScoreActivity extends BaseActivity {
                                     if (isLoggedIn) {
                                         userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
-                                            selection = "W ";
+                                            selection = "Runout ";
                                             GoneVisibility();
                                         }
 
