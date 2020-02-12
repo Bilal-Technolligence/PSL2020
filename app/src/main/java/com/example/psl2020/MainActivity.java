@@ -59,15 +59,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.rateapp);
-        dialog.setTitle("Cricket Express PSL2020...");
-
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
         {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel notificationChannel = new NotificationChannel( CHANNEL_ID,CHANNEL_ID,importance );
-
             NotificationManager notificationManager = (NotificationManager)getSystemService( NOTIFICATION_SERVICE );
             notificationManager.createNotificationChannel( notificationChannel );
         }
@@ -200,21 +195,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void redirect() {
-        String link1 = "<a href=\"https://play.google.com/store/apps\">https://play.google.com/store/apps</a>";
-        String message = "Some links: " + link1 + "link1, link2, link3";
-        Spanned myMessage = Html.fromHtml(message);
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("This is a title");
-        builder.setMessage(myMessage);
-        builder.setCancelable(true);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-        TextView msgTxt = (TextView) alertDialog.findViewById(android.R.id.message);
-        msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
-    }
 
     @Override
     int getContentViewId() {

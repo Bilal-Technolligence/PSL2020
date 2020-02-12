@@ -632,52 +632,78 @@ public class LiveScoreActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        builder.setTitle("Rate us and get a chance to win");
-        //  builder.setMessage("Rate us and get a chance to win");
-        // add the buttons
-        builder.setPositiveButton("Rate us",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                try {
-                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-                                final String url = dataSnapshot.getValue().toString();
-                                Intent viewIntent =
-                                        new Intent("android.intent.action.VIEW",
-                                                Uri.parse(url));
-                                startActivity(viewIntent);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
+        LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
+        final View view = factory.inflate(R.layout.rateapp, null);
+        alertadd.setView(view);
+        final AlertDialog alert = alertadd.create();
+        alert.show();
+//// Hide after some seconds
+//        final Handler handler  = new Handler();
+//        final Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                if (alert.isShowing()) {
+//                    alert.dismiss();
+//                }
+//            }
+//        };
+//
+//        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//            @Override
+//            public void onDismiss(DialogInterface dialog) {
+//                handler.removeCallbacks(runnable);
+//            }
+//        });
+//
+//        handler.postDelayed(runnable, 3000);
 
 
-            }
-        });
-        builder.setNeutralButton("Cancel", null);
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+//        builder.setTitle("Rate us and get a chance to win");
+//        //  builder.setMessage("Rate us and get a chance to win");
+//        // add the buttons
+//        builder.setPositiveButton("Rate us",  new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                try {
+//                    reference.child("Applink").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if(dataSnapshot.exists()){
+//                                final String url = dataSnapshot.getValue().toString();
+//                                Intent viewIntent =
+//                                        new Intent("android.intent.action.VIEW",
+//                                                Uri.parse(url));
+//                                startActivity(viewIntent);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//                }catch(Exception e) {
+//                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+//                            Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
+//        builder.setNeutralButton("Cancel", null);
+//        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//        // create and show the alert dialog
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
 
     }
 

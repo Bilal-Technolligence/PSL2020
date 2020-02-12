@@ -22,17 +22,20 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -256,11 +259,14 @@ public class LiveStreamingActivity extends BaseActivity {
 ////        });
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        builder.setTitle("Rate us and get a chance to win");
-      //  builder.setMessage("Rate us and get a chance to win");
-        // add the buttons
-        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
+
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveStreamingActivity.this);
+        LayoutInflater factory = LayoutInflater.from(LiveStreamingActivity.this);
+        final View view = factory.inflate(R.layout.rateapp, null);
+       TextView btnCancel = (TextView) findViewById(R.id.btnCancel);
+        TextView btnExit = (TextView) findViewById(R.id.btnExit);
+        Button btnRate = findViewById(R.id.btnrateNow);
+        alertadd.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -291,19 +297,11 @@ public class LiveStreamingActivity extends BaseActivity {
 
             }
         });
-        builder.setNeutralButton("Remind me later", null);
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-
+        alertadd.setView(view);
+        final AlertDialog alert = alertadd.create();
+        alert.show();
     }
+
 
     @Override
     int getContentViewId() {
