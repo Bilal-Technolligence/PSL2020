@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -59,15 +60,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.rateapp);
-        dialog.setTitle("Cricket Express PSL2020...");
-
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
         {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel notificationChannel = new NotificationChannel( CHANNEL_ID,CHANNEL_ID,importance );
-
             NotificationManager notificationManager = (NotificationManager)getSystemService( NOTIFICATION_SERVICE );
             notificationManager.createNotificationChannel( notificationChannel );
         }
@@ -200,21 +196,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void redirect() {
-        String link1 = "<a href=\"https://play.google.com/store/apps\">https://play.google.com/store/apps</a>";
-        String message = "Some links: " + link1 + "link1, link2, link3";
-        Spanned myMessage = Html.fromHtml(message);
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("This is a title");
-        builder.setMessage(myMessage);
-        builder.setCancelable(true);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-        TextView msgTxt = (TextView) alertDialog.findViewById(android.R.id.message);
-        msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
-    }
 
     @Override
     int getContentViewId() {
@@ -277,14 +258,16 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        builder.setTitle("Rate us and get a chance to win");
-        //  builder.setMessage("Rate us and get a chance to win");
-        // add the buttons
-        builder.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
+        final AlertDialog alertD = new AlertDialog.Builder(MainActivity.this).create();
+
+        Button btnCancel = (Button) promptView.findViewById(R.id.btnCancel);
+        Button btnExit = (Button) promptView.findViewById(R.id.btnExit);
+        Button btnRate = (Button) promptView.findViewById(R.id.btnrateNow);
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 try {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -308,20 +291,26 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
             }
         });
-        builder.setNeutralButton("Remind me later", null);
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+
+        btnCancel.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View view) {
+                alertD.dismiss();
+            }
+        } );
+        btnExit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
-        });
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        } );
+
+
+        alertD.setView(promptView);
+
+        alertD.show();
 
 
     }

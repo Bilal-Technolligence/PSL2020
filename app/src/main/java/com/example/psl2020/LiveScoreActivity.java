@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -632,15 +633,16 @@ public class LiveScoreActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        builder.setTitle("Rate us and get a chance to win");
-        //  builder.setMessage("Rate us and get a chance to win");
-        // add the buttons
-        builder.setPositiveButton("Rate us",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        LayoutInflater layoutInflater = LayoutInflater.from(LiveScoreActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
+        final AlertDialog alertD = new AlertDialog.Builder(LiveScoreActivity.this).create();
+
+        Button btnCancel = (Button) promptView.findViewById(R.id.btnCancel);
+        Button btnExit = (Button) promptView.findViewById(R.id.btnExit);
+        Button btnRate = (Button) promptView.findViewById(R.id.btnrateNow);
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 try {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -664,20 +666,26 @@ public class LiveScoreActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
             }
         });
-        builder.setNeutralButton("Cancel", null);
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+
+        btnCancel.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View view) {
+                alertD.dismiss();
+            }
+        } );
+        btnExit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
-        });
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        } );
+
+
+        alertD.setView(promptView);
+
+        alertD.show();
 
     }
 

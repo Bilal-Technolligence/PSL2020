@@ -5,6 +5,7 @@
     android:layout_gravity="center"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/colorBlack"
     android:minWidth="300dp"
     android:minHeight="300dp">
 
@@ -13,7 +14,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:src="@drawable/badluck"
-            android:background="@color/colorWhite"/>
+            android:background="@color/colorBlack"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="30dp"
@@ -21,7 +22,7 @@
         android:layout_gravity="center"
         android:padding="5dp"
         android:text="Wrong Prediction"
-        android:textColor="@color/colorRed"
+        android:textColor="@color/colorWhite"
         android:textSize="12dp"
         android:textStyle="bold" />
 

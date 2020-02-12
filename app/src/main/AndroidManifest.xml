@@ -39,8 +39,9 @@
         <activity android:name=".FacebookLogin" />
         <activity android:name=".PlayersActivity" />
         <activity android:name=".TeamsActivity" />
-        <activity android:name=".LiveMatchActivity" />
-        <activity android:name=".LiveStreamingActivity" />
+        <activity android:name=".LiveStreamingActivity"
+            android:configChanges="orientation|screenSize"/>
+
         <activity android:name=".LiveScoreActivity" >
 
         </activity>
