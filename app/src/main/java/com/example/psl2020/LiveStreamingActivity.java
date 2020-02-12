@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -57,6 +58,8 @@ public class LiveStreamingActivity extends BaseActivity {
     WebView mWebView;
     ProgressBar progressBar;
 
+    @SuppressLint("SetJavaScriptEnabled")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -69,6 +72,7 @@ public class LiveStreamingActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccess(true);
         webSettings.setAppCacheEnabled(true);
+
 
 
         databaseReference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
@@ -115,7 +119,7 @@ public class LiveStreamingActivity extends BaseActivity {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-          //  setTitle(view.getTitle());
+            setTitle(view.getTitle());
             progressBar.setVisibility(View.GONE);
             super.onPageFinished(view, url);
 
@@ -166,98 +170,7 @@ public class LiveStreamingActivity extends BaseActivity {
         }
     }
 
-//        progressBar = (ProgressBar) findViewById(R.id.progressbar);
-//        mWebView = (WebView) findViewById(R.id.webView);
-//
-//        progressBar.setVisibility(View.VISIBLE);
-//        mWebView.setWebViewClient(new Browser_home());
-//        WebSettings webSettings = mWebView.getSettings();
-//        webSettings.setJavaScriptEnabled(true);
-//        webSettings.setAllowFileAccess(true);
-//        webSettings.setAppCacheEnabled(true);
-//        loadWebsite();
-//
-//    }
-//
-//    private void loadWebsite() {
-//        ConnectivityManager cm = (ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-//        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-//
-//
-//            databaseReference.child("LiveMatch").addValueEventListener(new ValueEventListener() {
-//
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                  //  ProgressBar progressBar1=(ProgressBar) findViewById(R.id.progress_barVideos);
-////                    progressBar1.setVisibility(View.VISIBLE);
-//                        if (dataSnapshot.exists()) {
-//                          url = dataSnapshot.child( "1" ).getValue(  ).toString();
-//                            mWebView.loadUrl(url);
-//                      //  progressBar1.setVisibility(View.GONE);
-//                    }
-//
-//
-//
-//                }
-//
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
-//
-//        } else {
-//            mWebView.setVisibility(View.GONE);
-//        }
-//    }
-//
-//    class Browser_home extends WebViewClient {
-//
-//        Browser_home() {
-//        }
-//
-//        @Override
-//        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//            super.onPageStarted(view, url, favicon);
-//
-//        }
-//
-//        @Override
-//        public void onPageFinished(WebView view, String url) {
-//            setTitle(view.getTitle());
-//            progressBar.setVisibility(View.GONE);
-//            super.onPageFinished(view, url);
-//
-//        }
-//    }
-////        mWebView = (WebView) findViewById(R.id.webView);
-////        mWebView.setWebChromeClient(new WebChromeClient());
-////        WebSettings webSettings = mWebView.getSettings();
-////        webSettings.setJavaScriptEnabled(true);
-////        webSettings.setUseWideViewPort(true);
-////        webSettings.setLoadWithOverviewMode(true);
-////        mWebView.loadUrl(url);
-////
-////        mWebView.setWebViewClient(new WebViewClient() {
-////            @Override
-////            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-////                super.onPageStarted(view, url, favicon);
-////            }
-////            @SuppressWarnings("deprecation")
-////            @Override
-////            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-////                return false;
-////            }
-////
-////            @TargetApi(Build.VERSION_CODES.N)
-////            @Override
-////            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-////                view.loadUrl(request.getUrl().toString());
-////                return true;
-////            }
-////        });
+
     @Override
     public void onBackPressed() {
         LayoutInflater layoutInflater = LayoutInflater.from(LiveStreamingActivity.this);
@@ -313,43 +226,6 @@ public class LiveStreamingActivity extends BaseActivity {
         alertD.setView(promptView);
 
         alertD.show();
-        //final Button b = (Button)alertadd.findViewById(R.id.b);
-//       TextView btnCancel = (TextView) findViewById(R.id.btnCancel);
-//        TextView btnExit = (TextView) findViewById(R.id.btnExit);
-//       final Button btnRate =(Button) findViewById(R.id.btnrateNow);
-//        btnRate.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                try {
-//                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if(dataSnapshot.exists()){
-//                                final String url = dataSnapshot.getValue().toString();
-//                                Intent viewIntent =
-//                                        new Intent("android.intent.action.VIEW",
-//                                                Uri.parse(url));
-//                                startActivity(viewIntent);
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                        }
-//                    });
-//                }catch(Exception e) {
-//                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
-//                            Toast.LENGTH_LONG).show();
-//                    e.printStackTrace();
-//                }
-//            }
-//        } );
-//
-//        alertadd.setView(view);
-//        final AlertDialog alert = alertadd.create();
-//        alert.show();
     }
 
 

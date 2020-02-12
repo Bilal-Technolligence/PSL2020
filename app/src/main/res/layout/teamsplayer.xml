@@ -23,7 +23,7 @@
                 android:id="@+id/playerImage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:src="@drawable/sohaibmalik" />
+                android:src="@drawable/loading" />
 
         </LinearLayout>
         <LinearLayout

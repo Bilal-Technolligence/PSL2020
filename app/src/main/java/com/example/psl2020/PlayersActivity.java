@@ -6,9 +6,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ScrollView;
 
 import com.google.api.Context;
 import com.google.firebase.database.DataSnapshot;
@@ -38,11 +41,14 @@ public class PlayersActivity extends BaseActivity {
 
 
         Context context;
-        //GridLayoutManager layoutManager= new GridLayoutManager(this, GridLayout., false );
-
         recyclerView=findViewById(R.id.teamsRecyclerView);
         playerAttributes = new ArrayList<PlayerAttributes>();
+
         recyclerView.setLayoutManager(new GridLayoutManager( this,2 ));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality( View.DRAWING_CACHE_QUALITY_HIGH);
 
         reference.child("Players").child( teamName ).addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,8 +62,8 @@ public class PlayersActivity extends BaseActivity {
 
                 recyclerView.setAdapter(new PlayerRecylerView(playerAttributes ,getApplicationContext()));
 
-
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

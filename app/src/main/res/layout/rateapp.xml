@@ -4,8 +4,8 @@
     android:layout_gravity="center"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:minWidth="300dp"
-    android:minHeight="300dp"
+    android:minWidth="250dp"
+    android:minHeight="250dp"
     android:background="@color/colorBcakgroundBlack"
     android:orientation="vertical">
 
@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="20dp"
-
         android:padding="5dp"
         android:text="Rate Cricket Stream PSL2020"
         android:textColor="@color/colorWhite"
@@ -57,10 +56,9 @@
 <!--            android:textSize="20dp" />-->
         <Button
             android:id="@+id/btnCancel"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="40dp"
             android:text="Cancel"
-            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_gravity="right"
             android:layout_marginStart="15dp"
@@ -69,7 +67,7 @@
             android:textColor="#36802d"
             android:layout_marginRight="5dp" />
         <Button
-            android:layout_width="50dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
             android:text=""
             android:layout_weight="1"
@@ -80,20 +78,18 @@
             android:layout_marginRight="5dp" />
         <Button
             android:id="@+id/btnExit"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="40dp"
             android:text="Exit"
             android:layout_weight="1"
             android:layout_gravity="right"
-            android:layout_marginEnd="20dp"
-            android:textSize="14dp"
             android:background="@color/colorBcakgroundBlack"
             android:textColor="#36802d"
             android:layout_marginRight="5dp" />
 
         <Button
             android:id="@+id/btnrateNow"
-            android:layout_width="50dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:text="Rate now"
             android:layout_weight="1"
