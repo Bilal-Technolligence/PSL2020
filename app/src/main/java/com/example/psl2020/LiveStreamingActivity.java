@@ -30,6 +30,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -259,17 +260,16 @@ public class LiveStreamingActivity extends BaseActivity {
 ////        });
     @Override
     public void onBackPressed() {
+        LayoutInflater layoutInflater = LayoutInflater.from(LiveStreamingActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
-        AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveStreamingActivity.this);
-        LayoutInflater factory = LayoutInflater.from(LiveStreamingActivity.this);
-        final View view = factory.inflate(R.layout.rateapp, null);
-       TextView btnCancel = (TextView) findViewById(R.id.btnCancel);
-        TextView btnExit = (TextView) findViewById(R.id.btnExit);
-        Button btnRate = findViewById(R.id.btnrateNow);
-        alertadd.setPositiveButton("Rate Now",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        final AlertDialog alertD = new AlertDialog.Builder(LiveStreamingActivity.this).create();
 
+        Button btnCancel = (Button) promptView.findViewById(R.id.btnCancel);
+        Button btnExit = (Button) promptView.findViewById(R.id.btnExit);
+        Button btnRate = (Button) promptView.findViewById(R.id.btnrateNow);
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 try {
                     databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -293,13 +293,63 @@ public class LiveStreamingActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
             }
         });
-        alertadd.setView(view);
-        final AlertDialog alert = alertadd.create();
-        alert.show();
+
+        btnCancel.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertD.dismiss();
+            }
+        } );
+        btnExit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        } );
+
+
+        alertD.setView(promptView);
+
+        alertD.show();
+        //final Button b = (Button)alertadd.findViewById(R.id.b);
+//       TextView btnCancel = (TextView) findViewById(R.id.btnCancel);
+//        TextView btnExit = (TextView) findViewById(R.id.btnExit);
+//       final Button btnRate =(Button) findViewById(R.id.btnrateNow);
+//        btnRate.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                try {
+//                    databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if(dataSnapshot.exists()){
+//                                final String url = dataSnapshot.getValue().toString();
+//                                Intent viewIntent =
+//                                        new Intent("android.intent.action.VIEW",
+//                                                Uri.parse(url));
+//                                startActivity(viewIntent);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//                }catch(Exception e) {
+//                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+//                            Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
+//                }
+//            }
+//        } );
+//
+//        alertadd.setView(view);
+//        final AlertDialog alert = alertadd.create();
+//        alert.show();
     }
 
 
