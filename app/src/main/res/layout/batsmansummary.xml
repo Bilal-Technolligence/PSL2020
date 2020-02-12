@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TableRow
-        android:layout_width="match_parent"
-        android:weightSum="6"
-        android:padding="3dp"
-        android:background="@color/colorWhite">
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
         <TextView
             android:id="@+id/txtBatsmanName"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text=""
             android:paddingLeft="5dp"
             android:textColor="@color/colorBlack"
             android:textSize="15dp" />
-        <TextView
-            android:id="@+id/txtBatsmanRuns"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/txtBatsmanBalls"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp" />
+    <TextView
+        android:id="@+id/txtBatsmanRuns"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/txtBatsmanBalls"
+        android:layout_weight="1"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/txtBatsmanSixes"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp" />
+    <TextView
+        android:id="@+id/txtBatsmanBalls"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/txtBatsmanSixes"
+        android:layout_weight="1"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/txtBatsmanFours"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp" />
+    <TextView
+        android:id="@+id/txtBatsmanSixes"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/txtBatsmanFours"
+        android:layout_weight="1"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/txtBatsmanSr"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0.0"
-            android:maxLength="4"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp" />
-    </TableRow>
+    <TextView
+        android:id="@+id/txtBatsmanFours"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/txtBatsmanSr"
+        android:layout_weight="1"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp" />
 
-</TableLayout>
+    <TextView
+        android:id="@+id/txtBatsmanSr"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_weight="1"
+        android:maxLength="4"
+        android:text="0.0"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp" />
+</RelativeLayout>
