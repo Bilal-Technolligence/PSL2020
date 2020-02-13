@@ -44,15 +44,15 @@ public class GuideLine extends BaseActivity {
         refreshAds();
     }
     private void loadAds(){
-        String bannerId="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
-        String interstitialId="YOUR_PLACEMENT_ID";
+        String bannerId="188011879101516_197866138116090";
+        String interstitialId="188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
         interstitialAd = new InterstitialAd(this,interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-        AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
+      //  AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
         interstitialAd.loadAd();
 
     }

@@ -7,8 +7,8 @@
         android:title="Invite Friends"></item>
     <item
         android:id="@+id/rewardPoints"
-        android:icon="@drawable/score"
-        android:title="Earn Points"></item>
+        android:icon="@drawable/earnpoints"
+        android:title="Watch Video to Earn Points"></item>
     <item
         android:id="@+id/guideline"
         android:icon="@drawable/guide"

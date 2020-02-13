@@ -6,7 +6,7 @@
     <color name="colorBlue">#108810</color>
     <color name="colorRed">#F10606</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="textColorWhite">#ffffff</color>
+    <color name="textColorWhite">#000000</color>
     <color name="btnColor">#108810</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBcakgroundBlack">#312D2D</color>

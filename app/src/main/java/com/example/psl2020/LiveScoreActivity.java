@@ -112,6 +112,13 @@ public class LiveScoreActivity extends BaseActivity {
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences( "prefs",MODE_PRIVATE );
+        boolean firstStart = sharedPreferences.getBoolean( "firstStart",true);
+        if (firstStart){
+            showDialog(  );
+        }
+
+
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -165,21 +172,6 @@ public class LiveScoreActivity extends BaseActivity {
                                         try{
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
-
-
-//                                            if (toss == 51) {
-//                                                tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 12) {
-//                                                tosswon.setText("Karachi won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 13) {
-//                                                tosswon.setText("Lahore won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 14) {
-//                                                tosswon.setText("Multan won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 15) {
-//                                                tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 53) {
-//                                                tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
-//                                            }
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
                                         }
                                         catch (Exception e){}
@@ -637,6 +629,23 @@ public class LiveScoreActivity extends BaseActivity {
 
     }
 
+    private void showDialog() {
+        new AlertDialog.Builder( this, R.style.AlertDialogTheme )
+                .setTitle( "Win PSL Final Tickets" )
+                .setMessage( "Login First to Guess Every Ball and Increase Points to get final tickts  " )
+                .setPositiveButton( "ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                } ).create().show();
+        SharedPreferences sharedPreferences =getSharedPreferences( "prefs",MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean( "firstStart",false );
+        editor.apply();
+
+    }
+
     private void GoneVisibility() {
         linearLayout1.setVisibility(View.GONE);
         linearLayout2.setVisibility(View.GONE);
@@ -644,15 +653,15 @@ public class LiveScoreActivity extends BaseActivity {
         resultHeading.setVisibility( View.VISIBLE );
     }
     private void loadAds(){
-        String bannerId="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
-        String interstitialId="YOUR_PLACEMENT_ID";
+        String bannerId="188011879101516_197866138116090";
+        String interstitialId="188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
         interstitialAd = new InterstitialAd(this,interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-        AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
+       // AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
         interstitialAd.loadAd();
 
     }

@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:padding="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="App Summary:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 
@@ -50,7 +51,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Cricket Stream is the perfect app for cricket fans. Our goal is to provide a perfect, one stop application where people would be able to watch PSL matches live, also get latest match updates, watch highlights, match schedules, make predictions and win PSL Final tickets and much more."
+                android:text="Cricket stream is an android application which is owned by Technolligence Corporation."
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
+                android:textSize="18dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Main Features:"
+                android:textStyle="bold"
+                android:textSize="23dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* Ball to ball live score
+\n* Live Streaming
+
+\n* Match Highlights
+\n* Tournament Fixtures
+\n* One Click Login
+\n* Latest News
+\n* Ball to ball prediction (Winner will get ticket of final match)
+"
+                android:textColor="@color/colorBlack"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="\nFollow these guidelines to fully understand flow of website.
+"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp" />
 
@@ -58,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Home:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 
@@ -65,10 +97,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Upon opening the app you will find yourself at “HOME” of Cricket Stream application. On the very top Users can view live match (if any) or can swipe right/left to know the schedule of the upcoming matches on daily basis.
+                android:text="Upon launching the app you will find yourself at homepage. On the very top Users can view live match (if any) or can swipe right/left to know the schedule of the upcoming matches on daily basis.
 Below the daily match schedule, users can swipe left/right to view previous matches’ highlights.
 Below the highlights users can read all the latest news about the cricket world
-."
+"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp" />
 
@@ -76,6 +108,7 @@ Below the highlights users can read all the latest news about the cricket world
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Live Scores:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 
@@ -83,13 +116,14 @@ Below the highlights users can read all the latest news about the cricket world
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="At the very bottom of the screen users can select options from the quick menu, after “home” is the “live score” option, upon clicking on that users can view the latest scores of the match currently being played. Users would be able to view recent over stat, current batsmen, current bowler. One of the most exciting options in “live scores” is “ball to ball prediction”, where users would be able to predict the outcome of the next ball and win points on correct predictions. Users with highest points will be awarded tickets for PSL Final."
+                android:text="At the very bottom of the screen users can select options from the quick menu, after “home” is the “live score”. Click it to view the latest scores of the match currently being played. Users would be able to view recent over stats, current batsmen and bowler. One of the most exciting feature in “live scores” is “ball by ball prediction”, where users would be able to predict the outcome of the next ball and win points on correct predictions. Users with highest points will be awarded tickets for PSL Final."
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="How to play for prediction."
+                android:text="How to play for prediction:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 
@@ -125,6 +159,7 @@ Below the highlights users can read all the latest news about the cricket world
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Points:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
             <TextView
@@ -139,6 +174,7 @@ You can earn 100 points by watching rewards video."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Schedule:"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
             <TextView
@@ -153,6 +189,7 @@ You can earn 100 points by watching rewards video."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Live Stream: "
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 
@@ -168,6 +205,7 @@ You can earn 100 points by watching rewards video."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Teams: "
+                android:textStyle="bold"
                 android:textColor="@color/colorBlue"
                 android:textSize="23dp" />
 

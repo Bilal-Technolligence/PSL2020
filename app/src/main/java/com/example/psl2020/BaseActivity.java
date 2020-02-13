@@ -72,7 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getContentViewId());
         AudienceNetworkAds.initialize(this);
-        rewardedVideoAd = new RewardedVideoAd(this, "YOUR_PLACEMENT_ID");
+        rewardedVideoAd = new RewardedVideoAd(this, "188011879101516_197869234782447");
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -474,7 +474,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if (isLoggedIn) {
                 String userId=prefs.getString("id","");
                 if(!userId.equals("")) {
-                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
                     alertDialogBuilder.setMessage("Are you sure want to logout?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             LoginManager.getInstance().logOut();

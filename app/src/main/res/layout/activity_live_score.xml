@@ -395,7 +395,7 @@
                     android:layout_below="@+id/topLayout"
                     android:layout_marginTop="1dp"
                     app:cardElevation="40dp"
-                    app:cardBackgroundColor="#808080">
+                    app:cardBackgroundColor="@color/colorBlue">
 
                     <LinearLayout
 
@@ -409,7 +409,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="left"
                             android:paddingTop="5dp"
-                            android:layout_marginLeft="25dp"                            android:text="Recent  "
+                            android:layout_marginLeft="20dp"                            android:text="Recent  "
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
 
@@ -425,7 +425,6 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
 
                 <TableLayout
                     android:id="@+id/batsmanCrd"

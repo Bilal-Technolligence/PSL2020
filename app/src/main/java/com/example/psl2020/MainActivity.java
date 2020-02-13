@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         final int duration = 3000;
-        final int pixelsToMove = 250;
+        final int pixelsToMove = 1110;
         final Handler mHandler = new Handler( Looper.getMainLooper());
         final Runnable SCROLLING_RUNNABLE = new Runnable() {
 
@@ -148,13 +148,13 @@ public class MainActivity extends BaseActivity {
                         public void run() {
                             recyclerView.setAdapter(null);
                             recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
-                            mHandler.postDelayed(SCROLLING_RUNNABLE, 6000);
+                            mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);
                         }
-                    }, 7000);
+                    }, 5000);
                 }
             }
         });
-        mHandler.postDelayed(SCROLLING_RUNNABLE, 8000);
+        mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);
 
 
         webView1 = (RecyclerView) findViewById(R.id.web1);
@@ -198,15 +198,15 @@ public class MainActivity extends BaseActivity {
 refreshAds();
     }
     private void loadAds(){
-        String bannerId="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
-        String interstitialId="YOUR_PLACEMENT_ID";
+        String bannerId="188011879101516_197866138116090";
+        String interstitialId="188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
         interstitialAd = new InterstitialAd(this,interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-        AdSettings.addTestDevice("24e32ca0-8624-4848-a75c-5eace9d8af87");
+        //AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
         interstitialAd.loadAd();
 
     }
@@ -232,6 +232,7 @@ refreshAds();
     private void fetchNews(){
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
+        newsRecyclerView.setNestedScrollingEnabled(false);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         newsRecyclerView.setHasFixedSize(true);
         newsRecyclerView.setItemViewCacheSize(20);
