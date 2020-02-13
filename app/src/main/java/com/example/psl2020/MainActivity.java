@@ -190,6 +190,10 @@ public class MainActivity extends BaseActivity {
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        newsRecyclerView.setHasFixedSize(true);
+        newsRecyclerView.setItemViewCacheSize(20);
+        newsRecyclerView.setDrawingCacheEnabled(true);
+        newsRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 //        str.add("2");
 //        str.add("as");
         newsRecyclerView.setAdapter(new NewsAdapter(newsDataClassArray, MainActivity.this));

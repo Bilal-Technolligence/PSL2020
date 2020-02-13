@@ -156,15 +156,27 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if (!dataSnapshot.exists()) {
-                                                    databaseReference.child("UsersPoints").child(userId).child("id").setValue(userId);
-                                                    databaseReference.child("UsersPoints").child(userId).child("image_url").setValue(image_url);
-                                                    databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
-                                                    databaseReference.child("UsersPoints").child(userId).child("points").setValue(0);
+                                                    try {
+                                                        databaseReference.child("UsersPoints").child(userId).child("id").setValue(userId);
+                                                    }
+                                                    catch (Exception e){}
+                                                    try {
+                                                        databaseReference.child("UsersPoints").child(userId).child("image_url").setValue(image_url);
+                                                    }
+                                                    catch (Exception e){}
+                                                    try {
+                                                        databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                    }
+                                                    catch (Exception e){}
+                                                    try {
+                                                        databaseReference.child("UsersPoints").child(userId).child("points").setValue(0);
+                                                    }catch (Exception e){}
 
                                                 }
                                                 else{
                                                     //databaseReference.child("UsersPoints").child(userId).child("image_url").setValue(image_url);
-                                                    databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                    try{databaseReference.child("UsersPoints").child(userId).child("name").setValue(first_name + " " + last_name);
+                                                }catch (Exception e){}
                                                 }
                                             }
 
