@@ -84,7 +84,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:739742259236:android:83dfbf7f6a2759775660b1",
         "android_client_info": {
-          "package_name": "com.example.psl2020"
+          "package_name": "com.technolligence.psl2020"
         }
       },
       "oauth_client": [
@@ -92,7 +92,7 @@
           "client_id": "739742259236-s58bstb55iv5jjan5fhrsd85eogumjqf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.psl2020",
+            "package_name": "com.technolligence.psl2020",
             "certificate_hash": "fd5cb9c2ac581179c03a3690e42f6b93f8187f01"
           }
         },
@@ -100,7 +100,7 @@
           "client_id": "739742259236-aggafpk1lnskfmkuhe7rljrfao0oskpq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.psl2020",
+            "package_name": "com.technolligence.psl2020",
             "certificate_hash": "94d4ec20b0326968b84dc86e59af1337211c0634"
           }
         },

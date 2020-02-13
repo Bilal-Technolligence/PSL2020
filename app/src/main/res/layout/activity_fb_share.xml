@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FbShare">
+    tools:context="com.technolligence.psl2020.FbShare">
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

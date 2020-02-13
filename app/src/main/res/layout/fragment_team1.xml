@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    tools:context=".Team1Fragment">
+    tools:context="com.technolligence.psl2020.Team1Fragment">
 
     <TableLayout
         android:id="@+id/TeamOneBating"

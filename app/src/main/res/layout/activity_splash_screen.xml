@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".SplashScreen">
+    tools:context="com.technolligence.psl2020.SplashScreen">
 
 
     <ImageView

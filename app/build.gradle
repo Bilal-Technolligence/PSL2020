@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.psl2020"
+        applicationId "com.technolligence.psl2020"
         minSdkVersion 19
         targetSdkVersion 29
         multiDexEnabled true
