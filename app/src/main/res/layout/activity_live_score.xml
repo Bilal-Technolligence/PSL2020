@@ -407,7 +407,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="left"
                             android:paddingTop="5dp"
-                            android:layout_marginLeft="20dp"                            android:text="Recent  "
+                            android:layout_marginLeft="25dp"                            android:text="Recent  "
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
 
@@ -443,7 +443,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Batsman"
+                            android:text="Batsman "
                             android:textColor="@color/colorWhite"
                             android:textSize="20dp" />
                         <TextView

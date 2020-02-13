@@ -67,7 +67,6 @@ public class LiveStreamingActivity extends BaseActivity {
         mWebView = (WebView) findViewById(R.id.webView);
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Wait a Minute..... ");
-        progressDialog.setTitle( "Slow Internet Connection" );
         progressDialog.show();
         mWebView.setWebViewClient(new Browser_home());
         mWebView.setWebChromeClient(new MyChrome());
