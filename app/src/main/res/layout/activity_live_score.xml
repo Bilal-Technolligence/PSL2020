@@ -424,7 +424,6 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-
                 <TableLayout
                     android:id="@+id/batsmanCrd"
                     android:layout_width="fill_parent"

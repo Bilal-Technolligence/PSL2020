@@ -100,6 +100,13 @@ public class LiveScoreActivity extends BaseActivity {
         linearLayout2=(LinearLayout) findViewById(R.id.points2);
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences( "prefs",MODE_PRIVATE );
+        boolean firstStart = sharedPreferences.getBoolean( "firstStart",true);
+        if (firstStart){
+            showDialog(  );
+        }
+
+
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -153,21 +160,6 @@ public class LiveScoreActivity extends BaseActivity {
                                         try{
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
-
-
-//                                            if (toss == 51) {
-//                                                tosswon.setText("Islamabad won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 12) {
-//                                                tosswon.setText("Karachi won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 13) {
-//                                                tosswon.setText("Lahore won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 14) {
-//                                                tosswon.setText("Multan won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 15) {
-//                                                tosswon.setText("Peshawar won the toss and elected to " + elected + " first.");
-//                                            } else if (toss == 53) {
-//                                                tosswon.setText("Quetta won the toss and elected to " + elected + " first.");
-//                                            }
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
                                         }
                                         catch (Exception e){}
@@ -621,6 +613,23 @@ public class LiveScoreActivity extends BaseActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+    }
+
+    private void showDialog() {
+        new AlertDialog.Builder( this, R.style.AlertDialogTheme )
+                .setTitle( "Win PSL Final Tickets" )
+                .setMessage( "Login First to Guess Every Ball and Increase Points to get final tickts  " )
+                .setPositiveButton( "ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                } ).create().show();
+        SharedPreferences sharedPreferences =getSharedPreferences( "prefs",MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean( "firstStart",false );
+        editor.apply();
 
     }
 

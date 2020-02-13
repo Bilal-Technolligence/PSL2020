@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         final int duration = 3000;
-        final int pixelsToMove = 250;
+        final int pixelsToMove = 1110;
         final Handler mHandler = new Handler( Looper.getMainLooper());
         final Runnable SCROLLING_RUNNABLE = new Runnable() {
 
@@ -136,13 +136,13 @@ public class MainActivity extends BaseActivity {
                         public void run() {
                             recyclerView.setAdapter(null);
                             recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
-                            mHandler.postDelayed(SCROLLING_RUNNABLE, 6000);
+                            mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);
                         }
-                    }, 7000);
+                    }, 5000);
                 }
             }
         });
-        mHandler.postDelayed(SCROLLING_RUNNABLE, 8000);
+        mHandler.postDelayed(SCROLLING_RUNNABLE, 5000);
 
 
         webView1 = (RecyclerView) findViewById(R.id.web1);

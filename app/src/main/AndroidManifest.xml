@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:textColor="@color/colorYellow"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuideLine"></activity>
+        <activity android:name=".GuideLine" />
 
         <service
             android:name=".FirebaseMessaging"
@@ -45,8 +45,8 @@
         <activity
             android:name=".LiveStreamingActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".LiveScoreActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LiveScoreActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
