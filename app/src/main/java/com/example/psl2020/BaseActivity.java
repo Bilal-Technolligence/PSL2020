@@ -341,7 +341,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             startActivity(intent);
             finish();
         } else if (itemId == R.id.guideline) {
-            Snackbar.make(drawerLayout, "GuideLine", Snackbar.LENGTH_LONG).show();
+            Intent intent = new Intent(this, GuideLine.class);
+            startActivity(intent);
+            finish();
         } else if (itemId == R.id.rateUs) {
             try {
                 databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {

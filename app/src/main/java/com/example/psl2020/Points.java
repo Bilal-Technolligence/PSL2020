@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
 
 public class Points extends BaseActivity {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -72,10 +73,18 @@ public class Points extends BaseActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            name.setText(dataSnapshot.child("name").getValue().toString());
-                            point.setText(dataSnapshot.child("points").getValue().toString());
-                            Picasso.get().load(dataSnapshot.child("image_url").getValue().toString()).into(userProfileImage);
-
+                            try {
+                                name.setText(dataSnapshot.child("name").getValue().toString());
+                            }
+                            catch (Exception e){}
+                            try {
+                                point.setText(dataSnapshot.child("points").getValue().toString());
+                            }
+                            catch (Exception e){}
+                            try {
+                                Picasso.get().load(dataSnapshot.child("image_url").getValue().toString()).into(userProfileImage);
+                            }
+                            catch (Exception e){}
                         }
                     }
 
