@@ -40,11 +40,20 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.name.setText(scheduleAttrs.get(position).getName());
-        holder.point.setText( scheduleAttrs.get(position).getPoints().toString());
+        try {
+            holder.name.setText(scheduleAttrs.get(position).getName());
+        }
+        catch (Exception e){}
+        try {
+            holder.point.setText(scheduleAttrs.get(position).getPoints().toString());
+        }
+        catch (Exception e){}
         holder.serial.setText( String.valueOf(position+1));
-        Picasso.get().load(scheduleAttrs.get(position).getImage_url()).into(holder.userProfileImage);
-    }
+        try {
+            Picasso.get().load(scheduleAttrs.get(position).getImage_url()).into(holder.userProfileImage);
+        }
+        catch (Exception e){}
+        }
 
     @Override
     public int getItemCount() {

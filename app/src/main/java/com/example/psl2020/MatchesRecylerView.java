@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.ViewHolder> {
     ArrayList<ScheduleAttr> scheduleAttrs;
@@ -73,7 +74,16 @@ public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.
             holder.date.setVisibility( View.INVISIBLE );
             holder.time.setVisibility( View.INVISIBLE );
         }
-        holder.time.setText( scheduleAttrs.get( position ).getTime() );
+        String time = scheduleAttrs.get(position).getTime();
+        String hour = time.substring(0,2);
+        int h = Integer.parseInt(hour);
+        if(h>12){
+            int h1 = h-12;
+            holder.time.setText(String.valueOf(h1)+":00 pm");
+        }
+        else {
+            holder.time.setText(hour+":00 am");
+        }
         String teamOne = scheduleAttrs.get( position ).getTeamOne();
         String teamTwo = scheduleAttrs.get( position ).getTeamTwo();
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference();

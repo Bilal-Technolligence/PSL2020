@@ -42,72 +42,79 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.winning.setText(scheduleAttrs.get(position).getWinner());
-        String teamOne = scheduleAttrs.get( position ).getTeamOne();
-        String teamTwo = scheduleAttrs.get( position ).getTeamTwo();
+        String teamOne = scheduleAttrs.get(position).getTeamOne();
+        String teamTwo = scheduleAttrs.get(position).getTeamTwo();
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference();
-        dref.child( "Teams" ).child( teamOne ).addValueEventListener( new ValueEventListener() {
+        dref.child("Teams").child(teamOne).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1a );
+                if (dataSnapshot.exists())
+                    Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(holder.img1a);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
-        dref.child( "Teams" ).child( teamTwo ).addValueEventListener( new ValueEventListener() {
+        });
+        dref.child("Teams").child(teamTwo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.img1b );
+                if (dataSnapshot.exists())
+                    Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(holder.img1b);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
-        String date = scheduleAttrs.get( position ).getDate();
-        String day = date.substring( 0,2 );
-        String m = date.substring( 3,5 );
-        String no="";
+        });
+        String date = scheduleAttrs.get(position).getDate();
+        String day = date.substring(0, 2);
+        String m = date.substring(3, 5);
+        String no = "";
         String month = "";
-        if(m.equals( "02" )){
-             month = "feb";
-        }
-        else if(m.equals( "03" )){
-             month = "mar";
-        }
-        else if(m.equals( "04" )){
+        if (m.equals("02")) {
+            month = "feb";
+        } else if (m.equals("03")) {
+            month = "mar";
+        } else if (m.equals("04")) {
             month = "apr";
-        }
-        else if(m.equals( "01" )){
+        } else if (m.equals("01")) {
             month = "jan";
         }
-        Integer id = scheduleAttrs.get( position ).getSid();
-        if(id==0){
-             no = "1st";
-        }
-        else if(id==1){
-             no = "2nd";
-        }
-        else if(id==2 ){
-             no = "3rd";
-        }
-        else {
+        Integer id = scheduleAttrs.get(position).getSid();
+        if (id == 0) {
+            no = "1st";
+        } else if (id == 1) {
+            no = "2nd";
+        } else if (id == 2) {
+            no = "3rd";
+        } else {
             id++;
-             no =String.valueOf( id+"th");
+            no = String.valueOf(id + "th");
         }
-        String city = scheduleAttrs.get( position ).getCity();
+        String city = scheduleAttrs.get(position).getCity();
         String time = scheduleAttrs.get(position).getTime();
-        String finalString = ( no+" Match at "+city+" on "+day+" "+ month +", "+time);
-        holder.liveMatches.setText( finalString);
+        String hour = time.substring(0, 2);
+        int h = Integer.parseInt(hour);
+        String t;
+        if (h > 12) {
+            int h1 = h - 12;
+            t = String.valueOf(h1) + ":00 pm";
+        } else {
+            t = hour + ":00 am";
+        }
+
+        String finalString = (no + " Match at " + city + " on " + day + " " + month + ", " + t);
+        try {
+            holder.liveMatches.setText(finalString);
+        } catch (Exception e) {
+        }
         try {
             holder.matchresult.setText(scheduleAttrs.get(position).getNote());
+        } catch (Exception e) {
         }
-        catch (Exception e){}
 //        String winner = scheduleAttrs.get(position).getWinner();
 //        final int secid = scheduleAttrs.get(position).getSid();
 //        dref.child("FinishMatches").addValueEventListener(new ValueEventListener() {
@@ -143,13 +150,15 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
     public int getItemCount() {
         return scheduleAttrs.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img1a,img1b;
-        TextView liveMatches,winning, matchresult;
+        ImageView img1a, img1b;
+        TextView liveMatches, winning, matchresult;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            liveMatches =(TextView) itemView.findViewById(R.id.txtMatches);
-            winning=(TextView) itemView.findViewById(R.id.txtWinner);
+            liveMatches = (TextView) itemView.findViewById(R.id.txtMatches);
+            winning = (TextView) itemView.findViewById(R.id.txtWinner);
             img1a = (ImageView) itemView.findViewById(R.id.team1a);
             img1b = (ImageView) itemView.findViewById(R.id.team1b);
             matchresult = (TextView) itemView.findViewById(R.id.txtmatchresult);
