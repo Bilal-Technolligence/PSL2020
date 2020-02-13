@@ -89,7 +89,7 @@ public class MainActivity extends BaseActivity {
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
 
-        final int duration = 3;
+        final int duration = 3000;
         final int pixelsToMove = 250;
         final Handler mHandler = new Handler( Looper.getMainLooper());
         final Runnable SCROLLING_RUNNABLE = new Runnable() {
@@ -129,20 +129,20 @@ public class MainActivity extends BaseActivity {
                 super.onScrolled(recyclerView, dx, dy);
                 int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
                 if(lastItem == layoutManager.getItemCount()-1){
-                    mHandler.removeCallbacks(SCROLLING_RUNNABLE);
+                   mHandler.removeCallbacks(SCROLLING_RUNNABLE);
                     Handler postHandler = new Handler();
                     postHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             recyclerView.setAdapter(null);
                             recyclerView.setAdapter(new MatchesRecylerView(scheduleAttrs, getApplicationContext()));
-                            mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+                            mHandler.postDelayed(SCROLLING_RUNNABLE, 6000);
                         }
-                    }, 4000);
+                    }, 7000);
                 }
             }
         });
-        mHandler.postDelayed(SCROLLING_RUNNABLE, 4000);
+        mHandler.postDelayed(SCROLLING_RUNNABLE, 8000);
 
 
         webView1 = (RecyclerView) findViewById(R.id.web1);

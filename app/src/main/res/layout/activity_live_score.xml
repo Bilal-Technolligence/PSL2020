@@ -386,47 +386,45 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:id="@+id/recentCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBlue"
                     android:layout_below="@+id/topLayout"
-                    android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:padding="3dp">
+                    android:layout_marginTop="1dp"
+                    app:cardElevation="40dp"
+                    app:cardBackgroundColor="#808080">
 
-                    <TextView
-                        android:layout_width="35dp"
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="5dp"
-                        android:text=""
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        android:orientation="horizontal"
+                        android:padding="3dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:paddingTop="5dp"
-                        android:text="Recent  "
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingTop="5dp"
+                            android:layout_marginLeft="20dp"                            android:text="Recent  "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/txtRecent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:paddingTop="5dp"
-                        android:text=" "
-                        android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        <TextView
+                            android:id="@+id/txtRecent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingTop="5dp"
+                            android:text=" "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
 
-                </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
                 <TableLayout
                     android:id="@+id/batsmanCrd"
                     android:layout_width="fill_parent"

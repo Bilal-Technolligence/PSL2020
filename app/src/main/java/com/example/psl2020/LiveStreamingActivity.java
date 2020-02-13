@@ -55,17 +55,20 @@ public class LiveStreamingActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     String url = "";
+    ProgressDialog progressDialog;
     WebView mWebView;
-    ProgressBar progressBar;
+   // ProgressBar progressBar;
 
     @SuppressLint("SetJavaScriptEnabled")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         mWebView = (WebView) findViewById(R.id.webView);
-        progressBar.setVisibility(View.VISIBLE);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Wait a Minute..... ");
+        progressDialog.setTitle( "Slow Internet Connection" );
+        progressDialog.show();
         mWebView.setWebViewClient(new Browser_home());
         mWebView.setWebChromeClient(new MyChrome());
         WebSettings webSettings = mWebView.getSettings();
@@ -119,8 +122,8 @@ public class LiveStreamingActivity extends BaseActivity {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            setTitle(view.getTitle());
-            progressBar.setVisibility(View.GONE);
+
+            progressDialog.dismiss();
             super.onPageFinished(view, url);
 
         }
