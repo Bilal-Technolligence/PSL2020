@@ -11,66 +11,75 @@
         android:layout_width="fill_parent"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:weightSum="6"
             android:layout_marginTop="1dp"
             android:padding="3dp"
             android:background="@color/colorBlue">
 
             <TextView
+                android:id="@+id/txtBatsmanName"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
                 android:text="Batsman"
+
+                android:paddingLeft="5dp"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/txtBatsmanRuns"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/txtBatsmanBalls"
+                android:layout_weight="1"
                 android:text="R"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/txtBatsmanBalls"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/txtBatsmanSixes"
+                android:layout_weight="1"
                 android:text="B"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/txtBatsmanSixes"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/txtBatsmanFours"
                 android:text="6s"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/txtBatsmanFours"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/txtBatsmanSr"
                 android:text="4s"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/txtBatsmanSr"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:maxLength="4"
                 android:text="S.R"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
-        </TableRow>
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_height="220dp"
@@ -85,71 +94,77 @@
         android:layout_below="@+id/TeamOneBating"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:weightSum="6"
             android:layout_marginTop="1dp"
             android:padding="3dp"
             android:background="@color/colorBlue">
+        <TextView
+            android:id="@+id/txtBowlerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:text="Bowler"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="Bowler"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="O"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/txtBowlerOvers"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txtBowlerMiddens"
+            android:text="O"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="M"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/txtBowlerMiddens"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txtBowlerRuns"
+            android:text="M"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="R"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/txtBowlerRuns"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txtBowlerWickts"
+            android:text="R"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="W"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/txtBowlerWickts"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txtBowlerEcon"
+            android:text="W"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Eco"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-        </TableRow>
+        <TextView
+            android:id="@+id/txtBowlerEcon"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:maxLength="3"
+            android:text="Eco"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
+        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_height="220dp"
             android:layout_width="wrap_content"
             android:id="@+id/recyclerbowling"
             android:layout_weight="1"/>
+
 
 
     </TableLayout>
