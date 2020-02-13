@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.technolligence.psl2020"
+    package="com.technolligence.cricketstream"
     android:installLocation="preferExternal">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,21 +16,21 @@
         android:supportsRtl="true"
         android:textColor="@color/colorYellow"
         android:theme="@style/AppTheme">
-        <activity android:name="com.technolligence.psl2020.GuideLine" />
+        <activity android:name="com.technolligence.cricketstream.GuideLine" />
 
         <service
-            android:name="com.technolligence.psl2020.FirebaseMessaging"
+            android:name="com.technolligence.cricketstream.FirebaseMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name="com.technolligence.psl2020.FbShare" />
-        <activity android:name="com.technolligence.psl2020.NewsDetail" />
-        <activity android:name="com.technolligence.psl2020.Points" />
+        <activity android:name="com.technolligence.cricketstream.FbShare" />
+        <activity android:name="com.technolligence.cricketstream.NewsDetail" />
+        <activity android:name="com.technolligence.cricketstream.Points" />
         <activity
-            android:name="com.technolligence.psl2020.SplashScreen"
+            android:name="com.technolligence.cricketstream.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,15 +38,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.technolligence.psl2020.Statistics" />
-        <activity android:name="com.technolligence.psl2020.FacebookLogin" />
-        <activity android:name="com.technolligence.psl2020.PlayersActivity" />
-        <activity android:name="com.technolligence.psl2020.TeamsActivity" />
+        <activity android:name="com.technolligence.cricketstream.Statistics" />
+        <activity android:name="com.technolligence.cricketstream.FacebookLogin" />
+        <activity android:name="com.technolligence.cricketstream.PlayersActivity" />
+        <activity android:name="com.technolligence.cricketstream.TeamsActivity" />
         <activity
-            android:name="com.technolligence.psl2020.LiveStreamingActivity"
+            android:name="com.technolligence.cricketstream.LiveStreamingActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name="com.technolligence.psl2020.LiveScoreActivity" />
-        <activity android:name="com.technolligence.psl2020.MainActivity" />
+        <activity android:name="com.technolligence.cricketstream.LiveScoreActivity" />
+        <activity android:name="com.technolligence.cricketstream.MainActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

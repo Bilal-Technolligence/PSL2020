@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context="com.technolligence.psl2020.MainActivity">
+    tools:context="com.technolligence.cricketstream.MainActivity">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_above="@+id/banner_container"

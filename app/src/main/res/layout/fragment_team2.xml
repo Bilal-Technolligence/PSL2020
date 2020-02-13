@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    tools:context="com.technolligence.psl2020.Team2Fragment">
+    tools:context="com.technolligence.cricketstream.Team2Fragment">
 
     <TableLayout
         android:id="@+id/TeamOneBating"
