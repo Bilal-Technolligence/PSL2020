@@ -6,6 +6,10 @@
         android:icon="@drawable/friends"
         android:title="Invite Friends"></item>
     <item
+        android:id="@+id/rewardPoints"
+        android:icon="@drawable/score"
+        android:title="Earn Points"></item>
+    <item
         android:id="@+id/guideline"
         android:icon="@drawable/guide"
         android:title="Guideline"></item>

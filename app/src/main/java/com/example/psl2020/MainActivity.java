@@ -22,6 +22,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.api.Context;
@@ -56,6 +64,9 @@ public class MainActivity extends BaseActivity {
     Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
     private final String CHANNEL_ID ="personal" ;
     public final int NOTIFICATION_ID = 001;
+    //ads instances
+    private InterstitialAd interstitialAd;
+    private AdView bannerAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +95,8 @@ public class MainActivity extends BaseActivity {
 
         Context context;
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
+        AudienceNetworkAds.initialize(this);
+        loadAds();
         recyclerView = findViewById(R.id.matchesRecyclerView);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(layoutManager);
@@ -183,9 +195,40 @@ public class MainActivity extends BaseActivity {
 
 
         new ScrapeNews().execute();
+refreshAds();
+    }
+    private void loadAds(){
+        String bannerId="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
+        String interstitialId="YOUR_PLACEMENT_ID";
+        bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
+        interstitialAd = new InterstitialAd(this,interstitialId);
+        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+        adContainer.addView(bannerAd);
+        bannerAd.loadAd();
+
+        AdSettings.addTestDevice("24e32ca0-8624-4848-a75c-5eace9d8af87");
+        interstitialAd.loadAd();
 
     }
-
+    @Override
+    protected void onDestroy() {
+        if (bannerAd != null) {
+            bannerAd.destroy();
+        }
+        if (interstitialAd != null) {
+            interstitialAd.destroy();
+        }
+        super.onDestroy();
+    }
+    public void refreshAds(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                bannerAd.loadAd();
+                refreshAds();
+            }
+        }, 10000);
+    }
     private void fetchNews(){
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
@@ -261,7 +304,53 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed() {
+        if(interstitialAd.isAdLoaded()){
+            interstitialAd.show();
+        }
+        else{
+            rateUS();
+        }
+        interstitialAd.setAdListener(new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+                //Toast.makeText(MainActivity.this, "displayed", Toast.LENGTH_LONG).show();
+            }
 
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+               // Toast.makeText(MainActivity.this, "dismissed", Toast.LENGTH_LONG).show();
+                rateUS();
+                interstitialAd.loadAd();
+
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+               // Toast.makeText(MainActivity.this, "error: "+ad+" --"+adError, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+               // Toast.makeText(MainActivity.this, "loaded", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+               // Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_LONG).show();
+                interstitialAd.loadAd();
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+              //  Toast.makeText(MainActivity.this, "logged", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+    public void rateUS(){
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
         View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
@@ -315,7 +404,6 @@ public class MainActivity extends BaseActivity {
         alertD.setView(promptView);
 
         alertD.show();
-
 
     }
 

@@ -22,6 +22,12 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.ads.RewardData;
+import com.facebook.ads.RewardedVideoAd;
+import com.facebook.ads.RewardedVideoAdListener;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.share.Sharer;
@@ -58,12 +64,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     String link;
     private CallbackManager callbackManager;
     protected ActionBarDrawerToggle drawerToggle;
+    private RewardedVideoAd rewardedVideoAd;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getContentViewId());
+        AudienceNetworkAds.initialize(this);
+        rewardedVideoAd = new RewardedVideoAd(this, "YOUR_PLACEMENT_ID");
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -246,8 +255,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    
 
+    @Override
+    protected void onDestroy() {
+        if (rewardedVideoAd != null) {
+            rewardedVideoAd.destroy();
+            rewardedVideoAd = null;
+        }
+        super.onDestroy();
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -285,6 +301,77 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         } else if (itemId == R.id.nav_liveStream) {
             startActivity(new Intent(this, LiveStreamingActivity.class));
             finish();
+        }else if(itemId == R.id.rewardPoints){
+            //shared prefrences
+            SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+            if (isLoggedIn) {
+                final String userId=prefs.getString("id","");
+                if(!userId.equals("")) {
+
+                    rewardedVideoAd.setAdListener(new RewardedVideoAdListener() {
+                        @Override
+                        public void onError(Ad ad, AdError error) {
+                          //  Toast.makeText(getApplicationContext(), ""+error, Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onAdLoaded(Ad ad) {
+                            rewardedVideoAd.show();
+                           // Toast.makeText(getApplicationContext(), ""+ad, Toast.LENGTH_LONG).show();
+
+                        }
+
+                        @Override
+                        public void onAdClicked(Ad ad) {
+                          // Toast.makeText(getApplicationContext(), ""+ad, Toast.LENGTH_LONG).show();
+
+                        }
+
+                        @Override
+                        public void onLoggingImpression(Ad ad) {
+                          //  Toast.makeText(getApplicationContext(), ""+ad, Toast.LENGTH_LONG).show();
+
+                        }
+
+                        @Override
+                        public void onRewardedVideoCompleted() {
+                           // Toast.makeText(getApplicationContext(), "completed", Toast.LENGTH_LONG).show();
+
+                            databaseReference.child("UsersPoints").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    // if(dataSnapshot.exists()){
+                                    int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
+                                    int newPoints = oldPoints+100;
+                                    databaseReference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
+
+                                    //}
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onRewardedVideoClosed() {
+                            //Toast.makeText(getApplicationContext(), "close", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                    //Set the rewarded ad data
+                    rewardedVideoAd.setRewardData(new RewardData(userId, "100 Points"));
+                    rewardedVideoAd.loadAd();
+
+                }
+            }
+            else{
+                Snackbar.make(drawerLayout, "Kindly Login First", Snackbar.LENGTH_LONG).show();
+            }
+
         } else if (itemId == R.id.inviteFriends) {
             //shared prefrences
             SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
@@ -351,11 +438,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         } else if (itemId == R.id.scoreboard) {
             Intent intent = new Intent(this, Points.class);
             startActivity(intent);
-            finish();
+
         } else if (itemId == R.id.guideline) {
             Intent intent = new Intent(this, GuideLine.class);
             startActivity(intent);
-            finish();
+
         } else if (itemId == R.id.rateUs) {
             try {
                 databaseReference.child("Applink").addValueEventListener(new ValueEventListener() {

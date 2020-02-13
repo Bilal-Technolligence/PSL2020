@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Tap above icon to login."
+            android:text="Tap above icon to login"
             android:textColor="#fff"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>

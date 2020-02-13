@@ -8,6 +8,8 @@
     tools:context=".MainActivity">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
+        android:layout_above="@+id/banner_container"
+        android:layout_marginBottom="3dp"
         android:layout_height="match_parent"
         android:id="@+id/drawarLayout">
     <ScrollView
@@ -149,6 +151,13 @@
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigationView"
+        android:orientation="vertical"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
