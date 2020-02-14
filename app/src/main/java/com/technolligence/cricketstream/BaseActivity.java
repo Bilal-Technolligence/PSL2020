@@ -218,7 +218,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
                         @Override
                         public void onError(FacebookException error) {
-                            Snackbar.make(drawerLayout, ""+error, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(drawerLayout, ""+error, Snackbar.LENGTH_INDEFINITE).show();
 
 
                         }
@@ -451,7 +451,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                             Intent viewIntent =
                                     new Intent("android.intent.action.VIEW",
                                             Uri.parse(url));
-                            startActivity(viewIntent);
+                            try{startActivity(viewIntent);}
+                            catch (Exception e){}
                         }
                     }
 

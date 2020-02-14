@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtSerial"
         android:text="0"
+        android:textColor="@color/colorBlack"
         android:textSize="20dp"/>
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/txtSerial"
         android:text="Name"
+        android:textColor="@color/colorBlack"
         android:textSize="20dp"/>
 
     <TextView
@@ -24,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="37dp"
+        android:textColor="@color/colorBlack"
         android:layout_toStartOf="@+id/txtScore"
         android:text="Team"
         android:textSize="20dp"/>
@@ -31,6 +34,7 @@
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="35dp"
+        android:textColor="@color/colorBlack"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_gravity="left"

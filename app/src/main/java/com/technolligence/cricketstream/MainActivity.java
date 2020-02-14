@@ -365,8 +365,11 @@ refreshAds();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
-                                startActivity(viewIntent);
-                            }
+                                try {
+                                    startActivity(viewIntent);
+                                }
+                                catch (Exception e){}
+                                }
                         }
 
                         @Override
