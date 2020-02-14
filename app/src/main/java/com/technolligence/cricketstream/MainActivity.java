@@ -189,7 +189,6 @@ public class MainActivity extends BaseActivity {
 
 
         new ScrapeNews().execute();
-refreshAds();
     }
     private void loadAds(){
         String bannerId="188011879101516_197866138116090";
@@ -213,15 +212,6 @@ refreshAds();
             interstitialAd.destroy();
         }
         super.onDestroy();
-    }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
     }
     private void fetchNews(){
         RecyclerView newsRecyclerView;

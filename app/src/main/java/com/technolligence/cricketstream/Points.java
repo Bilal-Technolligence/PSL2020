@@ -108,7 +108,7 @@ public class Points extends BaseActivity {
         } else {
             card.setVisibility(View.GONE);
         }
-        refreshAds();
+
     }
 
     private void loadAds(){
@@ -183,15 +183,7 @@ public class Points extends BaseActivity {
 
 
     }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
-    }
+
 
 
     @Override

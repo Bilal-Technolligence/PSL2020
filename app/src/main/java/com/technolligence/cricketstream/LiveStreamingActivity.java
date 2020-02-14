@@ -58,7 +58,7 @@ public class LiveStreamingActivity extends BaseActivity {
         mWebView = (WebView) findViewById(R.id.webView);
         AudienceNetworkAds.initialize(this);
         loadAds();
-        refreshAds();
+
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Wait a Minute..... ");
         progressDialog.show();
@@ -300,15 +300,7 @@ public class LiveStreamingActivity extends BaseActivity {
         alertD.show();
 
     }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
-    }
+
 
 
 

@@ -78,7 +78,6 @@ public class PlayersActivity extends BaseActivity {
 
             }
         });
-        refreshAds();
 
     }
     private void loadAds(){
@@ -153,15 +152,7 @@ public class PlayersActivity extends BaseActivity {
 
 
     }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
-    }
+
 
     @Override
     int getContentViewId() {

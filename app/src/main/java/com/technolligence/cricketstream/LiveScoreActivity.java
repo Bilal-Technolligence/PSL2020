@@ -618,7 +618,7 @@ public class LiveScoreActivity extends BaseActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        refreshAds();
+
 
     }
 
@@ -778,15 +778,6 @@ public class LiveScoreActivity extends BaseActivity {
 
         alertD.show();
 
-    }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
     }
 
 

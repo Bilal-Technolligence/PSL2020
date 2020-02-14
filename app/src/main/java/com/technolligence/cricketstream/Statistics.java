@@ -69,7 +69,6 @@ public class Statistics extends BaseActivity {
             }
         });
 
-        refreshAds();
 
     }
     private void loadAds(){
@@ -200,15 +199,6 @@ public class Statistics extends BaseActivity {
 
         alertD.show();
 
-    }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
     }
 
 

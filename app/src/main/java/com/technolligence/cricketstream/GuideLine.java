@@ -26,7 +26,7 @@ public class GuideLine extends BaseActivity {
         //setContentView(R.layout.activity_guide_line);
         AudienceNetworkAds.initialize(this);
         loadAds();
-        refreshAds();
+
     }
     private void loadAds(){
         String bannerId="188011879101516_197866138116090";
@@ -100,15 +100,7 @@ public class GuideLine extends BaseActivity {
 
 
     }
-    public void refreshAds(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                bannerAd.loadAd();
-                refreshAds();
-            }
-        }, 10000);
-    }
+
 
     @Override
     int getContentViewId() {
