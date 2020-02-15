@@ -190,6 +190,7 @@ public class MainActivity extends BaseActivity {
 
         new ScrapeNews().execute();
     }
+
     private void loadAds(){
         String bannerId="188011879101516_197866138116090";
         String interstitialId="188011879101516_197826204786750";
@@ -200,7 +201,7 @@ public class MainActivity extends BaseActivity {
         bannerAd.loadAd();
 
         //AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
-        interstitialAd.loadAd();
+        interstitialAd.loadAd(); 
 
     }
     @Override
