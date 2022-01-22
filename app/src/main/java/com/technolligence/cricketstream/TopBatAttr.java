@@ -8,6 +8,13 @@ public class TopBatAttr {
     public TopBatAttr() {
     }
 
+    public TopBatAttr(String name, String team, Integer score) {
+
+        this.name = name;
+        this.team = team;
+        this.score = score;
+    }
+
     public String getName() {
         return name;
     }
@@ -29,13 +36,6 @@ public class TopBatAttr {
     }
 
     public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public TopBatAttr(String name, String team, Integer score) {
-
-        this.name = name;
-        this.team = team;
         this.score = score;
     }
 }

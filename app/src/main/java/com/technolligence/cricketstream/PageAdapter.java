@@ -7,21 +7,22 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class PageAdapter extends FragmentStatePagerAdapter {
     int countTab;
+
     public PageAdapter(@NonNull FragmentManager fm, int countTab) {
         super(fm);
-        this.countTab=countTab;
+        this.countTab = countTab;
     }
 
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
-                Fixture fixture=new Fixture();
+                Fixture fixture = new Fixture();
                 return fixture;
             case 1:
-                Scoreboard scoreboard=new Scoreboard();
+                Scoreboard scoreboard = new Scoreboard();
                 return scoreboard;
             default:
                 return null;

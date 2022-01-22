@@ -1,8 +1,5 @@
 package com.technolligence.cricketstream;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.technolligence.cricketstream.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.viewpager.widget.ViewPager;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -34,25 +34,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import androidx.viewpager.widget.ViewPager;
-
 public class LiveScoreActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
-    //ads instances
-    private InterstitialAd interstitialAd;
-    private AdView bannerAd;
     int progress = 0;
     ProgressBar simpleProgressBar;
     ImageView btnOut, btnOne, btnTwo, btnThree, btnSix, btnFour, btnDot, btnRunout;
     ImageView team1, team2;
-    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent,predictionHeading,resultHeading;
-    String one, two, elected,scheduleId;
+    TextView score1, score2, over1, over2, wicket1, wicket2, rr1, rr2, match, tosswon, bowler, recent, predictionHeading, resultHeading;
+    String one, two, elected, scheduleId;
     Integer id, toss;
     TextView bat1, bat2, run1, run2, ball1, ball2, four1, four2, six1, six2, sr1, sr2;
-    String selection="", userId="";
-    LinearLayout linearLayout1,linearLayout2;
+    String selection = "", userId = "";
+    LinearLayout linearLayout1, linearLayout2;
     ImageView live;
+    //ads instances
+    private InterstitialAd interstitialAd;
+    private AdView bannerAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,14 +99,14 @@ public class LiveScoreActivity extends BaseActivity {
         sr2 = findViewById(R.id.txtBatsmanTwoSr);
 
         live = findViewById(R.id.imgLL);
-        linearLayout1=(LinearLayout) findViewById(R.id.points);
-        linearLayout2=(LinearLayout) findViewById(R.id.points2);
+        linearLayout1 = (LinearLayout) findViewById(R.id.points);
+        linearLayout2 = (LinearLayout) findViewById(R.id.points2);
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences( "prefs",MODE_PRIVATE );
-        boolean firstStart = sharedPreferences.getBoolean( "firstStart",true);
-        if (firstStart){
-            showDialog(  );
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart", true);
+        if (firstStart) {
+            showDialog();
         }
 
 
@@ -135,18 +133,18 @@ public class LiveScoreActivity extends BaseActivity {
                             try {
                                 String note = dataSnapshot1.child("note").getValue().toString();
                                 tosswon.setText(note);
+                            } catch (Exception e) {
                             }
-                            catch (Exception e){}
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         String rece = " ";
-                                            for (int i = 1; i <= 6; i++) {
+                                        for (int i = 1; i <= 6; i++) {
                                             try {
-                                                rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString()+" ";
+                                                rece = rece + dataSnapshot.child(String.valueOf(i)).getValue().toString() + " ";
+                                            } catch (Exception e) {
                                             }
-                                        catch (Exception e){}
                                         }
                                         recent.setText(rece);
                                     }
@@ -162,12 +160,12 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        try{
+                                        try {
                                             toss = Integer.parseInt(dataSnapshot.child("tosswin").getValue().toString());
                                             elected = dataSnapshot.child("elected").getValue().toString();
                                             bowler.setText(dataSnapshot.child("bowler").getValue().toString());
+                                        } catch (Exception e) {
                                         }
-                                        catch (Exception e){}
                                     }
                                 }
 
@@ -176,12 +174,12 @@ public class LiveScoreActivity extends BaseActivity {
 
                                 }
                             });
-                            reference.child( "FinishMatches" ).child( String.valueOf( scheduleId ) ).addValueEventListener( new ValueEventListener() {
+                            reference.child("FinishMatches").child(String.valueOf(scheduleId)).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.exists()){
-                                        tosswon.setText( dataSnapshot.child( "note" ).getValue(  ).toString() );
-                                        live.setVisibility( View.GONE );
+                                    if (dataSnapshot.exists()) {
+                                        tosswon.setText(dataSnapshot.child("note").getValue().toString());
+                                        live.setVisibility(View.GONE);
                                     }
 
                                 }
@@ -190,14 +188,16 @@ public class LiveScoreActivity extends BaseActivity {
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
-                            } );
+                            });
 
                             reference.child("Teams").child(one).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        try{Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team1);}
-                                        catch (Exception e){}
+                                        try {
+                                            Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team1);
+                                        } catch (Exception e) {
+                                        }
                                     }
                                 }
 
@@ -210,8 +210,10 @@ public class LiveScoreActivity extends BaseActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        try{Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team2);}
-                                        catch (Exception e){}
+                                        try {
+                                            Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(team2);
+                                        } catch (Exception e) {
+                                        }
 
                                     }
                                 }
@@ -352,11 +354,11 @@ public class LiveScoreActivity extends BaseActivity {
                                         String userId = prefs.getString("id", "");
                                         if (!userId.equals("")) {
                                             selection = "1 ";
-                                        GoneVisibility();
+                                            GoneVisibility();
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
 
                                 }
@@ -376,7 +378,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -393,7 +395,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -410,7 +412,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -427,7 +429,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -444,7 +446,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -461,7 +463,7 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -479,21 +481,21 @@ public class LiveScoreActivity extends BaseActivity {
                                         }
 
                                     } else {
-                                        Toast.makeText(getApplicationContext() , "Log in first" , Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Log in first", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                             reference.child("LiveScore").child("recent").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.exists()){
+                                    if (dataSnapshot.exists()) {
                                         String lastBall = dataSnapshot.child("6").getValue().toString();
                                         linearLayout1.setVisibility(View.VISIBLE);
                                         linearLayout2.setVisibility(View.VISIBLE);
-                                        predictionHeading.setVisibility(View.VISIBLE );
-                                        resultHeading.setVisibility( View.GONE );
+                                        predictionHeading.setVisibility(View.VISIBLE);
+                                        resultHeading.setVisibility(View.GONE);
 
-                                        if(selection.equals(lastBall)){
+                                        if (selection.equals(lastBall)) {
                                             SharedPreferences prefs = getSharedPreferences("Log", MODE_PRIVATE);
                                             boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
                                             if (isLoggedIn) {
@@ -503,10 +505,10 @@ public class LiveScoreActivity extends BaseActivity {
                                                         @Override
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             int oldPoints = Integer.valueOf(dataSnapshot.child("points").getValue().toString());
-                                                            int newPoints = oldPoints+10;
+                                                            int newPoints = oldPoints + 10;
                                                             reference.child("UsersPoints").child(userId).child("points").setValue(newPoints);
                                                             selection = "";
-                                                                congratulations();
+                                                            congratulations();
 
                                                             //}
                                                         }
@@ -519,10 +521,8 @@ public class LiveScoreActivity extends BaseActivity {
                                                 }
                                             }
 
-                                        }
-                                        else if(!selection.equals(""))
-                                        {
-                                            selection="";
+                                        } else if (!selection.equals("")) {
+                                            selection = "";
                                             AlertDialog.Builder alertadd = new AlertDialog.Builder(LiveScoreActivity.this);
                                             LayoutInflater factory = LayoutInflater.from(LiveScoreActivity.this);
                                             final View view = factory.inflate(R.layout.badluck, null);
@@ -531,7 +531,7 @@ public class LiveScoreActivity extends BaseActivity {
                                             final AlertDialog alert = alertadd.create();
                                             alert.show();
 //// Hide after some seconds
-                                            final Handler handler  = new Handler();
+                                            final Handler handler = new Handler();
                                             final Runnable runnable = new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -549,9 +549,8 @@ public class LiveScoreActivity extends BaseActivity {
                                             });
 
                                             handler.postDelayed(runnable, 5000);
-                                        }
-                                        else {
-                                            selection="";
+                                        } else {
+                                            selection = "";
                                         }
 
                                     }
@@ -583,14 +582,14 @@ public class LiveScoreActivity extends BaseActivity {
                         if (dataSnapshot1.child("status").getValue().toString().equals("Live")) {
                             one = dataSnapshot1.child("teamOne").getValue().toString();
                             two = dataSnapshot1.child("teamTwo").getValue().toString();
-                            TabLayout tabLayout=(TabLayout) findViewById(R.id.summaryTabLayout);
+                            TabLayout tabLayout = (TabLayout) findViewById(R.id.summaryTabLayout);
                             tabLayout.addTab(tabLayout.newTab().setText(one));
                             tabLayout.addTab(tabLayout.newTab().setText(two));
                             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-                            final ViewPager viewPager= (ViewPager) findViewById(R.id.summaryPager);
-                            SummaryPagerAdapter pageAdapter=new SummaryPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+                            final ViewPager viewPager = (ViewPager) findViewById(R.id.summaryPager);
+                            SummaryPagerAdapter pageAdapter = new SummaryPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
                             viewPager.setAdapter(pageAdapter);
 //        viewPager.setPageTransformer(true, new ZoomOutTranformer());
                             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -614,6 +613,7 @@ public class LiveScoreActivity extends BaseActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
@@ -623,18 +623,18 @@ public class LiveScoreActivity extends BaseActivity {
     }
 
     private void showDialog() {
-        new AlertDialog.Builder( this, R.style.AlertDialogTheme )
-                .setTitle( "Win PSL Final Tickets" )
-                .setMessage( "Login First to Guess Every Ball and Increase Points to get final tickts  " )
-                .setPositiveButton( "ok", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                .setTitle("Win PSL Final Tickets")
+                .setMessage("Login First to Guess Every Ball and Increase Points to get final tickts  ")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
-                } ).create().show();
-        SharedPreferences sharedPreferences =getSharedPreferences( "prefs",MODE_PRIVATE );
+                }).create().show();
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean( "firstStart",false );
+        editor.putBoolean("firstStart", false);
         editor.apply();
 
     }
@@ -642,22 +642,24 @@ public class LiveScoreActivity extends BaseActivity {
     private void GoneVisibility() {
         linearLayout1.setVisibility(View.GONE);
         linearLayout2.setVisibility(View.GONE);
-        predictionHeading.setVisibility(View.GONE );
-        resultHeading.setVisibility( View.VISIBLE );
+        predictionHeading.setVisibility(View.GONE);
+        resultHeading.setVisibility(View.VISIBLE);
     }
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-       // AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
+        // AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
         interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -671,15 +673,13 @@ public class LiveScoreActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
-            if(!interstitialAd.isAdInvalidated()) {
+        if (interstitialAd.isAdLoaded()) {
+            if (!interstitialAd.isAdInvalidated()) {
                 interstitialAd.show();
-            }
-            else{
+            } else {
                 interstitialAd.loadAd();
             }
-        }
-        else{
+        } else {
             rateUS();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {
@@ -722,7 +722,8 @@ public class LiveScoreActivity extends BaseActivity {
 
 
     }
-    public void rateUS(){
+
+    public void rateUS() {
         LayoutInflater layoutInflater = LayoutInflater.from(LiveScoreActivity.this);
         View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
@@ -737,13 +738,15 @@ public class LiveScoreActivity extends BaseActivity {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
+                            if (dataSnapshot.exists()) {
                                 final String url = dataSnapshot.getValue().toString();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
-                                try{startActivity(viewIntent);}
-                                catch (Exception e){}
+                                try {
+                                    startActivity(viewIntent);
+                                } catch (Exception e) {
+                                }
                             }
                         }
 
@@ -752,26 +755,26 @@ public class LiveScoreActivity extends BaseActivity {
 
                         }
                     });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         });
 
-        btnCancel.setOnClickListener( new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertD.dismiss();
             }
-        } );
-        btnExit.setOnClickListener( new View.OnClickListener() {
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        } );
+        });
 
 
         alertD.setView(promptView);
@@ -779,7 +782,6 @@ public class LiveScoreActivity extends BaseActivity {
         alertD.show();
 
     }
-
 
 
     private void congratulations() {
@@ -790,7 +792,7 @@ public class LiveScoreActivity extends BaseActivity {
         final AlertDialog alert = alertadd.create();
         alert.show();
 // Hide after some seconds
-        final Handler handler  = new Handler();
+        final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {

@@ -1,9 +1,5 @@
 package com.technolligence.cricketstream;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +9,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.technolligence.cricketstream.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -30,81 +29,83 @@ import com.google.firebase.database.ValueEventListener;
 public class TeamsActivity extends BaseActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
-    CardView peshawerZalmi,islamabadUnited,quettaGladiator,karachiKings,lahoreQalanders,multanSultan;
+    CardView peshawerZalmi, islamabadUnited, quettaGladiator, karachiKings, lahoreQalanders, multanSultan;
     private InterstitialAd interstitialAd;
     private AdView bannerAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-      //  setContentView( R.layout.activity_teams );
+        super.onCreate(savedInstanceState);
+        //  setContentView( R.layout.activity_teams );
         AudienceNetworkAds.initialize(this);
         loadAds();
-        peshawerZalmi=findViewById( R.id.cardPeshawerZalmi );
-        islamabadUnited=findViewById( R.id.cardIslamabad );
+        peshawerZalmi = findViewById(R.id.cardPeshawerZalmi);
+        islamabadUnited = findViewById(R.id.cardIslamabad);
 
-        quettaGladiator=findViewById( R.id.cardQuetta );
+        quettaGladiator = findViewById(R.id.cardQuetta);
 
-        karachiKings=findViewById( R.id.cardKarachi );
-        lahoreQalanders=findViewById( R.id.cardLahoreQalandar );
+        karachiKings = findViewById(R.id.cardKarachi);
+        lahoreQalanders = findViewById(R.id.cardLahoreQalandar);
 
-        multanSultan=findViewById( R.id.cardMultanSultan );
+        multanSultan = findViewById(R.id.cardMultanSultan);
 
-        peshawerZalmi.setOnClickListener( new View.OnClickListener() {
+        peshawerZalmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Peshawar Zalmi" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Peshawar Zalmi");
                 startActivity(intent);
             }
-        } );
-        lahoreQalanders.setOnClickListener( new View.OnClickListener() {
+        });
+        lahoreQalanders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Lahore Qalandars" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Lahore Qalandars");
                 startActivity(intent);
             }
-        } );
-        karachiKings.setOnClickListener( new View.OnClickListener() {
+        });
+        karachiKings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Karachi Kings" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Karachi Kings");
                 startActivity(intent);
             }
-        } );
-        islamabadUnited.setOnClickListener( new View.OnClickListener() {
+        });
+        islamabadUnited.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Islamabad United" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Islamabad United");
                 startActivity(intent);
             }
-        } );
-        multanSultan.setOnClickListener( new View.OnClickListener() {
+        });
+        multanSultan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Multan Sultan" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Multan Sultan");
                 startActivity(intent);
             }
-        } );
-        quettaGladiator.setOnClickListener( new View.OnClickListener() {
+        });
+        quettaGladiator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeamsActivity.this,PlayersActivity.class );
-                intent.putExtra( "teamname", "Quetta Gladiators" );
+                Intent intent = new Intent(TeamsActivity.this, PlayersActivity.class);
+                intent.putExtra("teamname", "Quetta Gladiators");
                 startActivity(intent);
             }
-        } );
+        });
 
 
     }
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
@@ -113,6 +114,7 @@ public class TeamsActivity extends BaseActivity {
         interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -126,10 +128,9 @@ public class TeamsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
+        if (interstitialAd.isAdLoaded()) {
             interstitialAd.show();
-        }
-        else{
+        } else {
             rateUS();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {
@@ -172,7 +173,8 @@ public class TeamsActivity extends BaseActivity {
 
 
     }
-    public void rateUS(){
+
+    public void rateUS() {
         LayoutInflater layoutInflater = LayoutInflater.from(TeamsActivity.this);
         View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
@@ -187,13 +189,15 @@ public class TeamsActivity extends BaseActivity {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
+                            if (dataSnapshot.exists()) {
                                 final String url = dataSnapshot.getValue().toString();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
-                                try{startActivity(viewIntent);}
-                                catch (Exception e){}
+                                try {
+                                    startActivity(viewIntent);
+                                } catch (Exception e) {
+                                }
                             }
                         }
 
@@ -202,26 +206,26 @@ public class TeamsActivity extends BaseActivity {
 
                         }
                     });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         });
 
-        btnCancel.setOnClickListener( new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertD.dismiss();
             }
-        } );
-        btnExit.setOnClickListener( new View.OnClickListener() {
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        } );
+        });
 
 
         alertD.setView(promptView);

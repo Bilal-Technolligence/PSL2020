@@ -7,12 +7,12 @@
         android:title="Home" />
     <item
         android:id="@+id/nav_matches"
-        android:title="LiveScore"
-        android:icon="@drawable/tennisball"/>
+        android:icon="@drawable/tennisball"
+        android:title="LiveScore" />
     <item
         android:id="@+id/nav_statistics"
         android:icon="@drawable/fixture"
-        android:title="Statistics"/>
+        android:title="Statistics" />
     <item
         android:id="@+id/nav_liveStream"
         android:icon="@drawable/stream"

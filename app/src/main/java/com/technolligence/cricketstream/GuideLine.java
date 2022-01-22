@@ -1,10 +1,8 @@
 package com.technolligence.cricketstream;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.LinearLayout;
 
-import com.technolligence.cricketstream.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -20,6 +18,7 @@ public class GuideLine extends BaseActivity {
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     private InterstitialAd interstitialAd;
     private AdView bannerAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +27,21 @@ public class GuideLine extends BaseActivity {
         loadAds();
 
     }
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-      //  AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
+        //  AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
         interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -54,10 +55,9 @@ public class GuideLine extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
+        if (interstitialAd.isAdLoaded()) {
             interstitialAd.show();
-        }
-        else{
+        } else {
             finish();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {

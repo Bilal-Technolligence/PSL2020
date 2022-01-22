@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.technolligence.cricketstream.R;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -29,7 +27,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.youtube, parent, false);
-this.ccntext = parent.getContext();
+        this.ccntext = parent.getContext();
         return new VideoViewHolder(view);
 
     }

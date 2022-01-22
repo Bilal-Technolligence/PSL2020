@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/colorWhite"
+    android:gravity="center"
     android:minWidth="300dp"
-    android:minHeight="300dp">
+    android:minHeight="300dp"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
         android:padding="5dp"
         android:text="Congratulations !"
-        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:src="@drawable/gif"
-            android:background="@color/colorWhite"/>
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/colorWhite"
+        android:src="@drawable/gif" />
 
 
 </LinearLayout>

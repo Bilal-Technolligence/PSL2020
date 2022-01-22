@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technolligence.cricketstream.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,13 +36,13 @@ public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from( parent.getContext() ).inflate( R.layout.matchesviewmain, parent, false );
-        return new ViewHolder( view );
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.matchesviewmain, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        Integer id = scheduleAttrs.get( position ).getSid();
+        Integer id = scheduleAttrs.get(position).getSid();
         String no;
         if (id == 0) {
             no = "1st";
@@ -53,58 +52,57 @@ public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.
             no = "3rd";
         } else {
             id++;
-            no = String.valueOf( id + "th" );
+            no = String.valueOf(id + "th");
         }
-        holder.liveMatches.setText( no + " Match" );
-        String date = new SimpleDateFormat( "dd/MM/yyyy" ).format( Calendar.getInstance().getTime() );
-        if (date.equals( scheduleAttrs.get( position ).getDate() ))
-            holder.date.setText( "Today " );
+        holder.liveMatches.setText(no + " Match");
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        if (date.equals(scheduleAttrs.get(position).getDate()))
+            holder.date.setText("Today ");
         else
-            holder.date.setText( scheduleAttrs.get( position ).getDate() + "  " );
+            holder.date.setText(scheduleAttrs.get(position).getDate() + "  ");
 
-        String status = scheduleAttrs.get( position ).getStatus();
-        if (!status.equals( "Live" )) {
-            holder.live.setVisibility( View.GONE );
+        String status = scheduleAttrs.get(position).getStatus();
+        if (!status.equals("Live")) {
+            holder.live.setVisibility(View.GONE);
         }
-        if(status.equals( "Live" )){
-            holder.date.setVisibility( View.INVISIBLE );
-            holder.time.setVisibility( View.INVISIBLE );
+        if (status.equals("Live")) {
+            holder.date.setVisibility(View.INVISIBLE);
+            holder.time.setVisibility(View.INVISIBLE);
         }
         String time = scheduleAttrs.get(position).getTime();
-        String hour = time.substring(0,2);
+        String hour = time.substring(0, 2);
         int h = Integer.parseInt(hour);
-        if(h>12){
-            int h1 = h-12;
-            holder.time.setText(String.valueOf(h1)+":00 pm");
+        if (h > 12) {
+            int h1 = h - 12;
+            holder.time.setText(String.valueOf(h1) + ":00 pm");
+        } else {
+            holder.time.setText(hour + ":00 am");
         }
-        else {
-            holder.time.setText(hour+":00 am");
-        }
-        String teamOne = scheduleAttrs.get( position ).getTeamOne();
-        String teamTwo = scheduleAttrs.get( position ).getTeamTwo();
+        String teamOne = scheduleAttrs.get(position).getTeamOne();
+        String teamTwo = scheduleAttrs.get(position).getTeamTwo();
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference();
-        dref.child( "Teams" ).child( teamOne ).addValueEventListener( new ValueEventListener() {
+        dref.child("Teams").child(teamOne).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.imgteam1 );
+                Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(holder.imgteam1);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
-        dref.child( "Teams" ).child( teamTwo ).addValueEventListener( new ValueEventListener() {
+        });
+        dref.child("Teams").child(teamTwo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Picasso.get().load( dataSnapshot.child( "ImgUrl" ).getValue().toString() ).into( holder.imgteam2 );
+                Picasso.get().load(dataSnapshot.child("ImgUrl").getValue().toString()).into(holder.imgteam2);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
 
     }
 
@@ -119,14 +117,14 @@ public class MatchesRecylerView extends RecyclerView.Adapter<MatchesRecylerView.
         LinearLayout matchTime;
 
         public ViewHolder(@NonNull View itemView) {
-            super( itemView );
-            liveMatches = (TextView) itemView.findViewById( R.id.txtmatches );
-            date = (TextView) itemView.findViewById( R.id.txtDay );
-            time = (TextView) itemView.findViewById( R.id.txtTime );
-            imgteam1 = (ImageView) itemView.findViewById( R.id.team1 );
-            imgteam2 = (ImageView) itemView.findViewById( R.id.team2 );
-            live = (ImageView) itemView.findViewById( R.id.imgLive );
-            matchTime = (LinearLayout) itemView.findViewById( R.id.matchTime );
+            super(itemView);
+            liveMatches = (TextView) itemView.findViewById(R.id.txtmatches);
+            date = (TextView) itemView.findViewById(R.id.txtDay);
+            time = (TextView) itemView.findViewById(R.id.txtTime);
+            imgteam1 = (ImageView) itemView.findViewById(R.id.team1);
+            imgteam2 = (ImageView) itemView.findViewById(R.id.team2);
+            live = (ImageView) itemView.findViewById(R.id.imgLive);
+            matchTime = (LinearLayout) itemView.findViewById(R.id.matchTime);
         }
     }
 }

@@ -3,32 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.technolligence.cricketstream.Scoreboard"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.technolligence.cricketstream.Scoreboard">
+
     <TableLayout
         android:id="@+id/batsmanCrd"
         android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
             android:layout_marginTop="1dp"
+            android:background="@color/colorBlue"
             android:padding="3dp"
-            android:background="@color/colorBlue">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Teams"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text="M"
                 android:textColor="@color/colorWhite"
@@ -36,8 +39,8 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text="W"
                 android:textColor="@color/colorWhite"
@@ -45,8 +48,8 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text="L"
                 android:textColor="@color/colorWhite"
@@ -54,8 +57,8 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text="T"
                 android:textColor="@color/colorWhite"
@@ -63,41 +66,44 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Pts"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="NRR"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:id="@+id/txtIslamAbadUnited"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Islamabad U"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtIUMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -106,8 +112,8 @@
             <TextView
                 android:id="@+id/txtIUWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -116,8 +122,8 @@
             <TextView
                 android:id="@+id/txtIULose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -126,17 +132,18 @@
             <TextView
                 android:id="@+id/txtIUTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtIUPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -145,32 +152,34 @@
             <TextView
                 android:id="@+id/txtIUNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Karachi K"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtKKMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -179,8 +188,8 @@
             <TextView
                 android:id="@+id/txtKKWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -189,8 +198,8 @@
             <TextView
                 android:id="@+id/txtKKLose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -199,17 +208,18 @@
             <TextView
                 android:id="@+id/txtKKTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtKKPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -218,32 +228,34 @@
             <TextView
                 android:id="@+id/txtKKNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Lahore Q"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtLQMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -252,8 +264,8 @@
             <TextView
                 android:id="@+id/txtLQWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -262,8 +274,8 @@
             <TextView
                 android:id="@+id/txtLQLose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -272,17 +284,18 @@
             <TextView
                 android:id="@+id/txtLQTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtLQPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -291,32 +304,34 @@
             <TextView
                 android:id="@+id/txtLQNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Multan S"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtMSMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -325,8 +340,8 @@
             <TextView
                 android:id="@+id/txtMSWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -335,8 +350,8 @@
             <TextView
                 android:id="@+id/txtMSLose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -345,17 +360,18 @@
             <TextView
                 android:id="@+id/txtMSTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtMSPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -364,32 +380,34 @@
             <TextView
                 android:id="@+id/txtMSNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Peshawar Z"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtPZMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -398,8 +416,8 @@
             <TextView
                 android:id="@+id/txtPZWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -408,8 +426,8 @@
             <TextView
                 android:id="@+id/txtPZLose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -418,17 +436,18 @@
             <TextView
                 android:id="@+id/txtPZTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtPZPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -437,32 +456,34 @@
             <TextView
                 android:id="@+id/txtPZNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:weightSum="7"
+            android:background="@color/colorWhite"
             android:padding="3dp"
-            android:background="@color/colorWhite">
+            android:weightSum="7">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Quetta G"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtQGMatches"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -471,8 +492,8 @@
             <TextView
                 android:id="@+id/txtQGWin"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -481,8 +502,8 @@
             <TextView
                 android:id="@+id/txtQGLose"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -491,17 +512,18 @@
             <TextView
                 android:id="@+id/txtQGTie"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/txtQGPts"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -510,8 +532,8 @@
             <TextView
                 android:id="@+id/txtQGNRR"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
@@ -519,12 +541,13 @@
         </TableRow>
 
     </TableLayout>
+
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <!-- our tablayout to display tabs  -->
         <com.google.android.material.tabs.TabLayout
@@ -533,7 +556,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorBlue"
             android:minHeight="?attr/actionBarSize"
-            android:theme="@style/Theme.MaterialComponents"/>
+            android:theme="@style/Theme.MaterialComponents" />
 
         <!-- View pager to swipe views -->
         <androidx.viewpager.widget.ViewPager
@@ -542,8 +565,6 @@
             android:layout_height="wrap_content"
             android:background="#fff"></androidx.viewpager.widget.ViewPager>
     </LinearLayout>
-
-
 
 
 </LinearLayout>

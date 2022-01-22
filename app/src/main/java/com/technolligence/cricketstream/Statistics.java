@@ -1,20 +1,18 @@
 package com.technolligence.cricketstream;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.technolligence.cricketstream.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.viewpager.widget.ViewPager;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -36,19 +34,20 @@ public class Statistics extends BaseActivity {
     //ads instances
     private InterstitialAd interstitialAd;
     private AdView bannerAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AudienceNetworkAds.initialize(this);
         loadAds();
 //        setContentView(R.layout.activity_statistics);
-        TabLayout tabLayout=(TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Fixtures"));
         tabLayout.addTab(tabLayout.newTab().setText("Scoreboard"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
-        PageAdapter pageAdapter=new PageAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
 //        viewPager.setPageTransformer(true, new ZoomOutTranformer());
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -71,11 +70,12 @@ public class Statistics extends BaseActivity {
 
 
     }
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
@@ -84,6 +84,7 @@ public class Statistics extends BaseActivity {
         interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -97,10 +98,9 @@ public class Statistics extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
+        if (interstitialAd.isAdLoaded()) {
             interstitialAd.show();
-        }
-        else{
+        } else {
             rateUS();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {
@@ -143,7 +143,8 @@ public class Statistics extends BaseActivity {
 
 
     }
-    public void rateUS(){
+
+    public void rateUS() {
         LayoutInflater layoutInflater = LayoutInflater.from(Statistics.this);
         View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
@@ -158,13 +159,15 @@ public class Statistics extends BaseActivity {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
+                            if (dataSnapshot.exists()) {
                                 final String url = dataSnapshot.getValue().toString();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
-                                try{startActivity(viewIntent);}
-                                catch (Exception e){}
+                                try {
+                                    startActivity(viewIntent);
+                                } catch (Exception e) {
+                                }
                             }
                         }
 
@@ -173,26 +176,26 @@ public class Statistics extends BaseActivity {
 
                         }
                     });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         });
 
-        btnCancel.setOnClickListener( new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertD.dismiss();
             }
-        } );
-        btnExit.setOnClickListener( new View.OnClickListener() {
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        } );
+        });
 
 
         alertD.setView(promptView);

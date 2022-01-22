@@ -4,65 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bgcolor"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.technolligence.cricketstream.LiveStreamingActivity">
+
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/banner_container"
-        android:layout_marginBottom="3dp"
-        android:id="@+id/drawarLayout">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="50dp"
-            android:orientation="vertical">
+        android:layout_marginBottom="3dp">
 
-        <WebView
-            android:id="@+id/webView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
 
-        </RelativeLayout>
-    </ScrollView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
+
+                <WebView
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        </ScrollView>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawerNavigationView"
-            app:headerLayout="@layout/header"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#fff"
-            app:menu="@menu/drawar_menu"
-            app:itemTextColor="#6c6c6c"
             android:layout_gravity="start"
-            ></com.google.android.material.navigation.NavigationView>
+            android:background="#fff"
+            app:headerLayout="@layout/header"
+            app:itemTextColor="#6c6c6c"
+            app:menu="@menu/drawar_menu"></com.google.android.material.navigation.NavigationView>
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
+
     <LinearLayout
         android:id="@+id/banner_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/navigationView"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginStart="0dp"
-        app:labelVisibilityMode="labeled"
         android:layout_marginEnd="0dp"
         android:background="#ffffff"
         app:itemTextColor="@color/colorDarkBlue"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation"/>
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>

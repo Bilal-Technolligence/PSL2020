@@ -1,74 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@color/colorWhite"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
 
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        app:cardElevation="20dp"
+        app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#ffffff">
+        app:cardElevation="20dp">
 
         <LinearLayout
             android:id="@+id/livematchNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/txtMatches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="1st Match at Karachi on 20 feb, 7:00pm"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="12dp" />
 
 
+            <TextView
+                android:id="@+id/txtWinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:text="Upcoming"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorBlue"
+                android:textSize="14dp" />
 
-                <TextView
-                    android:id="@+id/txtWinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="viewEnd"
-                    android:text="Upcoming"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="14dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:text=""
-                android:layout_alignParentRight="true"
                 android:textColor="@color/colorBlue"
                 android:textSize="14dp" />
 
 
-
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/secondlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/livematchNo"
-            android:weightSum="3"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
             <LinearLayout
                 android:id="@+id/l2"
                 android:layout_width="260dp"
@@ -80,7 +81,7 @@
                     android:id="@+id/team1a"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/loading"/>
+                    android:src="@drawable/loading" />
 
 
             </LinearLayout>
@@ -88,7 +89,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
-               android:layout_weight="1"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -99,6 +100,7 @@
                     android:src="@drawable/vs" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/l1"
                 android:layout_width="260dp"
@@ -115,22 +117,18 @@
             </LinearLayout>
 
 
-
-
-
-
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/matchresult"
             android:layout_width="match_parent"
-            android:layout_marginTop="153dp"
             android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_below="@+id/livematch2"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="153dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/txtmatchresult"
@@ -144,11 +142,7 @@
                 android:textSize="12dp" />
 
 
-
         </LinearLayout>
-
-
-
 
 
     </androidx.cardview.widget.CardView>

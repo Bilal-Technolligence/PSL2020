@@ -13,18 +13,18 @@ public class PointsAttr {
         this.image_url = image_url;
     }
 
+    public PointsAttr(String id, String name, Integer points) {
+        this.id = id;
+        this.name = name;
+        this.points = points;
+    }
+
     public String getImage_url() {
         return image_url;
     }
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
-    }
-
-    public PointsAttr(String id, String name, Integer points) {
-        this.id = id;
-        this.name = name;
-        this.points = points;
     }
 
     public String getId() {

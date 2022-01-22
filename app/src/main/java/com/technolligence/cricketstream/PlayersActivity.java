@@ -1,16 +1,14 @@
 package com.technolligence.cricketstream;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.LinearLayout;
-
-import com.technolligence.cricketstream.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -37,38 +35,36 @@ public class PlayersActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-       // setContentView( R.layout.activity_players );
+        super.onCreate(savedInstanceState);
+        // setContentView( R.layout.activity_players );
         AudienceNetworkAds.initialize(this);
         loadAds();
 //        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.bgcolor);
         Intent intent = getIntent();
-       String teamName = intent.getStringExtra( "teamname" );
-
-
+        String teamName = intent.getStringExtra("teamname");
 
 
         Context context;
-        recyclerView=findViewById(R.id.teamsRecyclerView);
+        recyclerView = findViewById(R.id.teamsRecyclerView);
         playerAttributes = new ArrayList<PlayerAttributes>();
 
-        recyclerView.setLayoutManager(new GridLayoutManager( this,2 ));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(20);
         recyclerView.setDrawingCacheEnabled(true);
-        recyclerView.setDrawingCacheQuality( View.DRAWING_CACHE_QUALITY_HIGH);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        reference.child("Players").child( teamName ).addValueEventListener(new ValueEventListener() {
+        reference.child("Players").child(teamName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 playerAttributes.clear();
                 //profiledata.clear();
-                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     PlayerAttributes p = dataSnapshot1.getValue(PlayerAttributes.class);
                     playerAttributes.add(p);
                 }
 
-                recyclerView.setAdapter(new PlayerRecylerView(playerAttributes ,getApplicationContext()));
+                recyclerView.setAdapter(new PlayerRecylerView(playerAttributes, getApplicationContext()));
 
             }
 
@@ -80,19 +76,21 @@ public class PlayersActivity extends BaseActivity {
         });
 
     }
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
-       // AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
+        // AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
         interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -106,10 +104,9 @@ public class PlayersActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
+        if (interstitialAd.isAdLoaded()) {
             interstitialAd.show();
-        }
-        else{
+        } else {
             finish();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {

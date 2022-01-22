@@ -3,20 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.technolligence.cricketstream.BatsmanFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.technolligence.cricketstream.BatsmanFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_marginStart="5dp"
+            android:id="@+id/txtSerial"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
-            android:id="@+id/txtSerial"
+            android:layout_marginStart="5dp"
             android:text="#"
             android:textColor="#000"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtName"
@@ -25,7 +27,7 @@
             android:layout_toEndOf="@+id/txtSerial"
             android:text="Name"
             android:textColor="#000"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtTeam"
@@ -35,7 +37,7 @@
             android:layout_toStartOf="@+id/txtWicket"
             android:text="Team"
             android:textColor="#000"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtWicket"
@@ -46,12 +48,13 @@
             android:layout_marginEnd="15dp"
             android:text="Runs"
             android:textColor="#000"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_height="wrap_content"
+        android:id="@+id/recyclerbating"
         android:layout_width="match_parent"
-        android:id="@+id/recyclerbating"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

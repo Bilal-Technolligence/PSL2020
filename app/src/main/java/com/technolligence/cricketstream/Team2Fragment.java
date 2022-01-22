@@ -2,17 +2,15 @@ package com.technolligence.cricketstream;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.technolligence.cricketstream.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,17 +26,17 @@ import java.util.ArrayList;
 public class Team2Fragment extends Fragment {
     ArrayList<BatsmanAttr> batsmanAttrs;
     ArrayList<BowlerAttr> bowlerAttrs;
-    RecyclerView batsmanRecycler,bowlingRecycler;
+    RecyclerView batsmanRecycler, bowlingRecycler;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
-    String one , two;
+    String one, two;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_team2, container, false);
+        View view = inflater.inflate(R.layout.fragment_team2, container, false);
         batsmanRecycler = view.findViewById(R.id.recyclerbating);
         batsmanAttrs = new ArrayList<BatsmanAttr>();
         batsmanRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));

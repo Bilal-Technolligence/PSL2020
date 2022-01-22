@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-<TextView
-    android:layout_marginStart="5dp"
-    android:layout_width="35dp"
-    android:textColor="@color/colorBlack"
-    android:layout_height="wrap_content"
-    android:id="@+id/txtSerial"
-    android:text="0"
-    android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/txtSerial"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/txtName"
@@ -19,7 +20,7 @@
         android:layout_toEndOf="@+id/txtSerial"
         android:text="Name"
         android:textColor="@color/colorBlack"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/txtTeam"
@@ -29,7 +30,7 @@
         android:layout_toStartOf="@+id/txtWicket"
         android:text="Team"
         android:textColor="@color/colorBlack"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/txtWicket"
@@ -38,8 +39,8 @@
         android:layout_alignParentEnd="true"
         android:layout_gravity="left"
         android:layout_marginEnd="15dp"
-        android:textColor="@color/colorBlack"
         android:text="wicket"
-        android:textSize="20dp"/>
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp" />
 
 </RelativeLayout>

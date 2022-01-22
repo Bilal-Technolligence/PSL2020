@@ -8,33 +8,33 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.technolligence.cricketstream.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     ArrayList<NewsDataClass> newsDataClassArray;
     Activity activity;
 
-    public NewsAdapter(ArrayList<NewsDataClass> newsDataClassArray,Activity activity){
-        this.newsDataClassArray=newsDataClassArray;
-        this.activity=activity;
+    public NewsAdapter(ArrayList<NewsDataClass> newsDataClassArray, Activity activity) {
+        this.newsDataClassArray = newsDataClassArray;
+        this.activity = activity;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.news_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_items, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final NewsDataClass newsDataClass=newsDataClassArray.get(position);
+        final NewsDataClass newsDataClass = newsDataClassArray.get(position);
         holder.newsTitle.setText(newsDataClass.getNewsTitle());
         //holder.newsDetail.setText(newsDataClass.getNewsDetails());
         holder.newsDatetime.setText(newsDataClass.getNewsDatetime());
@@ -42,11 +42,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.newsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(activity,NewsDetail.class);
-                intent.putExtra("title",newsDataClass.getNewsTitle());
-                intent.putExtra("date",newsDataClass.getNewsDatetime());
-                intent.putExtra("link",newsDataClass.getNewsDetails());
-                intent.putExtra("imgUrl",newsDataClass.getImgUrl());
+                Intent intent = new Intent(activity, NewsDetail.class);
+                intent.putExtra("title", newsDataClass.getNewsTitle());
+                intent.putExtra("date", newsDataClass.getNewsDatetime());
+                intent.putExtra("link", newsDataClass.getNewsDetails());
+                intent.putExtra("imgUrl", newsDataClass.getImgUrl());
                 activity.startActivity(intent);
             }
         });
@@ -59,14 +59,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView newsTitle,newsDetail,newsDatetime;
+        TextView newsTitle, newsDetail, newsDatetime;
         ImageView newsImage;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            newsTitle=(TextView) itemView.findViewById(R.id.newsTitle);
-           //newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
-            newsDatetime=(TextView) itemView.findViewById(R.id.newsDatetime);
-            newsImage=(ImageView) itemView.findViewById(R.id.newsImage);
+            newsTitle = (TextView) itemView.findViewById(R.id.newsTitle);
+            //newsDetail=(TextView) itemView.findViewById(R.id.newsDetail);
+            newsDatetime = (TextView) itemView.findViewById(R.id.newsDatetime);
+            newsImage = (ImageView) itemView.findViewById(R.id.newsImage);
         }
     }
 }

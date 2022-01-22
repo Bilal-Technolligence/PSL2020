@@ -16,7 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.technolligence.cricketstream.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
@@ -42,22 +46,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class MainActivity extends BaseActivity {
+    public final int NOTIFICATION_ID = 001;
+    private final String CHANNEL_ID = "personal";
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference();
     ArrayList<ScheduleAttr> scheduleAttrs;
     RecyclerView recyclerView;
     ArrayList<NewsDataClass> newsDataClassArray = new ArrayList<>();
     RecyclerView webView1;
-    ArrayList<String> str=new ArrayList<>();
+    ArrayList<String> str = new ArrayList<>();
     Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
-    private final String CHANNEL_ID ="personal" ;
-    public final int NOTIFICATION_ID = 001;
     //ads instances
     private InterstitialAd interstitialAd;
     private AdView bannerAd;
@@ -65,12 +64,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel notificationChannel = new NotificationChannel( CHANNEL_ID,CHANNEL_ID,importance );
-            NotificationManager notificationManager = (NotificationManager)getSystemService( NOTIFICATION_SERVICE );
-            notificationManager.createNotificationChannel( notificationChannel );
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
         }
         FirebaseMessaging.getInstance().subscribeToTopic("general")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -85,8 +83,6 @@ public class MainActivity extends BaseActivity {
                 });
 
 
-
-
         Context context;
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         AudienceNetworkAds.initialize(this);
@@ -97,7 +93,7 @@ public class MainActivity extends BaseActivity {
 
         final int duration = 3000;
         final int pixelsToMove = 1110;
-        final Handler mHandler = new Handler( Looper.getMainLooper());
+        final Handler mHandler = new Handler(Looper.getMainLooper());
         final Runnable SCROLLING_RUNNABLE = new Runnable() {
 
             @Override
@@ -134,8 +130,8 @@ public class MainActivity extends BaseActivity {
             public void onScrolled(final RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
-                if(lastItem == layoutManager.getItemCount()-1){
-                   mHandler.removeCallbacks(SCROLLING_RUNNABLE);
+                if (lastItem == layoutManager.getItemCount() - 1) {
+                    mHandler.removeCallbacks(SCROLLING_RUNNABLE);
                     Handler postHandler = new Handler();
                     postHandler.postDelayed(new Runnable() {
                         @Override
@@ -161,7 +157,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProgressBar progressBar1=(ProgressBar) findViewById(R.id.progress_barVideos);
+                ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progress_barVideos);
                 progressBar1.setVisibility(View.VISIBLE);
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
@@ -175,7 +171,6 @@ public class MainActivity extends BaseActivity {
                 }
 
 
-
             }
 
 
@@ -186,24 +181,23 @@ public class MainActivity extends BaseActivity {
         });
 
 
-
-
         new ScrapeNews().execute();
     }
 
-    private void loadAds(){
-        String bannerId="188011879101516_197866138116090";
-        String interstitialId="188011879101516_197826204786750";
+    private void loadAds() {
+        String bannerId = "188011879101516_197866138116090";
+        String interstitialId = "188011879101516_197826204786750";
         bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this,interstitialId);
+        interstitialAd = new InterstitialAd(this, interstitialId);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
         adContainer.addView(bannerAd);
         bannerAd.loadAd();
 
         //AdSettings.addTestDevice("fd87051b-e697-4b8a-a57f-3e2dfa594453");
-        interstitialAd.loadAd(); 
+        interstitialAd.loadAd();
 
     }
+
     @Override
     protected void onDestroy() {
         if (bannerAd != null) {
@@ -214,7 +208,8 @@ public class MainActivity extends BaseActivity {
         }
         super.onDestroy();
     }
-    private void fetchNews(){
+
+    private void fetchNews() {
         RecyclerView newsRecyclerView;
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setNestedScrollingEnabled(false);
@@ -240,60 +235,11 @@ public class MainActivity extends BaseActivity {
         return R.id.nav_home;
     }
 
-    public  class ScrapeNews extends AsyncTask<Void,Void,Void>{
-        ProgressBar progressBar=(ProgressBar) findViewById(R.id.progress_bar);
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-           // Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                String url="https://www.geosuper.tv/featured-news";
-                Document document=Jsoup.connect(url).get();
-                Elements element=document.select("li.col-xs-12");
-                int size=element.size();
-                for(int i=0;i<size;i++){
-                    String imgUrl=element.select("li.col-xs-12").select("img").eq(i).attr("src");
-                    String title=element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("title");
-                    String detail=element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("href");
-                    String datetime=element.select("li.col-xs-12").select("div.meta-tag").select("li").eq(i).text();
-                    newsDataClassArray.add(new NewsDataClass(imgUrl,title,detail,datetime));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-              //  Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
-
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressBar.setVisibility(View.GONE);
-            fetchNews();
-           // Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
-        }
-    }
     @Override
     public void onBackPressed() {
-        if(interstitialAd.isAdLoaded()){
+        if (interstitialAd.isAdLoaded()) {
             interstitialAd.show();
-        }
-        else{
+        } else {
             rateUS();
         }
         interstitialAd.setAdListener(new InterstitialAdListener() {
@@ -304,7 +250,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onInterstitialDismissed(Ad ad) {
-               // Toast.makeText(MainActivity.this, "dismissed", Toast.LENGTH_LONG).show();
+                // Toast.makeText(MainActivity.this, "dismissed", Toast.LENGTH_LONG).show();
                 rateUS();
                 interstitialAd.loadAd();
 
@@ -312,31 +258,32 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onError(Ad ad, AdError adError) {
-               // Toast.makeText(MainActivity.this, "error: "+ad+" --"+adError, Toast.LENGTH_LONG).show();
+                // Toast.makeText(MainActivity.this, "error: "+ad+" --"+adError, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
-               // Toast.makeText(MainActivity.this, "loaded", Toast.LENGTH_LONG).show();
+                // Toast.makeText(MainActivity.this, "loaded", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onAdClicked(Ad ad) {
-               // Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_LONG).show();
+                // Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_LONG).show();
                 interstitialAd.loadAd();
 
             }
 
             @Override
             public void onLoggingImpression(Ad ad) {
-              //  Toast.makeText(MainActivity.this, "logged", Toast.LENGTH_LONG).show();
+                //  Toast.makeText(MainActivity.this, "logged", Toast.LENGTH_LONG).show();
             }
         });
 
 
     }
-    public void rateUS(){
+
+    public void rateUS() {
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
         View promptView = layoutInflater.inflate(R.layout.rateapp, null);
 
@@ -351,16 +298,16 @@ public class MainActivity extends BaseActivity {
                     reference.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
+                            if (dataSnapshot.exists()) {
                                 final String url = dataSnapshot.getValue().toString();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
                                 try {
                                     startActivity(viewIntent);
+                                } catch (Exception e) {
                                 }
-                                catch (Exception e){}
-                                }
+                            }
                         }
 
                         @Override
@@ -368,26 +315,26 @@ public class MainActivity extends BaseActivity {
 
                         }
                     });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         });
 
-        btnCancel.setOnClickListener( new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertD.dismiss();
             }
-        } );
-        btnExit.setOnClickListener( new View.OnClickListener() {
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        } );
+        });
 
 
         alertD.setView(promptView);
@@ -396,6 +343,54 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    public class ScrapeNews extends AsyncTask<Void, Void, Void> {
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            // Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String url = "https://www.geosuper.tv/featured-news";
+                Document document = Jsoup.connect(url).get();
+                Elements element = document.select("li.col-xs-12");
+                int size = element.size();
+                for (int i = 0; i < size; i++) {
+                    String imgUrl = element.select("li.col-xs-12").select("img").eq(i).attr("src");
+                    String title = element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("title");
+                    String detail = element.select("li.col-xs-12").select("h4").select("a").eq(i).attr("href");
+                    String datetime = element.select("li.col-xs-12").select("div.meta-tag").select("li").eq(i).text();
+                    newsDataClassArray.add(new NewsDataClass(imgUrl, title, detail, datetime));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                //  Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_LONG).show();
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressBar.setVisibility(View.GONE);
+            fetchNews();
+            // Toast.makeText(getApplicationContext(), "success "+aVoid, Toast.LENGTH_LONG).show();
+        }
+    }
 
 
 }

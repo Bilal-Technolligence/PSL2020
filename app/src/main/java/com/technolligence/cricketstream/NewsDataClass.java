@@ -20,28 +20,28 @@ public class NewsDataClass {
         return imgUrl;
     }
 
-    public String getNewsTitle() {
-        return newsTitle;
-    }
-
-    public String getNewsDetails() {
-        return newsDetails;
-    }
-
-    public String getNewsDatetime() {
-        return newsDatetime;
-    }
-
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getNewsTitle() {
+        return newsTitle;
     }
 
     public void setNewsTitle(String newsTitle) {
         this.newsTitle = newsTitle;
     }
 
+    public String getNewsDetails() {
+        return newsDetails;
+    }
+
     public void setNewsDetails(String newsDetails) {
         this.newsDetails = newsDetails;
+    }
+
+    public String getNewsDatetime() {
+        return newsDatetime;
     }
 
     public void setNewsDatetime(String newsDatetime) {

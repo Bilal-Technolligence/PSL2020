@@ -2,17 +2,15 @@ package com.technolligence.cricketstream;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.technolligence.cricketstream.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,9 +30,9 @@ public class Fixture extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_fixture, container, false);
+        View view = inflater.inflate(R.layout.fragment_fixture, container, false);
 
-        recyclerView=view.findViewById(R.id.fixtureList);
+        recyclerView = view.findViewById(R.id.fixtureList);
         scheduleAttrs = new ArrayList<ScheduleAttr>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         reference.child("Schedule").addValueEventListener(new ValueEventListener() {
@@ -42,12 +40,12 @@ public class Fixture extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 scheduleAttrs.clear();
                 //profiledata.clear();
-                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     ScheduleAttr p = dataSnapshot1.getValue(ScheduleAttr.class);
                     scheduleAttrs.add(p);
                 }
 
-                recyclerView.setAdapter(new FixtureAdapter(scheduleAttrs ,getActivity()));
+                recyclerView.setAdapter(new FixtureAdapter(scheduleAttrs, getActivity()));
 
 
             }
@@ -57,7 +55,6 @@ public class Fixture extends Fragment {
 
             }
         });
-
 
 
         return view;

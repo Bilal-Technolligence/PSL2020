@@ -8,6 +8,18 @@ public class BowlerAttr {
     String score;
     String wickets;
 
+    public BowlerAttr(String econ, String medians, String name, String overs, String score, String wickets) {
+        this.econ = econ;
+        this.medians = medians;
+        this.name = name;
+        this.overs = overs;
+        this.score = score;
+        this.wickets = wickets;
+    }
+
+    public BowlerAttr() {
+    }
+
     public String getEcon() {
         return econ;
     }
@@ -54,17 +66,5 @@ public class BowlerAttr {
 
     public void setWickets(String wickets) {
         this.wickets = wickets;
-    }
-
-    public BowlerAttr(String econ, String medians, String name, String overs, String score, String wickets) {
-        this.econ = econ;
-        this.medians = medians;
-        this.name = name;
-        this.overs = overs;
-        this.score = score;
-        this.wickets = wickets;
-    }
-
-    public BowlerAttr() {
     }
 }

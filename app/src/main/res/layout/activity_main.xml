@@ -6,147 +6,159 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     tools:context="com.technolligence.cricketstream.MainActivity">
+
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawarLayout"
         android:layout_width="match_parent"
-        android:layout_above="@+id/banner_container"
-        android:layout_marginBottom="3dp"
         android:layout_height="match_parent"
-        android:id="@+id/drawarLayout">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_above="@+id/banner_container"
+        android:layout_marginBottom="3dp">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/topLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:orientation="horizontal"
-        android:padding="1dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/matchesRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBlue"
-            android:orientation="horizontal">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="160dp"
-            android:id="@+id/progress_barVideos"></ProgressBar>
-
-    </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/videosLayout"
-            android:layout_marginTop="7dp"
-
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:background="@color/colorBlue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/topLayout">
-            <ImageView
-                android:id="@+id/videologo"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:src="@drawable/video" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Matches Highlights                "
-                android:padding="2dp"
-                android:textSize="20dp"
-                android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-            <LinearLayout
-                android:id="@+id/videosL"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:padding="3dp"
-                android:orientation="vertical"
-                android:layout_below="@+id/videosLayout">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/web1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/topLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/newsLayout"
-                android:orientation="horizontal"
-                android:layout_marginTop="7dp"
-                android:weightSum="2"
-                android:background="@color/colorBlue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/videosL">
-                <ImageView
-                    android:id="@+id/news"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left"
-                    android:padding="5dp"
-                    android:src="@drawable/lnews" />
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Latest News                            "
-                    android:padding="2dp"
-                    android:textSize="20dp"
-                    android:textColorHint="@color/colorWhite"
-                    android:textColor="@color/colorWhite"/>
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_margin="7dp"
-                android:gravity="center_horizontal"
-                android:layout_below="@+id/newsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/newsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:padding="1dp">
 
-            </androidx.recyclerview.widget.RecyclerView>
-                <ProgressBar
-                    android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/matchesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBlue"
+                        android:orientation="horizontal">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <ProgressBar
+                        android:id="@+id/progress_barVideos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="160dp"
+                        android:layout_marginTop="70dp"></ProgressBar>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/videosLayout"
+                    android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:id="@+id/progress_bar"></ProgressBar>
-            </LinearLayout>
+                    android:layout_below="@+id/topLayout"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-        </RelativeLayout>
-    </ScrollView>
+                    <ImageView
+                        android:id="@+id/videologo"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:src="@drawable/video" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="Matches Highlights                "
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/videosL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/videosLayout"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/web1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/newsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/videosL"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/news"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:src="@drawable/lnews" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="Latest News                            "
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/newsLayout"
+                    android:layout_margin="7dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/newsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></ProgressBar>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </ScrollView>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawerNavigationView"
-            app:headerLayout="@layout/header"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#fff"
-            app:menu="@menu/drawar_menu"
-            app:itemTextColor="#6c6c6c"
             android:layout_gravity="start"
-            ></com.google.android.material.navigation.NavigationView>
+            android:background="#fff"
+            app:headerLayout="@layout/header"
+            app:itemTextColor="#6c6c6c"
+            app:menu="@menu/drawar_menu"></com.google.android.material.navigation.NavigationView>
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
@@ -156,22 +168,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/navigationView"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginStart="0dp"
-        app:labelVisibilityMode="labeled"
         android:layout_marginEnd="0dp"
         android:background="#FFFFFF"
         app:itemTextColor="@color/colorBlue"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation"/>
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>

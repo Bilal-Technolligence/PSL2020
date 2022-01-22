@@ -8,6 +8,18 @@ public class BatsmanAttr {
     String score;
     String sixs;
 
+    public BatsmanAttr(String balls, String fours, String name, String rr, String score, String sixs) {
+        this.balls = balls;
+        this.fours = fours;
+        this.name = name;
+        this.rr = rr;
+        this.score = score;
+        this.sixs = sixs;
+    }
+
+    public BatsmanAttr() {
+    }
+
     public String getBalls() {
         return balls;
     }
@@ -54,17 +66,5 @@ public class BatsmanAttr {
 
     public void setSixs(String sixs) {
         this.sixs = sixs;
-    }
-
-    public BatsmanAttr(String balls, String fours, String name, String rr, String score, String sixs) {
-        this.balls = balls;
-        this.fours = fours;
-        this.name = name;
-        this.rr = rr;
-        this.score = score;
-        this.sixs = sixs;
-    }
-
-    public BatsmanAttr() {
     }
 }
