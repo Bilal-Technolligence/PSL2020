@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:orientation="vertical"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp">
+
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
+
+        <TextView
+            android:id="@+id/newsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PSL 2020 Squads, Online Tickets Time for Pakistan Super...."
+            android:textColor="@color/colorDarkBlue"
+            android:textStyle="bold" />
+        <!--            <TextView-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Now, all the players are geared up for PSL 2020. Now hopes are further mounting that as the security environment in Pakistan has rapidly been .. ..."-->
+        <!--                android:id="@+id/newsDetail"-->
+        <!--                android:textColor="#000000"-->
+
+        <!--                />-->
+
+        <TextView
+            android:id="@+id/newsDatetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="09/01/2020"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+</LinearLayout>

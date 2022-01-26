@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.technolligence.cricketstream.Points">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/banner_container"
+        android:layout_marginBottom="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="65dp"
+                android:backgroundTint="@color/colorBlue">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="Points"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pointList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="55dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="@color/colorBlue"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/imgProfileOne"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dp"
+                    android:visibility="gone"
+                    app:civ_border_color="#FFF"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/txtNamee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="90dp"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/txtPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="Points"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNavigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#fff"
+            app:headerLayout="@layout/header"
+            app:itemTextColor="#6c6c6c"
+            app:menu="@menu/drawar_menu"></com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigationView"
+        android:orientation="vertical" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="#ffffff"
+        app:itemTextColor="@color/colorDarkBlue"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+
+</RelativeLayout>

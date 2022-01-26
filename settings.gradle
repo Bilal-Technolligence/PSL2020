@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='PSL 2020'
+rootProject.name = 'PSL 2020'

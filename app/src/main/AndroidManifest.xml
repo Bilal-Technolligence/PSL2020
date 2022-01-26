@@ -1,23 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.psl2020">
+    package="com.technolligence.cricketstream"
+    android:installLocation="preferExternal">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:textColor="@color/colorYellow"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiveStreamingActivity"></activity>
-        <activity android:name=".LiveScoreActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.technolligence.cricketstream.GuideLine" />
+
+        <service
+            android:name="com.technolligence.cricketstream.FirebaseMessaging"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name="com.technolligence.cricketstream.FbShare" />
+        <activity android:name="com.technolligence.cricketstream.NewsDetail" />
+        <activity android:name="com.technolligence.cricketstream.Points" />
+        <activity
+            android:name="com.technolligence.cricketstream.SplashScreen"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.technolligence.cricketstream.Statistics" />
+        <activity android:name="com.technolligence.cricketstream.FacebookLogin" />
+        <activity android:name="com.technolligence.cricketstream.PlayersActivity" />
+        <activity android:name="com.technolligence.cricketstream.TeamsActivity" />
+        <activity
+            android:name="com.technolligence.cricketstream.LiveStreamingActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name="com.technolligence.cricketstream.LiveScoreActivity" />
+        <activity android:name="com.technolligence.cricketstream.MainActivity" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider769950596837523"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

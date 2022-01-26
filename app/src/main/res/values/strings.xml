@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">PSL2020</string>
+    <string name="app_name">PSL 2022</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="facebook_app_id">769950596837523</string>
+    <string name="fb_login_protocol_scheme">fb769950596837523</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

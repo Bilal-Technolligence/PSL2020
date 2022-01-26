@@ -6,808 +6,925 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".LiveScoreActivity">
+    tools:context="com.technolligence.cricketstream.LiveScoreActivity">
 
-    <ScrollView
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_above="@+id/banner_container"
+        android:layout_marginBottom="3dp">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="50dp"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/topLayout"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:background="@color/colorBlue"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:paddingBottom="50dp">
+
+                <RelativeLayout
+                    android:id="@+id/topLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="356dp"
-                    android:layout_height="185dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="35dp"
-                    android:padding="10dp"
-                    app:cardBackgroundColor="#ffffff"
-                    app:cardCornerRadius="40dp">
-
-                    <RelativeLayout
-                        android:id="@+id/live"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/scoreCard"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp"
+                        app:cardBackgroundColor="#ffffff"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="20dp">
 
-                        <TextView
-                            android:id="@+id/txtmatches"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                        <LinearLayout
+                            android:id="@+id/live"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
                             android:gravity="center"
-                            android:text="3rd Match"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="12dp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="40dp"
-                            android:layout_height="15dp"
-                            app:cardBackgroundColor="@color/colorRed"
-                            android:layout_marginLeft="60dp"
-                            android:layout_marginTop="5dp"
-
-                            app:cardCornerRadius="10dp">
+                            android:orientation="horizontal"
+                            android:weightSum="5">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="Live"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                android:textColor="#ffffff"
-                                android:textSize="10dp"
+                                android:text=" "
+                                android:textColor="@color/colorBlue"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:id="@+id/txtmatches"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:text=" Match"
+                                android:textColor="@color/colorBlue"
+                                android:textSize="12dp" />
+
+                            <ImageView
+                                android:id="@+id/imgLL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/live" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=" "
+                                android:textColor="@color/colorBlue"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=" "
+                                android:textColor="@color/colorBlue"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/livematch2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/live"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal"
+                            android:padding="2dp"
+                            android:weightSum="4">
+
+                            <LinearLayout
+                                android:id="@+id/team_layout1"
+                                android:layout_width="90dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/imgTeam1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/team_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txtScore1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="0"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:text="-"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/txtWicket1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:gravity="right"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txtOver1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:paddingLeft="3dp"
+                                        android:text="0.0 "
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="Overs"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="RR :"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/txtRR1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:maxLength="4"
+                                        android:paddingLeft="3dp"
+                                        android:text="0.00"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/team_layout2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txtScore2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="0"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="2dp"
+                                        android:text="-"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/txtWicket2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="0"
+                                        android:textColor="@color/colorBlue"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txtOver2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="0.0 "
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="Overs"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:paddingLeft="3dp"
+                                        android:text="RR :"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/txtRR2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left"
+                                        android:maxLength="4"
+                                        android:paddingLeft="3dp"
+                                        android:text="0.00"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/l2"
+                                android:layout_width="90dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="3dp">
+
+                                <ImageView
+                                    android:id="@+id/imgTeam2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="122dp"
+                            android:background="@color/colorBlack" />
+
+                        <LinearLayout
+                            android:id="@+id/matchresult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/livematch2"
+                            android:layout_marginTop="123dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/txtmatches1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
-                        </androidx.cardview.widget.CardView>
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/livematch2"
-                        android:layout_width="340dp"
-                        android:layout_height="110dp"
-                        android:layout_below="@+id/live"
-                        android:layout_weight="4"
-                        android:layout_marginTop="30dp"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:id="@+id/team_layout"
-                            android:layout_width="70dp"
-                            android:paddingTop="15dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
-                            android:layout_weight="1"
-                            android:layout_marginRight="70dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/team2ShortName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="14dp"
-                                android:gravity="right"
-                                android:padding="5dp"
-                                android:textStyle="bold"
-                                android:text="LQ"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="14dp"
-                                    android:textStyle="bold"
-                                    android:gravity="right"
-                                    android:paddingLeft="2dp"
-                                    android:textColor="@color/colorBlue"
-                                    android:text="145-2"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="7dp"
-                                    android:padding="3dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/colorBlack"
-                                    android:text="17.3"/>
-                            </LinearLayout>
-
 
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
 
-                        <LinearLayout
-                            android:id="@+id/team_layout1"
-                            android:layout_width="70dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentLeft="true"
-                            android:layout_weight="1"
-                            android:paddingLeft="10dp"
-                            android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/recentCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/topLayout"
+                    android:layout_marginTop="1dp"
+                    app:cardBackgroundColor="@color/colorBlue"
+                    app:cardElevation="40dp">
 
-                            <ImageView
-                                android:id="@+id/teamImage1"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:paddingLeft="10dp"
-                                android:src="@drawable/multansultan" />
-                        </LinearLayout>
+                    <LinearLayout
 
-
-                        <LinearLayout
-                            android:id="@+id/l2"
-                            android:layout_width="70dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/t5"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:paddingLeft="10dp"
-                                android:src="@drawable/lahoreqalander" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/team_layout2"
-                            android:layout_width="70dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="70dp"
-                            android:layout_weight="1"
-                            android:paddingTop="15dp"
-                            android:orientation="vertical">
-
-                           <TextView
-                               android:id="@+id/teamShortName"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:textSize="14dp"
-                               android:padding="5dp"
-                               android:textStyle="bold"
-                               android:text="MS"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="14dp"
-                                    android:textStyle="bold"
-                                    android:gravity="left"
-                                    android:paddingLeft="2dp"
-                                    android:textColor="@color/colorBlue"
-                                    android:text="190-7"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="7dp"
-                                    android:textStyle="bold"
-                                    android:padding="3dp"
-                                    android:textColor="@color/colorBlack"
-                                    android:text="20.0"/>
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/matchresult"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="135dp"
-                        android:layout_height="30dp"
-                        android:layout_below="@+id/livematch2"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
 
                         <TextView
-                            android:id="@+id/txtmatches1"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="left"
+                            android:paddingTop="5dp"
+                            android:text="Recent  "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/txtRecent"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_marginTop="5dp"
-                            android:paddingTop="2dp"
-                            android:paddingLeft="30dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingTop="5dp"
+                            android:text=" "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TableLayout
+                    android:id="@+id/batsmanCrd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recentCard"
+                    android:gravity="center">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/colorBlue"
+                        android:padding="3dp"
+                        android:weightSum="6">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Lahore Qalander Needs 45 run on 15 balls to win"
+                            android:text="Batsman "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="R"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="B"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="6s"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="4s"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="S.R"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:background="@color/colorWhite"
+                        android:padding="3dp"
+                        android:weightSum="6">
+
+                        <TextView
+                            android:id="@+id/txtBatsmanOneName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=""
                             android:textColor="@color/colorBlack"
-                            android:textSize="13dp" />
+                            android:textSize="15dp" />
 
+                        <TextView
+                            android:id="@+id/txtBatsmanOneRun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
 
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-            <LinearLayout
-                android:id="@+id/videosLayout"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/topLayout">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vote Your Favourite Team"
-                    android:paddingLeft="15dp"
-                    android:textColorHint="@color/colorBlack"
-                    android:textSize="25dp"
-                    android:textColor="@color/colorBlack"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:id="@+id/vote_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="7dp"
-                android:layout_below="@+id/videosLayout">
+                        <TextView
+                            android:id="@+id/txtBatsmanOneBalls"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanOneSixes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanOneFours"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanOneSr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:background="@color/colorWhite"
+                        android:padding="3dp"
+                        android:weightSum="6">
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoRun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoBalls"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoSixes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoFours"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtBatsmanTwoSr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                </TableLayout>
 
                 <LinearLayout
-                    android:id="@+id/team_rating_layout2"
-                    android:layout_width="77dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="70dp"
-                    android:paddingTop="15dp"
-                    android:orientation="vertical">
+                    android:id="@+id/bowlingCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/batsmanCrd"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/team_rating"
-                        android:layout_width="match_parent"
+                        android:layout_width="32dp"
                         android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:padding="5dp"
                         android:gravity="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorDarkBlue"
-                        android:text="MS"/>
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text=""
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Bowler"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
 
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/pridicition"
-                    android:layout_width="80dp"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingLeft="30dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_below="@+id/team_rating_layout2"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="10"
-                    app:cardBackgroundColor="@color/colorGreen"
-                    app:cardCornerRadius="40dp">
-
-                    <TextView
-                        android:id="@+id/out"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingLeft="22dp"
-
-                        android:paddingTop="20dp"
-                        android:text="70%"
-                        android:textColor="#ffffff"
-                        android:textSize="25dp" />
-
-
-                </androidx.cardview.widget.CardView>
-
                 <LinearLayout
-                    android:id="@+id/team_rating_layout3"
-                    android:layout_width="77dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="70dp"
-                    android:paddingTop="15dp"
-                    android:orientation="vertical">
+                    android:id="@+id/bowlerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bowlingCard"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/team_rating2"
-                        android:layout_width="match_parent"
+                        android:layout_width="32dp"
                         android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:padding="5dp"
                         android:gravity="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorDarkBlue"
-                        android:text="LQ"/>
+                        android:paddingTop="5dp"
+                        android:text=""
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
 
-
+                    <TextView
+                        android:id="@+id/txtBowler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingTop="9dp"
+                        android:text=" "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/ratingCard"
-                    android:layout_width="80dp"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="30dp"
-                    android:layout_marginRight="70dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/team_rating_layout2"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="10"
-                    app:cardBackgroundColor="@color/colorRed"
-                    app:cardCornerRadius="40dp">
+                <LinearLayout
+                    android:id="@+id/predicition_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bowlerLayout"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/team1percentage2"
+                        android:layout_width="31dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/txtballbyballprediction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:paddingLeft="22dp"
+                        android:text="What will happen on next ball? "
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp" />
 
-                        android:paddingTop="20dp"
-                        android:text="30%"
-                        android:textColor="#ffffff"
-                        android:textSize="25dp" />
+                    <TextView
+                        android:id="@+id/txtwaitforresult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Wait For Result "
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
-
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/predicition_layout"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/vote_layout">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="Ball by Ball Predicition "
-                    android:padding="2dp"
-                    android:textSize="25dp"
-                    android:textColorHint="@color/colorBlack"
-                    android:textColor="@color/colorBlack"/>
-            </RelativeLayout>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/predicitionCard"
-                android:layout_height="190dp"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_weight="10"
-                app:cardCornerRadius="30dp"
-                android:layout_below="@+id/predicition_layout"
-                android:padding="5dp">
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/points"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/predicition_layout"
+                    android:layout_alignParentLeft="true"
                     android:layout_margin="5dp"
-                    android:layout_weight="4"
+                    android:orientation="horizontal"
                     android:padding="5dp"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="vertical">
+                    android:weightSum="4">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/outCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:layout_marginLeft="10dp"
-                        app:cardBackgroundColor="@color/colorRed"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtOut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="Out"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/oneCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="90dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="28dp"
-
-                            android:paddingTop="10dp"
-                            android:text="1"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/twoCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="170dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txttwo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="28dp"
-
-                            android:paddingTop="10dp"
-                            android:text="2"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/threeCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="250dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtthree"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="28dp"
-
-                            android:paddingTop="10dp"
-                            android:text="3"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/wideCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="330dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtwide"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="15dp"
-
-                            android:paddingTop="10dp"
-                            android:text="wide"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/points2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="4"
-                    android:padding="5dp"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="vertical">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/fourCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:layout_marginLeft="10dp"
-                        app:cardBackgroundColor="@color/colorGreen"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtfour"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="28dp"
-                            android:paddingTop="10dp"
-                            android:text="4"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/sixCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="90dp"
-                        app:cardBackgroundColor="@color/colorGreen"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txsix"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="28dp"
-
-                            android:paddingTop="10dp"
-                            android:text="6"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/dotCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="170dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtdot"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="20dp"
-
-                            android:paddingTop="10dp"
-                            android:text="dot"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/noballCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="250dp"
-                        app:cardBackgroundColor="@color/colorBlue"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="10dp"
-
-                            android:paddingTop="10dp"
-                            android:text="noball"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/runoutCard"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="5"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="330dp"
-                        app:cardBackgroundColor="@color/colorRed"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/txtrunout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingLeft="8dp"
-
-                            android:paddingTop="10dp"
-                            android:text="runout"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="20dp" />
-
-
-                    </androidx.cardview.widget.CardView>
-
-                </RelativeLayout>
-
-
-
-
-
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/newsCard2"
-                android:layout_height="190dp"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_weight="10"
-                app:cardCornerRadius="30dp"
-                android:layout_below="@+id/predicitionCard"
-                android:padding="5dp">
-
-
-                <LinearLayout
-                    android:layout_width="120dp"
-                    android:layout_height="150dp"
-                    android:padding="10dp"
-                    android:orientation="vertical"
-                    android:layout_alignParentLeft="true"
-                    >
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/newsVideoCard2"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_width="120dp"
-                        android:layout_weight="10"
-
-                        android:padding="10dp"
-                        app:cardCornerRadius="30dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/pslne"
-                            />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    android:layout_marginLeft="120dp"
-                    android:gravity="center"
-                    android:elevation="16dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="PSL 2020 Squads, Online Tickets Time for Pakistan Super...."
-                        android:textStyle="bold"
-                        android:textColor="@color/colorDarkBlue"
-                        android:id="@+id/notification_title1"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Now, all the players are geared up for PSL 2020. Now hopes are further mounting that as the security environment in Pakistan has rapidly been .. ..."
-                        android:id="@+id/notification_description1"
-                        android:textColor="#000000"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/notification_datetime1"
+                    <ImageView
+                        android:id="@+id/imgOut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000000"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="110dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/out" />
 
-                        android:text="09/01/2020"
-                        android:textSize="10dp" />
+                    <ImageView
+                        android:id="@+id/imgDot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/dot" />
+
+                    <ImageView
+                        android:id="@+id/imgOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+
+                        android:src="@drawable/one" />
+
+                    <ImageView
+                        android:id="@+id/imgTwo"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/two" />
+
+
                 </LinearLayout>
-                <Button
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="270dp"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:paddingTop="17dp"
-                    android:backgroundTint="#ffffff"
-                    android:textColor="@color/colorDarkBlue"
-                    android:text="More"
-                    android:layout_gravity="bottom"/>
 
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="330dp"
-                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+                <LinearLayout
+                    android:id="@+id/points2"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/points"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="5dp"
+
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
 
 
-            </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/imgThree"
 
-            <!--                <androidx.recyclerview.widget.RecyclerView-->
-            <!--                    android:id="@+id/nList"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="661dp"-->
-            <!--                    android:layout_above="@+id/navigationView"-->
-            <!--                    android:layout_alignParentEnd="true"-->
-            <!--                    android:layout_marginEnd="0dp"-->
-            <!--                    android:layout_marginBottom="14dp" />-->
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/three" />
 
 
-        </RelativeLayout>
-    </ScrollView>
+                    <ImageView
+                        android:id="@+id/imgFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/four" />
+
+                    <ImageView
+                        android:id="@+id/imgSix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/six" />
+
+
+                    <ImageView
+                        android:id="@+id/imgRunout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:src="@drawable/runout" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/summaryLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/points2"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/colorBlue"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="     "
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Summary"
+                        android:textColor="@color/colorWhite"
+                        android:textColorHint="@color/colorWhite"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mainLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:layout_below="@+id/summaryLayout"
+                    android:orientation="vertical">
+
+                    <!-- our tablayout to display tabs  -->
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/summaryTabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBlue"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="@style/Theme.MaterialComponents" />
+
+                    <!-- View pager to swipe views -->
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/summaryPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"></androidx.viewpager.widget.ViewPager>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerNavigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#fff"
+            app:headerLayout="@layout/header"
+            app:itemTextColor="#6c6c6c"
+            app:menu="@menu/drawar_menu"></com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigationView"
+        android:orientation="vertical" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginStart="0dp"
-        app:labelVisibilityMode="labeled"
         android:layout_marginEnd="0dp"
         android:background="#ffffff"
         app:itemTextColor="@color/colorDarkBlue"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation"/>
+        app:menu="@menu/navigation" />
 
 
 </RelativeLayout>

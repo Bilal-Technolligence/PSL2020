@@ -2,11 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/Asigurare-Auto"
-        android:title="Asigurare Auto"></item>
+        android:id="@+id/inviteFriends"
+        android:icon="@drawable/friends"
+        android:title="Invite Friends"></item>
     <item
-        android:id="@+id/Benzinarie"
-        android:title="Benzinarie"></item>
+        android:id="@+id/rewardPoints"
+        android:icon="@drawable/earnpoints"
+        android:title="Watch Video to Earn Points"></item>
+    <item
+        android:id="@+id/guideline"
+        android:icon="@drawable/guide"
+        android:title="Guideline"></item>
+    <item
+        android:id="@+id/scoreboard"
+        android:icon="@drawable/score"
+        android:title="Points"></item>
+    <item
+        android:id="@+id/rateUs"
+        android:icon="@drawable/rateus"
+        android:title="Rate Us"></item>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Logout"></item>
 
 
 </menu>
