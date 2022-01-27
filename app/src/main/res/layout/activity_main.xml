@@ -163,12 +163,14 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <LinearLayout
-        android:id="@+id/banner_container"
+    <com.google.android.gms.ads.AdView
+        android:layout_above="@+id/navigationView"
+        android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/navigationView"
-        android:orientation="vertical" />
+        app:adSize="BANNER"
+        app:adUnitId="@string/banner_home_footer">
+    </com.google.android.gms.ads.AdView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"

@@ -1,7 +1,10 @@
 package com.technolligence.cricketstream;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -9,13 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
-import com.facebook.ads.AudienceNetworkAds;
-import com.facebook.ads.InterstitialAd;
-import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.api.Context;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +43,11 @@ public class PlayersActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView( R.layout.activity_players );
-        AudienceNetworkAds.initialize(this);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
         loadAds();
 //        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.bgcolor);
         Intent intent = getIntent();
@@ -78,17 +88,53 @@ public class PlayersActivity extends BaseActivity {
     }
 
     private void loadAds() {
-        String bannerId = "188011879101516_197866138116090";
-        String interstitialId = "188011879101516_197826204786750";
-        bannerAd = new AdView(this, bannerId, AdSize.BANNER_HEIGHT_50);
-        interstitialAd = new InterstitialAd(this, interstitialId);
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
-        adContainer.addView(bannerAd);
-        bannerAd.loadAd();
+        bannerAd = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        bannerAd.loadAd(adRequest);
 
-        // AdSettings.addTestDevice("5b0b5bb8-d58d-4d97-9978-b973bec26663");
-        interstitialAd.loadAd();
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.interstitial_full_screen), adRequest1, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd i) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                interstitialAd = i;
+                Log.i(TAG, "onAdLoaded");
+                interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Called when fullscreen content is dismissed.
+                        //Log.d("TAG", "The ad was dismissed.");
+                        //finish();
 
+                        finish();
+                        //interstitialAd.loadAd();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        // Called when fullscreen content failed to show.
+                        Log.d("TAG", "The ad failed to show.");
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Called when fullscreen content is shown.
+                        // Make sure to set your reference to null so you don't
+                        // show it a second time.
+                        interstitialAd = null;
+                        Log.d("TAG", "The ad was shown.");
+                    }
+                });
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                interstitialAd = null;
+            }
+        });
     }
 
     @Override
@@ -97,57 +143,19 @@ public class PlayersActivity extends BaseActivity {
             bannerAd.destroy();
         }
         if (interstitialAd != null) {
-            interstitialAd.destroy();
+            //interstitialAd.destroy();
         }
         super.onDestroy();
     }
 
     @Override
     public void onBackPressed() {
-        if (interstitialAd.isAdLoaded()) {
-            interstitialAd.show();
+        // Show the ad if it's ready. Otherwise toast and restart the game.
+        if (interstitialAd != null) {
+            interstitialAd.show(this);
         } else {
             finish();
         }
-        interstitialAd.setAdListener(new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                //Toast.makeText(MainActivity.this, "displayed", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Toast.makeText(MainActivity.this, "dismissed", Toast.LENGTH_LONG).show();
-                interstitialAd.loadAd();
-                finish();
-
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Toast.makeText(MainActivity.this, "error: "+ad+" --"+adError, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Toast.makeText(MainActivity.this, "loaded", Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_LONG).show();
-                interstitialAd.loadAd();
-
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-                //  Toast.makeText(MainActivity.this, "logged", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
     }
 
 
